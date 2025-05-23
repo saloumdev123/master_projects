@@ -44,7 +44,6 @@ export class JobApplicationComponent implements OnInit {
       jobId: [null, Validators.required],
       jobTitle: ['', Validators.required],
       jobDescription: ['', Validators.required],
-      message: ['', Validators.required],
       jobApplicationStatus: [JobApplicationStatus.SUCCESS],
     });
   }

@@ -13,7 +13,6 @@ export interface JobApplication {
     phone: string;
     resume: string;
     jobId: number;
-    message:string;
     jobApplicationStatus: JobApplicationStatus;
   
   }
