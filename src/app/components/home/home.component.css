@@ -1,0 +1,81 @@
+/* Conteneur principal */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f5fff5;
+  font-family: 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2e7d32;
+  color: white;
+  padding: 1rem;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+/* Sidebar en mode réduit */
+.sidebar.collapsed {
+  width: 0;
+  padding: 0;
+}
+
+.toggle-btn {
+  position: absolute;
+  top: 1rem;
+  left: 210px; /* Aligné à droite de la sidebar ouverte */
+  z-index: 1000;
+  background: transparent;
+  color: #0f0f0f;
+  font-size: 1.8rem;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: left 0.3s ease;
+}
+
+/* Quand la sidebar est repliée */
+.sidebar.collapsed + .main-content ~ .toggle-btn {
+  left: 0.5rem; /* repositionné à gauche si besoin */
+}
+
+
+/* Liste de menu */
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+
+/* Éléments du menu */
+.sidebar li {
+  margin: 1rem 0;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar li:hover {
+  background-color: #1b5e20;
+}
+
+/* Section principale */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f1f8e9;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+}
+
+/* Section interne (cards ou composants Angular) */
+section {
+  background-color: #e8f5e9;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}

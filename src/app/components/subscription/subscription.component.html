@@ -1,0 +1,38 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="container mt-5 p-4 bg-light rounded shadow-sm">
+  <h2 class="text-center mb-4 text-primary">Subscribe to JobConnect</h2>
+
+  <div class="mb-3">
+    <label class="form-label">Title</label>
+    <input formControlName="title" type="text" class="form-control" placeholder="Enter a title" />
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label class="form-label">First Name</label>
+      <input formControlName="firstName" type="text" class="form-control" placeholder="Your first name" />
+    </div>
+    <div class="col-md-6 mb-3">
+      <label class="form-label">Last Name</label>
+      <input formControlName="lastName" type="text" class="form-control" placeholder="Your last name" />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Phone Number</label>
+    <input formControlName="phoneNumber" type="text" class="form-control" placeholder="e.g. +221 77 123 45 67" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input formControlName="email" type="email" class="form-control" placeholder="example@mail.com" />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Message</label>
+    <textarea formControlName="message" rows="4" class="form-control" placeholder="Your message..."></textarea>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid" class="btn btn-primary w-100">
+    Subscribe
+  </button>
+</form>

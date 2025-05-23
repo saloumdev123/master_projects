@@ -1,0 +1,65 @@
+
+
+
+<br> 
+<div class="container mt-4">
+  
+  <div class="mb-3 d-flex gap-2 mt-2">
+    <input
+      type="text"
+      class="form-control custom-input"
+      [(ngModel)]="filterTerm"
+      placeholder="Search jobs..."
+    />
+  
+    <select class="form-select custom-input" [(ngModel)]="filterType" id="jobFilter">
+      <option value="title">Title</option>
+      <option value="location">Location</option>
+      <option value="employmentType">Employment Type</option>
+    </select>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Job Listings</h2>
+
+
+      <ul class="list-group">
+        @for (job of filteredJobs; track job.id) {
+          <li
+            class="list-group-item list-group-item-action"
+            (click)="loadJobById(job.id)"
+          >
+            <strong>{{ job.title }}</strong> - {{ job.location }} ({{ job.employmentType }})
+          </li>
+        }
+      </ul>
+
+      <!-- Pagination Controls -->
+      <div class="d-flex justify-content-between mt-3">
+        <button class="btn btn-success" (click)="previousPage()" [disabled]="currentPage === 0">Previous</button>
+        <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+        <button class="btn btn-success" (click)="nextPage()" [disabled]="currentPage >= totalPages - 1">Next</button>
+      </div>
+     </div>
+
+    <!-- Job Details Section -->
+    @if (selectedJob) {
+      <div class="col-md-6">
+        <h2>Job Details</h2>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ selectedJob.title }}</h5>
+            <p><strong>Description:</strong> {{ selectedJob.description }}</p>
+            <p><strong>Location:</strong> {{ selectedJob.location }}</p>
+            <p><strong>Years of Experience:</strong> {{ selectedJob.yearExperience }}</p>
+            <p><strong>Date Posted:</strong> {{ selectedJob.dateCreated }}</p>
+            <p><strong>Employment Type:</strong> {{ selectedJob.employmentType }}</p>
+            <p><strong>Pay:</strong> {{ selectedJob.pay }}</p>
+            <button class="btn btn-success" (click)="apply(selectedJob.id)">Apply</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div><br><br><br>
