@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: JobConnect
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/jobconnect_db
+    username: root
+    password: saloum
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    org:
+      springframework: INFO
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+  main:
+    mail:
+      host: smtp.gmail.com
+      port: 587
+      username: sensaloumdev@gmail.com
+      password: ffud ojxs cinj kawd
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+server:
+  port: 8080
