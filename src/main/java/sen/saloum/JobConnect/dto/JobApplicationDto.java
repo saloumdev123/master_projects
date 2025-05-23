@@ -19,6 +19,5 @@ public class JobApplicationDto {
     private String resume;
     private String jobApplicationStatus;
     private Long jobId;
-    private String message;
 
 }

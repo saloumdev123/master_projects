@@ -11,7 +11,6 @@ import sen.saloum.JobConnect.dto.JobApplicationDto;
 import sen.saloum.JobConnect.service.FileStorageService;
 import sen.saloum.JobConnect.service.JobApplicationService;
 
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 @RestController

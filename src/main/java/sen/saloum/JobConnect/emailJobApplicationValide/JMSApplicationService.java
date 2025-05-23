@@ -25,10 +25,9 @@ public class JMSApplicationService {
         jmsApplication.setSubscriberId(createdId.toString());
         jmsApplication.setFirstName(jobApplicationDto.getFirstName());
         jmsApplication.setLastName(jobApplicationDto.getLastName());
-        jmsApplication.setBody(jobApplicationDto.getMessage());
         jmsApplication.setEmail(jobApplicationDto.getEmail());
-        jmsApplication.setTitle("Suscription reussie");
-        jmsApplication.setBody("Votre réservation a été confirmée avec l'ID : " + createdId);
+        jmsApplication.setTitle("Job application received successfully");
+        jmsApplication.setBody("Votre demande a ete confirmée avec l'ID : " + createdId);
         jmsApplication.setDateDebut(OffsetDateTime.now());
         return jmsApplication;
     }
