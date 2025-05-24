@@ -1,81 +1,159 @@
-/* Conteneur principal */
-.dashboard-container {
+/* .dashboard-container {
   display: flex;
   height: 100vh;
-  background-color: #f5fff5;
+  background-color: #eef3f7;
   font-family: 'Segoe UI', sans-serif;
-  position: relative;
 }
 
-/* Sidebar */
 .sidebar {
   width: 250px;
-  background-color: #2e7d32;
-  color: white;
-  padding: 1rem;
+  background-color: #263238;
+  color: #fff;
   transition: width 0.3s ease;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Sidebar en mode réduit */
 .sidebar.collapsed {
-  width: 0;
+  width: 70px;
+}
+
+.sidebar-header {
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #455a64;
+}
+
+.sidebar ul {
+  list-style: none;
   padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.sidebar li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 1rem;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: #37474f;
+}
+
+.sidebar i {
+  width: 20px;
+  text-align: center;
 }
 
 .toggle-btn {
   position: absolute;
   top: 1rem;
-  left: 210px; /* Aligné à droite de la sidebar ouverte */
+  left: 1rem;
   z-index: 1000;
-  background: transparent;
-  color: #0f0f0f;
-  font-size: 1.8rem;
+  background: #ffffff;
+  color: #263238;
+  font-size: 1.5rem;
   border: none;
-  padding: 0.5rem;
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: left 0.3s ease;
+  transition: background 0.3s;
 }
 
-/* Quand la sidebar est repliée */
-.sidebar.collapsed + .main-content ~ .toggle-btn {
-  left: 0.5rem; /* repositionné à gauche si besoin */
+.toggle-btn:hover {
+  background-color: #cfd8dc;
 }
 
-
-/* Liste de menu */
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 2rem 0 0 0;
-}
-
-/* Éléments du menu */
-.sidebar li {
-  margin: 1rem 0;
-  cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.sidebar li:hover {
-  background-color: #1b5e20;
-}
-
-/* Section principale */
 .main-content {
   flex: 1;
   padding: 2rem;
-  background-color: #f1f8e9;
+  background-color: #fafafa;
   overflow-y: auto;
   transition: margin-left 0.3s ease;
 }
 
-/* Section interne (cards ou composants Angular) */
 section {
-  background-color: #e8f5e9;
-  padding: 1.5rem;
+  background-color: #ffffff;
+  padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+} */
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1581090700227-1e8a44c2f2d6?auto=format&fit=crop&w=1740&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: rgba(38, 50, 56, 0.9); /* semi-transparent */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: 1rem;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.toggle-btn {
+  background-color: #ffffff;
+  color: #263238;
+  border: none;
+  margin: 0 1rem 1rem;
+  font-size: 1.5rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(3px);
+  border-radius: 0.5rem;
+  margin: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+section {
+  padding: 1.5rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }

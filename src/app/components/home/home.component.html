@@ -8,7 +8,6 @@
       <li (click)="showSection('subscription')">Subscriptions</li>
     </ul>
   </aside>
-
   <main class="main-content">
     <section *ngIf="currentSection === 'job'">
       <app-job></app-job>
@@ -25,5 +24,13 @@
     <section *ngIf="currentSection === 'subscription'">
       <app-subscription></app-subscription>
     </section>
+    <section *ngIf="currentSection === 'about'">
+     <app-about></app-about>
+   </section>
+
+   <section *ngIf="currentSection === 'contact'">
+     <app-contact></app-contact>
+   </section>
+
   </main>
 </div>

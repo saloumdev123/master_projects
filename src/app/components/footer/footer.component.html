@@ -1,32 +1,54 @@
-<footer id="footer" class="footer bg-success">
-    <div class="container">
-      <h3 class="sitename text-white">job connect app
-  
-      </h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
-      <div class="social-links d-flex justify-content-center bg-white">
-        <a href=""><i class="bi bi-twitter-x"></i></a>
-        <a href=""><i class="bi bi-facebook"></i></a>
-        <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
-        <a href=""><i class="bi bi-linkedin"></i></a>
+<footer class="bg-dark text-white pt-5 pb-4">
+  <div class="container text-md-left">
+    <div class="row">
+
+      <!-- Logo & Slogan -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+        <h5 class="text-uppercase fw-bold">JOB CONNECT</h5>
+        <p>Connectez les talents aux opportunités. Rejoignez-nous pour bâtir un avenir professionnel meilleur.</p>
       </div>
-      <div class="container">
-        <div class="copyright">
-          <span>Copyright</span> <strong class="px-1 sitename">JOB CONNECT APP
-  
-          </strong> <span>All Rights Reserved</span>
-        </div>
-        <div class="credits text-white">
-          Designed by <a href="https://www.linkedin.com/in/papa-saloum-sene-069638268/">SaloumDev</a> Distributed by <a href="https://themewagon.com">ThemeWagon</a>
-        </div>
+
+      <!-- Liens utiles -->
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase fw-bold mb-4">Liens rapides</h6>
+        <p><a href="#" class="text-white text-decoration-none">Accueil</a></p>
+        <p><a href="#" class="text-white text-decoration-none">À propos</a></p>
+        <p><a href="#" class="text-white text-decoration-none">Offres d’emploi</a></p>
+        <p><a href="#" class="text-white text-decoration-none">Contact</a></p>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
+        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+        <p><i class="bi bi-geo-alt-fill me-2"></i> Dakar, Sénégal</p>
+        <p><i class="bi bi-envelope-fill me-2"></i> contact&#64;jobconnect.com</p>
+        <p><i class="bi bi-phone-fill me-2"></i> +221 77 123 45 67</p>
+      </div>
+
+      <!-- Réseaux sociaux -->
+      <div class="col-md-4 col-lg-4 col-xl-4 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase fw-bold mb-4">Suivez-nous</h6>
+        <a href="#" class="text-white me-4"><i class="bi bi-facebook fs-5"></i></a>
+        <a href="#" class="text-white me-4"><i class="bi bi-twitter fs-5"></i></a>
+        <a href="#" class="text-white me-4"><i class="bi bi-instagram fs-5"></i></a>
+        <a href="#" class="text-white me-4"><i class="bi bi-linkedin fs-5"></i></a>
+      </div>
+
+    </div>
+
+    <hr class="my-4" />
+
+    <!-- Newsletter -->
+    <div class="row">
+      <div class="col-md-6">
+        <p>&copy; 2025 JOB CONNECT. Tous droits réservés.</p>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <form class="d-flex" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <input type="email" class="form-control me-2" formControlName="email" placeholder="Votre email" />
+          <button class="btn btn-success">S’abonner</button>
+        </form>
       </div>
     </div>
-  </footer>
-  
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-  
-  <!-- Preloader -->
-  <div id="preloader"></div>
-  
+  </div>
+</footer>
