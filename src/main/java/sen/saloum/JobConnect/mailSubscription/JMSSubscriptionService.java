@@ -20,9 +20,6 @@ public class JMSSubscriptionService {
     public JMSubscription prepareJMSReservation(SubscriptionDto subscriptionDto, Long createdId) {
         JMSubscription jmSubscription = new JMSubscription();
         jmSubscription.setSubscriberId(createdId.toString());
-        jmSubscription.setFirstName(subscriptionDto.getFirstName());
-        jmSubscription.setLastName(subscriptionDto.getLastName());
-        jmSubscription.setBody(subscriptionDto.getMessage());
         jmSubscription.setEmail(subscriptionDto.getEmail());
         jmSubscription.setTitle("Suscription reussie");
         jmSubscription.setBody("Votre réservation a été confirmée avec l'ID : " + createdId);
