@@ -41,8 +41,12 @@ public class ResourceService {
     }
 
     public ResourceDto addResource(ResourceDto dto) {
+        if (dto.getImage() == null || dto.getImage().isEmpty()) {
+            dto.setImage("https://example.com/default-book-image.jpg"); // URL de ton image par défaut
+        }
         Resource saved = resourceRepository.save(toEntity(dto));
         return toDto(saved);
     }
+
 
 }

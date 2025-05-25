@@ -7,9 +7,6 @@ import lombok.Data;
 public class ResourceDto {
     private Long id;
     private String title;
-    private String author;
-    private String authorRole;
-    private String category;
     private String resourceContent;
-    private String image;
+    private String downloadLink;
 }

@@ -1,8 +1,6 @@
 package sen.saloum.JobConnect.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.internal.build.AllowNonPortable;
@@ -25,4 +23,13 @@ public class Job {
     private String pay;
     private String requirements;
     private String fullDescription;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "recruteur_id")
+    private Recruiter recruteur;
+
 }

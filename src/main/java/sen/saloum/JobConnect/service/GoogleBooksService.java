@@ -27,19 +27,48 @@ public class GoogleBooksService {
                 Map<String, Object> volumeInfo = (Map<String, Object>) item.get("volumeInfo");
 
                 ResourceDto dto = new ResourceDto();
+
+                // Title
                 dto.setTitle((String) volumeInfo.get("title"));
-                dto.setAuthor(((List<String>) volumeInfo.get("authors")).get(0));
-                dto.setCategory(((List<String>) volumeInfo.get("categories")).get(0));
+
+                // Authors (check null and get first element safely)
+                List<String> authors = (List<String>) volumeInfo.get("authors");
+                dto.setAuthor(authors != null && !authors.isEmpty() ? authors.get(0) : "Auteur inconnu");
+
+                // Categories
+                List<String> categories = (List<String>) volumeInfo.get("categories");
+                dto.setCategory(categories != null && !categories.isEmpty() ? categories.get(0) : "Non catégorisé");
+
                 dto.setAuthorRole("Author");
 
+                // Description
                 dto.setResourceContent((String) volumeInfo.get("description"));
+
+                // Image - cherche différentes tailles
                 Map<String, String> imageLinks = (Map<String, String>) volumeInfo.get("imageLinks");
-                dto.setImage(imageLinks != null ? imageLinks.get("thumbnail") : null);
+                if (imageLinks != null) {
+                    String imageUrl = null;
+
+                    if (imageLinks.containsKey("thumbnail")) {
+                        imageUrl = imageLinks.get("thumbnail");
+                    } else if (imageLinks.containsKey("smallThumbnail")) {
+                        imageUrl = imageLinks.get("smallThumbnail");
+                    }
+
+                    if (imageUrl != null) {
+                        // 🔒 Force HTTPS
+                        dto.setImage(imageUrl.replace("http://", "https://"));
+                    } else {
+                        dto.setImage(null);
+                    }
+                } else {
+                    dto.setImage(null);
+                }
 
                 books.add(dto);
             }
         }
-
         return books;
     }
+
 }

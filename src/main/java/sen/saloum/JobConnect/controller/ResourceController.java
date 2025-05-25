@@ -40,4 +40,9 @@ public class ResourceController {
         ResourceDto created = resourceService.addResource(dto);
         return ResponseEntity.ok(created);
     }
+    @PostMapping("/save")
+    public ResponseEntity<ResourceDto> saveExternalResource(@RequestBody ResourceDto dto) {
+        return ResponseEntity.ok(resourceService.addResource(dto));
+    }
+
 }

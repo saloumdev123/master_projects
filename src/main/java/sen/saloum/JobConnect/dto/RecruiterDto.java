@@ -1,0 +1,15 @@
+package sen.saloum.JobConnect.dto;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+import java.util.List;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class RecruiterDto extends UserDto {
+    private String companyName;
+    private String companyWebsite;
+    private String companyAddress;
+    private List<JobDto> jobsPosted;
+}
