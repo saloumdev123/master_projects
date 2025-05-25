@@ -1,1 +1,35 @@
-<p>resource works!</p>
+@if (pagedResources.length > 0) {
+  <div class="grid-container">
+    @for (resource of pagedResources; track resource.id) {
+      <div class="card">
+        <!-- Une seule image dynamique par livre -->
+        <img [src]="resource.image" alt="{{ resource.title }}" width="150" />
+        
+        <h2>{{ resource.title }}</h2>
+        <p><strong>Auteur :</strong> {{ resource.author }}</p>
+        <p><strong>Catégorie :</strong> {{ resource.category }}</p>
+        <p>{{ resource.resourceContent }}</p>
+
+        <a href=""  (click)="downloadResource(resource)">Télécharger</a>
+      </div>
+      
+    }
+  </div>
+
+  <!-- Pagination -->
+  <nav class="pagination">
+    <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">Précédent</button>
+
+    @for (page of pages(); track page) {
+      <button
+        (click)="goToPage(page)"
+        [class.active]="page === currentPage">
+        {{ page }}
+      </button>
+    }
+
+    <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant</button>
+  </nav>
+} @else {
+  <p>Aucune ressource trouvée.</p>
+}

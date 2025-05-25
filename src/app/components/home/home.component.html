@@ -5,7 +5,6 @@
       <li (click)="showSection('job')">Jobs</li>
       <li (click)="showSection('jobApplication')">Applications</li>
       <li (click)="showSection('resource')">Resources</li>
-      <li (click)="showSection('subscription')">Subscriptions</li>
     </ul>
   </aside>
   <main class="main-content">
@@ -21,9 +20,6 @@
       <app-resource></app-resource>
     </section>
 
-    <section *ngIf="currentSection === 'subscription'">
-      <app-subscription></app-subscription>
-    </section>
     <section *ngIf="currentSection === 'about'">
      <app-about></app-about>
    </section>

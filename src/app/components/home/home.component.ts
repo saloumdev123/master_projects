@@ -36,8 +36,7 @@ export class HomeComponent {
   menuItems = [
   { key: 'job', label: 'Jobs', icon: 'fas fa-briefcase' },
   { key: 'jobApplication', label: 'Applications', icon: 'fas fa-file-alt' },
-  { key: 'resource', label: 'Resources', icon: 'fas fa-book' },
-  { key: 'subscription', label: 'Subscriptions', icon: 'fas fa-bell' }
+  { key: 'resource', label: 'Resources', icon: 'fas fa-book' }
 ];
 
 }

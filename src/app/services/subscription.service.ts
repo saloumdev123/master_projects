@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Subscriber } from '../interfaces/subscriber';
+import { MiniSubscriber } from '../interfaces/MiniSubscriber';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,9 @@ export class SubscriptionService {
   private http = inject(HttpClient);
   constructor() {}
 
-   createSubscription(subscriber: Subscriber): Observable<Subscriber> {
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.http.post<Subscriber>(this.apiUrl, subscriber, { headers });
-  }
+  simpleSubscribe(data: MiniSubscriber) {
+  return this.http.post(`${this.apiUrl}/simple-subscription`, data);
+}
+
+
 }

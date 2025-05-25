@@ -1,0 +1,26 @@
+.partner-slider-wrapper {
+  overflow: hidden;
+  width: 100%;
+  background-color: #f9f9f9;
+  padding: 10px 0;
+}
+
+.partner-slider {
+  display: flex;
+  animation: slideLeft 20s linear infinite;
+  gap: 50px;
+}
+
+.partner-slider img {
+  height: 100px;
+  object-fit: contain;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
