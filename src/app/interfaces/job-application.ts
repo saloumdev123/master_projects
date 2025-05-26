@@ -1,19 +1,19 @@
-import { JobApplicationStatus } from "../enums/JobApplicationStatus";
-import { Job } from "./job";
-
 export interface JobApplication {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    country: string;
-    city: string;
-    jobTitle: string;
-    jobDescription: string;
-    phone: string;
-    resume: string;
-    jobId: number;
-    jobApplicationStatus: JobApplicationStatus;
-  
-  }
-  
+  id: number;
+  fullName: string;
+  email: string;
+  phoneNumber: string;
+  resume: string;
+  country: string;
+  city: string;
+  jobTitle: string;
+  jobDescription: string;
+  jobApplicationStatus: string;
+  dateCreated: string; 
+
+  jobId: number;
+  jobTitleFromJob: string;
+
+  candidatId: number;
+  candidatFullName: string;
+}

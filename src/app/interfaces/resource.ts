@@ -1,11 +1,7 @@
 export interface Resource {
 
-      id?: number;
+  id: number;
   title: string;
-  author: string;
-  authorRole: string;
-  category: string;
   resourceContent: string;
-  image: string;
-  downloadUrl: string; 
+  downloadLink: string;
 }
