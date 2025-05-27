@@ -1,0 +1,237 @@
+.main-footer {
+  background-color: #000; 
+  color: white; 
+  padding: 80px 20px 40px; 
+  font-family: 'Inter', sans-serif; 
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  max-width: 1200px; 
+  margin: 0 auto;
+  gap: 30px; 
+  margin-bottom: 60px; 
+}
+
+.footer-column {
+  flex: 1; 
+  min-width: 200px; 
+  text-align: left;
+}
+
+.footer-column.job-info {
+  flex: 1.5; 
+  min-width: 250px;
+}
+
+.job-logo {
+  display: flex; 
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.job-logo .site-logo {
+  height: 40px; 
+  width: auto; 
+  display: block; 
+}
+
+
+.job-description {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7); 
+}
+
+/* Styles pour les titres des colonnes */
+.footer-column h3 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: white;
+  text-transform: uppercase;
+}
+
+/* Styles pour les listes de liens */
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 12px;
+}
+
+.footer-column ul li a {
+  color: rgba(255, 255, 255, 0.7); 
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.3s ease;
+}
+
+.footer-column ul li a:hover {
+  color: white; 
+}
+
+/* Styles pour la section Newsletter */
+.newsletter p {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column; 
+  gap: 15px; 
+}
+
+.newsletter-form input {
+  background-color: #1A1A1A; 
+  border: 1px solid #333; 
+  border-radius: 8px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 0.95em;
+  width: 100%; 
+  box-sizing: border-box; 
+}
+
+.newsletter-form input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.newsletter-form input:focus {
+  outline: none;
+  border-color: #005448; 
+}
+
+.subscribe-button {
+  background-color: #005448; 
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%; 
+}
+
+.subscribe-button:hover {
+  background-color: #008D80; 
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; 
+  gap: 20px; 
+}
+
+.footer-bottom .copyright {
+  font-size: 0.9em;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.footer-bottom .bottom-links {
+  display: flex;
+  gap: 30px; 
+}
+
+.footer-bottom .bottom-links a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom .bottom-links a:hover {
+  color: white;
+}
+
+/* Media Queries pour la responsivité */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-footer {
+    padding: 60px 15px 30px;
+  }
+
+  .footer-container {
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-column {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .footer-bottom {
+    flex-direction: column; 
+    text-align: center;
+    gap: 15px;
+    padding-top: 20px;
+  }
+
+  .footer-bottom .bottom-links {
+    flex-direction: column; 
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-footer {
+    padding: 40px 10px 20px;
+  }
+
+  .job-logo .site-logo { 
+    height: 30px; 
+  }
+
+  .job-description {
+    font-size: 0.85em;
+  }
+
+  .footer-column h3 {
+    font-size: 1em;
+  }
+
+  .footer-column ul li a {
+    font-size: 0.85em;
+  }
+
+  .newsletter p,
+  .newsletter-form input,
+  .subscribe-button {
+    font-size: 0.85em;
+  }
+
+  .subscribe-button {
+    padding: 10px 20px;
+  }
+
+  .footer-bottom .copyright,
+  .footer-bottom .bottom-links a {
+    font-size: 0.8em;
+  }
+}

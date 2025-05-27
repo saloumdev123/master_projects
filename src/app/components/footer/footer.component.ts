@@ -6,6 +6,7 @@ import { SubscriptionService } from '../../services/subscription.service';
 import { Router } from '@angular/router';
 import { MiniSubscriber } from '../../interfaces/MiniSubscriber';
 
+
 @Component({
   selector: 'app-footer',
   standalone: true,
@@ -18,8 +19,8 @@ export class FooterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private subscriptionService: SubscriptionService,
-    private router: Router
+    private subscriptionService: SubscriptionService, 
+    private router: Router 
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -27,19 +28,23 @@ export class FooterComponent {
   }
 
   onSubmit() {
-  if (this.form.invalid) return;
+    if (this.form.invalid) return;
 
-  const subscriber: MiniSubscriber = {
-    email: this.form.value.email
-  };
+    
+    const subscriber: MiniSubscriber = {
+      email: this.form.value.email
+    };
 
-  this.subscriptionService.simpleSubscribe(subscriber).subscribe({
-    next: () => {
-      console.log('Abonnement enregistré');
-      this.form.reset();
-    },
-    error: (err) => console.error('Erreur :', err)
-  });
-}
+    this.subscriptionService.simpleSubscribe(subscriber).subscribe({
+      next: () => {
+        console.log('Abonnement enregistré');
+        this.form.reset();
+      },
+      error: (err) => console.error('Erreur :', err)
+    });
 
+    console.log('Soumission du formulaire de newsletter :', this.form.value.email);
+    alert('Email ' + this.form.value.email + ' abonné ! (Simulation)');
+    this.form.reset();
+  }
 }

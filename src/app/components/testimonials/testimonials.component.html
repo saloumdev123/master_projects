@@ -1,0 +1,30 @@
+<section class="testimonials-section">
+  <div class="testimonials-header">
+    <h2>Témoignages de nos clients</h2>
+    <p class="section-description">
+      Découvrez ce que nos utilisateurs satisfaits disent de leur expérience avec JobConnect et de la façon dont nous les avons aidés.
+    </p>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+      <div class="stars">
+        <i *ngFor="let star of [].constructor(testimonial.rating)" class="fas fa-star filled"></i>
+        </div>
+      <h3 class="testimonial-title">{{ testimonial.title }}</h3>
+      <p class="testimonial-quote">{{ testimonial.quote }}</p>
+      <div class="testimonial-footer">
+        <div class="client-info">
+          <img [src]="testimonial.avatar" alt="Avatar de {{ testimonial.clientName }}" class="client-avatar">
+          <div class="client-details">
+            <span class="client-name">{{ testimonial.clientName }}</span>
+            <span class="client-role">{{ testimonial.clientRole }}</span>
+          </div>
+        </div>
+        <div class="quote-icon">
+          <i class="fas fa-quote-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
