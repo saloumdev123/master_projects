@@ -1,0 +1,16 @@
+<section class="category-section">
+  <div class="category-header">
+    <h2>Parcourir Par Catégorie</h2>
+    <p class="section-description">Toutes nos offres sont classées par secteur pour vous aider à viser juste dès le premier clic.</p>
+  </div>
+
+  <div class="category-grid">
+    <div class="category-card" *ngFor="let category of categories">
+      <div class="category-icon-wrapper">
+        <i [class]="category.iconClass"></i>
+      </div>
+      <h3 class="category-title">{{ category.name }}</h3>
+      <p class="category-jobs">{{ category.jobsCount }} jobs</p>
+    </div>
+  </div>
+</section>

@@ -5,6 +5,12 @@ import { JobComponent } from "../job/job.component";
 import { ResourceComponent } from '../resource/resource.component';
 import { AboutComponent } from "../about/about.component";
 import { ContactComponent } from '../contact/contact.component';
+import { HeroComponent } from '../hero/hero.component';
+import { RecentJobComponent } from '../recent-job/recent-job.component';
+import { CategoryComponent } from '../category/category.component';
+import { CareerInfoComponent } from '../career-info/career-info.component';
+import { TestimonialsComponent } from '../testimonials/testimonials.component';
+import { BlogComponent } from '../blog/blog.component';
 
 
 @Component({
@@ -15,14 +21,20 @@ import { ContactComponent } from '../contact/contact.component';
     JobApplicationComponent,
     JobComponent,
     ResourceComponent,
+    HeroComponent,
+    RecentJobComponent,
+    CategoryComponent,  
+    CareerInfoComponent,
     AboutComponent,
-    ContactComponent
+    ContactComponent,
+    TestimonialsComponent,
+    BlogComponent
 ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  currentSection: string = 'resource';
+  currentSection: string = '';
   sidebarCollapsed = false;
 
   toggleSidebar(): void {

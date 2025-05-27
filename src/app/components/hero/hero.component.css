@@ -1,0 +1,388 @@
+/* hero.component.css */
+
+.hero-section {
+  background-image: url('../../../assets/images/bg_hero.png');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 20px 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  max-width: 1200px;
+  margin-bottom: 80px;
+  position: relative; 
+  z-index: 1000;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.navbar-left .logo {
+  height: 40px;
+  margin-right: 10px;
+}
+
+/* Styles pour le bouton hamburger (sur mobile) */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8em;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+/* Styles pour le conteneur des liens de navigation */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.navbar-right-links {
+  list-style: none;
+  display: flex; 
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-right-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
+}
+
+.navbar-right-links a:hover {
+  color: #F13C04;
+}
+
+.navbar-auth .btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+}
+
+.btn-primary {
+  background-color: rgba(0, 84, 72, 1);
+  color: white;
+  border: none;
+}
+
+/* Hero Content Styling */
+.hero-content {
+  text-align: center;
+  margin-top: 50px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hero-content p {
+  font-size: 1.3em;
+  margin-bottom: 40px;
+  opacity: 0.8;
+}
+
+/* Search Bar Styling */
+.search-bar {
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  gap: 10px;
+  width: 100%;
+  max-width: 700px;
+  box-sizing: border-box;
+}
+
+.search-bar input[type="text"] {
+  flex-grow: 1;
+  border: none;
+  padding: 10px;
+  font-size: 1em;
+  border-right: 1px solid #eee;
+  outline: none;
+  color: #333;
+}
+
+.search-bar .dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #333;
+  border-right: 1px solid #eee;
+  flex-grow: 1;
+  width: auto;
+  min-width: 150px;
+}
+
+.search-bar .dropdown:last-of-type {
+  border-right: none;
+}
+
+.dropdown-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  padding: 10px 30px 10px 10px;
+  font-size: 1em;
+  color: #333;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.dropdown-select option {
+  color: #333;
+}
+
+.dropdown-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.8em;
+  color: #888;
+}
+
+.btn-search {
+  background-color: rgba(0, 84, 72, 1);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+/* Stats Grid Styling */
+.stats-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 900px;
+}
+
+.stat-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  background-color: rgba(0, 84, 72, 1);
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-circle i {
+  font-size: 2em;
+  color: white;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+/* Company Logos Styling */
+.company-logos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+  padding-bottom: 20px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+.company-logos img {
+  height: 30px;
+  filter: grayscale(100%) brightness(200%);
+  opacity: 0.6;
+}
+
+/* Media Queries pour la responsivité de la Navbar */
+@media (max-width: 900px) { 
+  .navbar-right {
+    display: none; /* Cache le menu par défaut sur mobile */
+    flex-direction: column; 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    align-items: center;
+    gap: 0; 
+    opacity: 0;
+    visibility: hidden; 
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  .navbar-right.open {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-right-links {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .navbar-right-links li {
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .navbar-right-links a {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    display: block; 
+  }
+
+  .navbar-auth {
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0; 
+    padding-top: 15px; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    align-items: center; 
+    justify-content: center;
+  }
+
+  .navbar-auth .btn {
+    width: 80%; 
+    margin: 10px 0; 
+    text-align: center; 
+  }
+
+  .hamburger-menu {
+    display: block; 
+  }
+  
+  .hero-content h1 {
+    font-size: 1.8em;
+  }
+
+  .hero-content p {
+    font-size: 1em;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .search-bar input[type="text"],
+  .search-bar .dropdown {
+    border-right: none;
+    width: 100%;
+  }
+
+  .dropdown-select {
+    padding: 10px 40px 10px 15px;
+  }
+
+  .btn-search {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 25px; 
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .stat-item {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .company-logos {
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .company-logos img {
+    height: 25px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5em;
+  }
+
+  .hero-content p {
+    font-size: 0.9em;
+  }
+}

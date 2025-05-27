@@ -1,0 +1,84 @@
+<section class="hero-section">
+  <nav class="navbar">
+    <div class="navbar-left">
+      <img src="assets/images/logo_jobconnect.png" alt="Logo" class="logo">
+    </div>
+
+    <button class="hamburger-menu" (click)="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="navbar-right" [class.open]="isMenuOpen">
+      <ul class="navbar-right-links">
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Emploi</a></li>
+        <li><a href="#">Recruteur</a></li>
+        <li><a href="#">A Propos</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="navbar-auth">
+        <a href="#" class="btn btn-transparent">Se connecter</a>
+        <a href="#" class="btn btn-primary">S'inscrire</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <h1>Trouvez le poste de vos rêves au Sénégal</h1>
+    <p>Plusieurs centaines d’offres d’emploi et de stages disponibles dès maintenant.</p>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Poste, Entreprise, Mots-clés" [(ngModel)]="searchTerm">
+      <div class="dropdown">
+        <select class="dropdown-select" [(ngModel)]="selectedRegion">
+          <option value="">Région</option>
+          <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+        </select>
+        <i class="fas fa-chevron-down dropdown-icon"></i>
+      </div>
+      <div class="dropdown">
+        <select class="dropdown-select" [(ngModel)]="selectedCategory">
+          <option value="">Catégorie</option>
+          <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+        </select>
+        <i class="fas fa-chevron-down dropdown-icon"></i>
+      </div>
+      <button class="btn-search" (click)="performSearch()">
+        <i class="fas fa-search"></i>
+        Rechercher
+      </button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="icon-circle">
+        <i class="fas fa-briefcase"></i>
+      </div>
+      <span class="stat-value">12K+</span>
+      <span class="stat-label">Offres d'emploi</span>
+    </div>
+    <div class="stat-item">
+      <div class="icon-circle">
+        <i class="fas fa-building"></i>
+      </div>
+      <span class="stat-value">500+</span>
+      <span class="stat-label">Entreprises</span>
+    </div>
+    <div class="stat-item">
+      <div class="icon-circle">
+        <i class="fas fa-user-friends"></i>
+      </div>
+      <span class="stat-value">8K+</span>
+      <span class="stat-label">Candidats</span>
+    </div>
+  </div>
+
+  <div class="company-logos">
+    <img src="assets/images/adobe.png" alt="Company Logo 1">
+    <img src="assets/images/asana.png" alt="Company Logo 2">
+    <img src="assets/images/linear.png" alt="Company Logo 3">
+    <img src="assets/images/spotify.png" alt="Company Logo 4">
+    <img src="assets/images/slack.png" alt="Company Logo 5">
+  </div>
+</section>

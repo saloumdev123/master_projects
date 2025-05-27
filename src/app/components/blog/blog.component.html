@@ -1,0 +1,22 @@
+<section class="blog-section">
+  <div class="blog-header">
+    <h2>Nos derniers articles</h2>
+    <a href="#" class="view-all-link">Voir tout</a>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card" *ngFor="let post of blogPosts">
+      <div class="blog-image">
+        <img [src]="post.imageUrl" alt="Image de l'article de blog" class="article-image">
+        <span class="blog-tag">{{ post.type }}</span>
+      </div>
+      <div class="blog-content">
+        <span class="blog-date">{{ post.date }}</span>
+        <h3 class="blog-title">{{ post.title }}</h3>
+        <a [href]="post.link" class="read-more-link">
+          Lire la suite <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
