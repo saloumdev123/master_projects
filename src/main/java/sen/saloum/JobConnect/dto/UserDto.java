@@ -1,6 +1,7 @@
 package sen.saloum.JobConnect.dto;
 
 import lombok.Data;
+import sen.saloum.JobConnect.enums.Role;
 
 @Data
 public class UserDto {
@@ -10,4 +11,5 @@ public class UserDto {
     private String fullName;
     private String phoneNumber;
     private boolean enabled;
+    private Role role;
 }
