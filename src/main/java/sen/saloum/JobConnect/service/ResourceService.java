@@ -7,6 +7,8 @@ import sen.saloum.JobConnect.model.Resource;
 import sen.saloum.JobConnect.repos.ResourceRepository;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ResourceService {
@@ -17,20 +19,44 @@ public class ResourceService {
         this.resourceRepository = resourceRepository;
     }
 
-    public List<ResourceDto> getAllResources() {
-        return resourceRepository.findAll()
-                .stream()
+    public ResourceDto create(ResourceDto dto) {
+        Resource entity = toEntity(dto);
+        Resource saved = resourceRepository.save(entity);
+        return toDto(saved);
+    }
+
+    public Optional<ResourceDto> update(Long id, ResourceDto dto) {
+        return resourceRepository.findById(id).map(existing -> {
+            existing.setTitle(dto.getTitle());
+            existing.setResourceContent(dto.getResourceContent());
+            existing.setDownloadLink(dto.getDownloadLink());
+            Resource updated = resourceRepository.save(existing);
+            return toDto(updated);
+        });
+    }
+
+
+    public boolean delete(Long id) {
+        if (resourceRepository.existsById(id)) {
+            resourceRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public Optional<ResourceDto> findById(Long id) {
+        return resourceRepository.findById(id).map(this::toDto);
+    }
+
+    public List<ResourceDto> findAll() {
+        return resourceRepository.findAll().stream()
                 .map(this::toDto)
-                .toList();
+                .collect(Collectors.toList());
     }
 
-    public ResourceDto getResourceById(Long id) {
-        return toDto(resourceRepository.findById(id).orElseThrow());
-    }
-
-    public ResourceDto toDto(Resource resource) {
+    public ResourceDto toDto(Resource entity) {
         ResourceDto dto = new ResourceDto();
-        BeanUtils.copyProperties(resource, dto);
+        BeanUtils.copyProperties(entity, dto);
         return dto;
     }
 
@@ -39,14 +65,4 @@ public class ResourceService {
         BeanUtils.copyProperties(dto, entity);
         return entity;
     }
-
-    public ResourceDto addResource(ResourceDto dto) {
-        if (dto.getImage() == null || dto.getImage().isEmpty()) {
-            dto.setImage("https://example.com/default-book-image.jpg"); // URL de ton image par défaut
-        }
-        Resource saved = resourceRepository.save(toEntity(dto));
-        return toDto(saved);
-    }
-
-
 }
