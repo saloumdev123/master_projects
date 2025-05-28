@@ -23,8 +23,7 @@ public class JMSApplicationService {
     public JMSApplication prepareJMSReservation(JobApplicationDto jobApplicationDto, Long createdId) {
         JMSApplication jmsApplication = new JMSApplication();
         jmsApplication.setSubscriberId(createdId.toString());
-        jmsApplication.setFirstName(jobApplicationDto.getFirstName());
-        jmsApplication.setLastName(jobApplicationDto.getLastName());
+        jmsApplication.setFullName(jobApplicationDto.getFullName());
         jmsApplication.setEmail(jobApplicationDto.getEmail());
         jmsApplication.setTitle("Job application received successfully");
         jmsApplication.setBody("Votre demande a ete confirmée avec l'ID : " + createdId);

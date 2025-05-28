@@ -9,26 +9,27 @@ import java.time.OffsetDateTime;
 public class JMSApplication {
 
     private String subscriberId;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private String email;
+    private String resume;
+    private String phoneNumber;
     private String title;
     private String body;
     private OffsetDateTime dateDebut;
-    private OffsetDateTime dateRetour;
+    private String city;
+    private String country;
 
     public JMSApplication() {
     }
 
 
-    public JMSApplication(String subscriberId, String firstName, String lastName, String email, String title, String body, OffsetDateTime dateDebut, OffsetDateTime dateRetour) {
+    public JMSApplication(String subscriberId, String fullName, String email, String title, String body,
+                          OffsetDateTime dateDebut) {
         this.subscriberId = subscriberId;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
         this.email = email;
         this.title = title;
         this.body = body;
         this.dateDebut = dateDebut;
-        this.dateRetour = dateRetour;
     }
 }
