@@ -40,3 +40,6 @@ logging:
               enable: true
 server:
   port: 8080
+jwt:
+  public-key-location: classpath:public_key.pem
+  private-key-location: classpath:private_key.pem

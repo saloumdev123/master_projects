@@ -50,7 +50,7 @@ public class EmailServiceApp {
     </body>
     </html>
     """.formatted(
-                jmsApplication.getFirstName(),
+                jmsApplication.getFullName(),
                 jmsApplication.getTitle(),
                 jmsApplication.getBody()
         );
