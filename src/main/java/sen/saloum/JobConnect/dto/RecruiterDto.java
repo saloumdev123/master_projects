@@ -11,5 +11,4 @@ public class RecruiterDto extends UserDto {
     private String companyName;
     private String companyWebsite;
     private String companyAddress;
-    private List<JobDto> jobsPosted;
 }

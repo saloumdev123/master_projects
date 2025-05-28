@@ -17,8 +17,9 @@ public class Recruiter extends User{
     private String companyName;
     private String companyWebsite;
     private String companyAddress;
-
-    @OneToMany(mappedBy = "recruteur")
+    @OneToMany(mappedBy = "recruiter")
     private List<Job> jobsPosted;
+
+
 
 }
