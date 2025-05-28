@@ -7,18 +7,22 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sen.saloum.JobConnect.dto.JobDto;
 import sen.saloum.JobConnect.model.Job;
+import sen.saloum.JobConnect.model.Recruiter;
 import sen.saloum.JobConnect.repos.JobRepository;
+import sen.saloum.JobConnect.repos.RecruiterRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JobService {
 
+    private final JobRepository jobRepository;
+    private final RecruiterRepository recruiterRepository;
 
-    private final  JobRepository jobRepository;
-
-    public JobService(JobRepository jobRepository) {
+    public JobService(JobRepository jobRepository, RecruiterRepository recruiterRepository) {
         this.jobRepository = jobRepository;
+        this.recruiterRepository = recruiterRepository;
     }
 
     public Page<JobDto> getAllJobs(int page, int size) {
@@ -28,20 +32,50 @@ public class JobService {
     }
 
     public JobDto getJobById(Long id) {
-        return toDto(jobRepository.findById(id).orElseThrow());
+        return toDto(jobRepository.findById(id).orElseThrow(() -> new RuntimeException("Job not found")));
     }
 
-    public JobDto toDto(Job job) {
-        JobDto dto = new JobDto();
-        BeanUtils.copyProperties(job, dto);
-        return dto;
-    }
     public JobDto saveJob(JobDto jobDto) {
         Job job = toEntity(jobDto);
         Job savedJob = jobRepository.save(job);
         return toDto(savedJob);
     }
 
+    public JobDto createJobForRecruiter(Long recruiterId, JobDto jobDto) {
+        Recruiter recruiter = recruiterRepository.findById(recruiterId)
+                .orElseThrow(() -> new RuntimeException("Recruiter not found"));
+        Job job = toEntity(jobDto);
+        job.setRecruiter(recruiter);
+        Job saved = jobRepository.save(job);
+        return toDto(saved);
+    }
+
+    public List<JobDto> getJobsByRecruiter(Long recruiterId) {
+        return jobRepository.findByRecruiterId(recruiterId).stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public void deleteJob(Long jobId) {
+        jobRepository.deleteById(jobId);
+    }
+
+    public JobDto updateJob(Long jobId, JobDto dto) {
+        Job job = jobRepository.findById(jobId)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+        BeanUtils.copyProperties(dto, job, "id", "recruiter");
+        Job updated = jobRepository.save(job);
+        return toDto(updated);
+    }
+
+    public JobDto toDto(Job job) {
+        JobDto dto = new JobDto();
+        BeanUtils.copyProperties(job, dto);
+        if (job.getRecruiter() != null) {
+            dto.setRecruiterId(job.getRecruiter().getId());
+        }
+        return dto;
+    }
 
     public Job toEntity(JobDto dto) {
         Job job = new Job();

@@ -30,6 +30,6 @@ public class Job {
 
     @ManyToOne
     @JoinColumn(name = "recruteur_id")
-    private Recruiter recruteur;
+    private Recruiter recruiter;
 
 }
