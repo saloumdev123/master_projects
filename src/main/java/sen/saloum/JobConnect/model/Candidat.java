@@ -19,4 +19,8 @@ public class Candidat extends User  {
     private String cvLink;
     @OneToMany(mappedBy = "candidat")
     private List<JobApplication> applications;
-}
+
+    }
+
+
+
