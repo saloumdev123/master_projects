@@ -16,27 +16,5 @@ public class Subscription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private String firstName;
-    private String lastName;
-    private String phoneNumber;
-    private String message;
     private String email;
-
-    private OffsetDateTime dateCreated;
-    private OffsetDateTime lastUpdated;
-
-    @ManyToOne
-    private Job job;
-
-    @PrePersist
-    public void prePersist() {
-        dateCreated = OffsetDateTime.now();
-        lastUpdated = OffsetDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        lastUpdated = OffsetDateTime.now();
-    }
 }

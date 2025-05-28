@@ -15,12 +15,9 @@ public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String title;
-    private String author;
-    private String authorRole;
-    private String category;
-    
     @Lob
     private String resourceContent;
+    private String downloadLink;
+
 }

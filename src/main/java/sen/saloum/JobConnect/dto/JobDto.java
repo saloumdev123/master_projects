@@ -2,6 +2,8 @@ package sen.saloum.JobConnect.dto;
 
 import lombok.Data;
 
+import java.time.OffsetDateTime;
+
 
 @Data
 public class JobDto {
@@ -12,8 +14,11 @@ public class JobDto {
     private String location;
     private String jobType;
     private int yearExperience;
-    private String datePosted;
+    private OffsetDateTime datePosted;
     private String pay;
     private String requirements;
-    private String fullDescription;
+    private Long categoryId;
+    private String categoryName;
+    private Long recruiterId;
+    private String recruteurCompanyName;
 }
