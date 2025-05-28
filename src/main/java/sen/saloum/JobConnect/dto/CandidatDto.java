@@ -9,5 +9,4 @@ import java.util.List;
 @Data
 public class CandidatDto extends UserDto {
     private String cvLink;
-    private List<JobApplicationDto> applications;
 }
