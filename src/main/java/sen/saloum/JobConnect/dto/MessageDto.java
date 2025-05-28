@@ -1,6 +1,7 @@
 package sen.saloum.JobConnect.dto;
 
 import lombok.Data;
+import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.OffsetDateTime;
 

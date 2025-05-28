@@ -25,5 +25,6 @@ public class Message {
     private OffsetDateTime sentAt;
     private boolean isRead;
     @ManyToOne
+    @JoinColumn(name = "parent_message_id")
     private Message parentMessage;
 }
