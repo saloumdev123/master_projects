@@ -1,50 +1,8 @@
-<div class="dashboard-container">
-  <main class="main-content">
-
-    <section *ngIf="currentSection === 'hero'">
-      <app-hero></app-hero>
-    </section>
-    
-    <section *ngIf="currentSection === 'recentJobs'">
-      <app-recent-job></app-recent-job>
-    </section>
-
-    <section *ngIf="currentSection === 'category'">
-      <app-category></app-category>
-    </section>
-
-    <section *ngIf="currentSection === 'careerInfo'">
-      <app-career-info></app-career-info>
-    </section>
-
-    <section *ngIf="currentSection === 'testimonials'">
-      <app-testimonials></app-testimonials>
-    </section>
-
-    <section *ngIf="currentSection === 'blog'">
-      <app-blog></app-blog>
-    </section>
-
-
-    <section *ngIf="currentSection === 'job'">
-      <app-job></app-job>
-    </section>
-
-    <section *ngIf="currentSection === 'jobApplication'">
-      <app-job-application></app-job-application>
-    </section>
-
-    <section *ngIf="currentSection === 'resource'">
-      <app-resource></app-resource>
-    </section>
-
-    <section *ngIf="currentSection === 'about'">
-     <app-about></app-about>
-   </section>
-
-   <section *ngIf="currentSection === 'contact'">
-     <app-contact></app-contact>
-   </section>
-
-  </main>
+<div class="page-home-container">
+  <app-hero></app-hero>
+  <app-recent-job></app-recent-job>
+  <app-category></app-category>
+  <app-career-info></app-career-info>
+  <app-testimonials></app-testimonials>
+  <app-blog></app-blog>
 </div>
