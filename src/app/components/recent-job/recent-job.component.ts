@@ -1,24 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Job } from '../../interfaces/job';
+import { JobService } from '../../services/job.service';
+import { Router } from '@angular/router';
 
-// Interface pour définir la structure d'un objet Job
-interface Job {
-  id: number;
-  timeAgo: string;
-  bookmarked: boolean;
-  companyLogoUrl: string;
-  logoBgColor?: string;
-  logoIcon?: string;
-  logoIconColor?: string;
-  title: string;
-  company: string;
-  category: string;
-  categoryIcon: string;
-  employmentType: string;
-  typeIcon: string;
-  salary: string;
-  location: string;
-}
 
 @Component({
   selector: 'app-recent-job',
@@ -29,140 +14,80 @@ interface Job {
 })
 export class RecentJobComponent implements OnInit {
 
-  recentJobs: Job[] = [];
+recentJobs: Job[] = [];
 
-  constructor() { }
+  currentPage: number = 0;
+  pageSize: number = 10;
+  totalPages: number = 0;
+
+  constructor(private jobService: JobService,private router: Router,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.recentJobs = [
-      {
-        id: 1,
-        timeAgo: '10 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_1.png',
-        logoBgColor: '#e0f7fa',
-        logoIcon: 'fas fa-globe',
-        logoIconColor: '#00796b',
-        title: 'Développeur Full-Stack (Angular/Node.js)',
-        company: 'Innovatech Solutions',
-        category: 'Informatique & IT',
-        categoryIcon: 'fas fa-laptop-code',
-        employmentType: 'Temps plein',
-        salary: '750 000 - 1 200 000 XOF',
-        location: 'Dakar, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 2,
-        timeAgo: '12 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_2.jpeg',
-        logoBgColor: 'linear-gradient(135deg, #FFB8B8 0%, #A4E2A4 100%)',
-        logoIcon: 'fas fa-palette',
-        logoIconColor: '#333',
-        title: 'Responsable Marketing Digital',
-        company: 'Banque Atlantique Sénégal',
-        category: 'Marketing & Communication',
-        categoryIcon: 'fas fa-bullhorn',
-        employmentType: 'Temps plein',
-        salary: '600 000 - 950 000 XOF',
-        location: 'Dakar, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 3,
-        timeAgo: '15 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_3.jpeg',
-        logoBgColor: '#e8f5e9',
-        logoIcon: 'fas fa-hard-hat',
-        logoIconColor: '#388e3c',
-        title: 'Agronome / Chef de Projet Agricole',
-        company: 'AgriSénégal SA',
-        category: 'Agriculture & Environnement',
-        categoryIcon: 'fas fa-leaf',
-        employmentType: 'Temps plein',
-        salary: '500 000 - 800 000 XOF',
-        location: 'Thiès, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 4,
-        timeAgo: '24 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_1.png',
-        logoBgColor: '#e3f2fd',
-        logoIcon: 'fas fa-shopping-cart',
-        logoIconColor: '#1976d2',
-        title: 'Assistant Administratif et Financier',
-        company: 'Cabinet Conseil Alpha',
-        category: 'Administration & Finance',
-        categoryIcon: 'fas fa-money-check-alt',
-        employmentType: 'Temps partiel',
-        salary: '300 000 - 450 000 XOF',
-        location: 'Toubab Dialaw, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 5,
-        timeAgo: '26 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/logo.png',
-        logoBgColor: '#fff3e0',
-        logoIcon: 'fas fa-briefcase',
-        logoIconColor: '#f57c00',
-        title: 'Coordinateur de Projet Humanitaire',
-        company: 'ONG Lumière Afrique',
-        category: 'Social & Humanitaire',
-        categoryIcon: 'fas fa-hands-helping',
-        employmentType: 'Contrat (12 mois)',
-        salary: '550 000 - 700 000 XOF',
-        location: 'Saint-Louis, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 6,
-        timeAgo: '30 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_2.jpeg',
-        logoBgColor: '#f3e5f5',
-        logoIcon: 'fas fa-chalkboard-teacher',
-        logoIconColor: '#ab47bc',
-        title: 'Enseignant(e) de Français (Lycée)',
-        company: 'Lycée Privé Excellence',
-        category: 'Éducation & Formation',
-        categoryIcon: 'fas fa-graduation-cap',
-        employmentType: 'Temps plein',
-        salary: '400 000 - 550 000 XOF',
-        location: 'Kaolack, Sénégal',
-        typeIcon: 'far fa-clock'
-      },
-      {
-        id: 7,
-        timeAgo: '45 min ago',
-        bookmarked: false,
-        companyLogoUrl: 'assets/images/company_3.jpeg',
-        logoBgColor: '#e0f2f7',
+    this.loadJobs(this.currentPage, this.pageSize);
+  }
+
+  loadJobs(page: number, size: number): void {
+    this.jobService.getJobs(page, size).subscribe(response => {
+      this.recentJobs = response.content.map(job => ({
+        ...job,
+        timeAgo: this.getTimeAgo(job.datePosted),
+        bookmarked: false, 
+        showDetails : false,
+        companyLogoUrl: 'assets/images/default_company.png',
+        logoBgColor: '#f0f0f0',
         logoIcon: 'fas fa-building',
-        logoIconColor: '#00bcd4',
-        title: 'Ingénieur en Génie Civil',
-        company: 'BTP Plus Construction',
-        category: 'Construction & BTP',
-        categoryIcon: 'fas fa-hard-hat',
-        employmentType: 'Temps plein',
-        salary: '800 000 - 1 500 000 XOF',
-        location: 'Dakar, Sénégal',
+        logoIconColor: '#00796b',
+        categoryIcon: 'fas fa-briefcase',
         typeIcon: 'far fa-clock'
-      }
-    ];
+      }));
+      this.totalPages = response.totalPages;
+      this.currentPage = response.number;
+    });
+  }
+
+  getTimeAgo(dateString: string): string {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+
+    const diffMinutes = Math.floor(diffMs / 60000);
+    if (diffMinutes < 60) return `${diffMinutes} min ago`;
+
+    const diffHours = Math.floor(diffMinutes / 60);
+    if (diffHours < 24) return `${diffHours} h ago`;
+
+    const diffDays = Math.floor(diffHours / 24);
+    return `${diffDays} j ago`;
   }
 
   toggleBookmark(job: Job): void {
     job.bookmarked = !job.bookmarked;
-    console.log(`Job ${job.id} bookmarked: ${job.bookmarked}`);
   }
 
-  viewJobDetails(job: Job): void {
-    console.log('Voir les détails du job:', job.title);
+  nextPage(): void {
+    if (this.currentPage + 1 < this.totalPages) {
+      this.currentPage++;
+      this.loadJobs(this.currentPage, this.pageSize);
+    }
   }
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadJobs(this.currentPage, this.pageSize);
+    }
+  }
+
+  toggleDetails(job: Job): void {
+    console.log('toggleDetails called for job id:', job.id);
+    this.recentJobs = this.recentJobs.map(j => 
+    j.id === job.id ? {...j, showDetails: !j.showDetails} : j
+  );
+  this.cdr.detectChanges();
+}
+navigateToJobApplication(job: any) {
+  this.router.navigate(['/job-applications'], { queryParams: { jobId: job.id } });
+
+}
+
 }

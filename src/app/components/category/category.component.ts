@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
+import { Category } from '../../interfaces/category';
+import { CategorieService } from '../../services/categorie.service';
 
 @Component({
   selector: 'app-category',
@@ -9,17 +11,37 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./category.component.css']
 })
 export class CategoryComponent {
+   categories: Category[] = [];
 
-  categories = [
-    { name: 'Agriculture', jobsCount: 1254, iconClass: 'fas fa-leaf' },
-    { name: 'Informatique', jobsCount: 816, iconClass: 'fas fa-laptop-code' },
-    { name: 'Commerce', jobsCount: 2082, iconClass: 'fas fa-shopping-bag' },
-    { name: 'Construction', jobsCount: 1520, iconClass: 'fas fa-hard-hat' },
-    { name: 'Hôtellerie & Tourisme', jobsCount: 1022, iconClass: 'fas fa-hotel' }, 
-    { name: 'Éducation', jobsCount: 1496, iconClass: 'fas fa-graduation-cap' }, 
-    { name: 'Services Financiers', jobsCount: 1529, iconClass: 'fas fa-money-bill-wave' }, 
-    { name: 'Transport', jobsCount: 1244, iconClass: 'fas fa-truck' }
-  ];
+  constructor(private categorieService: CategorieService) {}
 
-  constructor() { }
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  loadCategories(): void {
+    this.categorieService.getAll().subscribe({
+      next: (data: Category[]) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        console.error('Erreur lors du chargement des catégories:', err);
+      }
+    });
+  }
+
+  increment(id: number): void {
+  this.categorieService.incrementJobsCount(id).subscribe({
+    next: updatedCategory => {
+      // Mets à jour la liste locale après incrémentation
+      const index = this.categories.findIndex(cat => cat.id === id);
+      if (index !== -1) {
+        this.categories[index] = updatedCategory;
+      }
+    },
+    error: err => {
+      console.error('Erreur lors de l\'incrémentation:', err);
+    }
+  });
+  }
 }

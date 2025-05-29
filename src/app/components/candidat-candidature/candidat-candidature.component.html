@@ -1,0 +1,10 @@
+<h2>Mes candidatures</h2>
+
+<ul>
+  @for (app of candidatures; track app.jobId) {
+    <li>
+      <strong>Job ID:</strong> {{ app.jobId }}<br />
+      <strong>Résumé:</strong> {{ app.resume }}
+    </li>
+  }
+</ul>

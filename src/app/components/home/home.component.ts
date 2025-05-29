@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JobApplicationComponent } from "../job-application/job-application.component";
-import { JobComponent } from "../job/job.component";
 import { ResourceComponent } from '../resource/resource.component';
 import { AboutComponent } from "../about/about.component";
 import { ContactComponent } from '../contact/contact.component';
@@ -19,7 +18,6 @@ import { BlogComponent } from '../blog/blog.component';
   imports: [
     CommonModule,
     JobApplicationComponent,
-    JobComponent,
     ResourceComponent,
     HeroComponent,
     RecentJobComponent,

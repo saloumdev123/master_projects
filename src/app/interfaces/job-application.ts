@@ -10,6 +10,8 @@ export interface JobApplication {
   jobDescription: string;
   jobApplicationStatus: string;
   dateCreated: string; 
+  lettreMotivation: string;
+
 
   jobId: number;
   jobTitleFromJob: string;

@@ -1,0 +1,15 @@
+<h2>Postuler à un emploi</h2>
+
+<form [formGroup]="form" (ngSubmit)="postuler()">
+  <label>ID de l'emploi</label>
+  <input formControlName="jobId" />
+
+  <label>Lettre de motivation</label>
+  <textarea formControlName="lettreMotivation"></textarea>
+
+  <label>CV (lien)</label>
+  <input formControlName="resume" />
+
+  <button type="submit">Envoyer candidature</button>
+</form>
+
