@@ -17,8 +17,10 @@ public class JobDto {
     private OffsetDateTime datePosted;
     private String pay;
     private String requirements;
+
     private Long categoryId;
     private String categoryName;
     private Long recruiterId;
-    private String recruteurCompanyName;
+    private String recruiterCompanyName;
+
 }

@@ -3,7 +3,6 @@ package sen.saloum.JobConnect.service;
 import org.springframework.stereotype.Service;
 import sen.saloum.JobConnect.dto.CategoryDto;
 import sen.saloum.JobConnect.model.Category;
-import sen.saloum.JobConnect.model.Job;
 import sen.saloum.JobConnect.repos.CategoryRepository;
 
 import java.util.List;
@@ -19,35 +18,32 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    // Create
     public CategoryDto create(CategoryDto dto) {
         Category category = dtoToEntity(dto);
         return entityToDto(categoryRepository.save(category));
     }
 
-    // Read all
     public List<CategoryDto> findAll() {
         return categoryRepository.findAll().stream()
                 .map(this::entityToDto)
                 .collect(Collectors.toList());
     }
 
-    // Read by id
+
     public Optional<CategoryDto> findById(Long id) {
         return categoryRepository.findById(id)
                 .map(this::entityToDto);
     }
 
-    // Update
     public Optional<CategoryDto> update(Long id, CategoryDto dto) {
         return categoryRepository.findById(id).map(existing -> {
             existing.setName(dto.getName());
             existing.setDescription(dto.getDescription());
+            existing.setIconClass(dto.getIconClass());
             return entityToDto(categoryRepository.save(existing));
         });
     }
 
-    // Delete
     public boolean delete(Long id) {
         if (categoryRepository.existsById(id)) {
             categoryRepository.deleteById(id);
@@ -56,12 +52,21 @@ public class CategoryService {
         return false;
     }
 
+    public Optional<CategoryDto> incrementJobsCount(Long id) {
+        return categoryRepository.findById(id).map(category -> {
+            category.setJobsCount(category.getJobsCount() + 1);
+            return entityToDto(categoryRepository.save(category));
+        });
+    }
+
     // Mapping methods
     private Category dtoToEntity(CategoryDto dto) {
         Category category = new Category();
         category.setId(dto.getId());
         category.setName(dto.getName());
         category.setDescription(dto.getDescription());
+        category.setIconClass(dto.getIconClass());
+        category.setJobsCount(dto.getJobsCount());
         return category;
     }
 
@@ -70,6 +75,8 @@ public class CategoryService {
         dto.setId(entity.getId());
         dto.setName(entity.getName());
         dto.setDescription(entity.getDescription());
+        dto.setJobsCount(entity.getJobsCount());
+        dto.setIconClass(entity.getIconClass());
         return dto;
     }
 }

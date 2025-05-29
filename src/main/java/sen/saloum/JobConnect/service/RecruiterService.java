@@ -5,6 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import sen.saloum.JobConnect.dto.JobDto;
 import sen.saloum.JobConnect.dto.RecruiterDto;
+import sen.saloum.JobConnect.dto.ResourceDto;
 import sen.saloum.JobConnect.enums.Role;
 import sen.saloum.JobConnect.model.Job;
 import sen.saloum.JobConnect.model.Recruiter;
@@ -28,7 +29,11 @@ public class RecruiterService {
         BeanUtils.copyProperties(saved, dto);
         return dto;
     }
-
+    public List<RecruiterDto> findAll() {
+        return recruiterRepository.findAll().stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
 
     public Optional<RecruiterDto> getRecruiterById(Long id) {
         return recruiterRepository.findById(id).map(this::toDto);

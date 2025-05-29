@@ -8,4 +8,6 @@ public class CategoryDto {
     private Long id;
     private String name;
     private String description;
+    private int jobsCount;
+    private String iconClass;
 }

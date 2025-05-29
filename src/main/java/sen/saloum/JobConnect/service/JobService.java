@@ -6,11 +6,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import sen.saloum.JobConnect.dto.JobDto;
+import sen.saloum.JobConnect.model.Category;
 import sen.saloum.JobConnect.model.Job;
 import sen.saloum.JobConnect.model.Recruiter;
+import sen.saloum.JobConnect.repos.CategoryRepository;
 import sen.saloum.JobConnect.repos.JobRepository;
 import sen.saloum.JobConnect.repos.RecruiterRepository;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,10 +22,12 @@ public class JobService {
 
     private final JobRepository jobRepository;
     private final RecruiterRepository recruiterRepository;
+    private final CategoryRepository categoryRepository;
 
-    public JobService(JobRepository jobRepository, RecruiterRepository recruiterRepository) {
+    public JobService(JobRepository jobRepository, RecruiterRepository recruiterRepository, CategoryRepository categoryRepository) {
         this.jobRepository = jobRepository;
         this.recruiterRepository = recruiterRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public Page<JobDto> getAllJobs(int page, int size) {
@@ -36,7 +41,22 @@ public class JobService {
     }
 
     public JobDto saveJob(JobDto jobDto) {
+        if (jobDto.getDatePosted() == null) {
+            jobDto.setDatePosted(OffsetDateTime.now());
+        }
         Job job = toEntity(jobDto);
+
+        if (jobDto.getRecruiterId() != null) {
+            Recruiter recruiter = recruiterRepository.findById(jobDto.getRecruiterId())
+                    .orElseThrow(() -> new RuntimeException("Recruiter not found"));
+            job.setRecruiter(recruiter);
+        }
+
+        if (jobDto.getCategoryId() != null) {
+            Category category = categoryRepository.findById(jobDto.getCategoryId())
+                    .orElseThrow(() -> new RuntimeException("Category not found"));
+            job.setCategory(category);
+        }
         Job savedJob = jobRepository.save(job);
         return toDto(savedJob);
     }
@@ -73,6 +93,11 @@ public class JobService {
         BeanUtils.copyProperties(job, dto);
         if (job.getRecruiter() != null) {
             dto.setRecruiterId(job.getRecruiter().getId());
+            dto.setRecruiterCompanyName(job.getRecruiter().getCompanyName());
+        }
+        if (job.getCategory() != null) {
+            dto.setCategoryId(job.getCategory().getId());
+            dto.setCategoryName(job.getCategory().getName()); // <-- ajouter ceci
         }
         return dto;
     }
@@ -80,6 +105,11 @@ public class JobService {
     public Job toEntity(JobDto dto) {
         Job job = new Job();
         BeanUtils.copyProperties(dto, job);
+        if (dto.getDatePosted() != null) {
+            job.setDatePosted(dto.getDatePosted());
+        } else {
+            job.setDatePosted(OffsetDateTime.now());
+        }
         return job;
     }
 }

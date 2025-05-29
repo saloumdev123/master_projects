@@ -21,6 +21,7 @@ public class Category {
 
         @OneToMany(mappedBy = "category")
         private List<Job> jobs;
-
+        private int jobsCount;
+        private String iconClass;
 
 }

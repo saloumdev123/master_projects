@@ -1,52 +1,60 @@
 package sen.saloum.JobConnect.controller;
 
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sen.saloum.JobConnect.dto.CategoryDto;
 import sen.saloum.JobConnect.service.CategoryService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/categories")
+@RequiredArgsConstructor
 public class CategoryController {
 
     private final CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
-    }
-
+    // Create
     @PostMapping
-    public ResponseEntity<CategoryDto> create(@Validated @RequestBody CategoryDto dto) {
-        return new ResponseEntity<>(categoryService.create(dto), HttpStatus.CREATED);
+    public ResponseEntity<CategoryDto> create(@RequestBody CategoryDto dto) {
+        return ResponseEntity.ok(categoryService.create(dto));
     }
 
+    // Get all categories
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getAll() {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
+    // Get category by ID
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> getById(@PathVariable Long id) {
-        Optional<CategoryDto> result = categoryService.findById(id);
-        return result.map(ResponseEntity::ok)
+        return categoryService.findById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Update category
     @PutMapping("/{id}")
     public ResponseEntity<CategoryDto> update(@PathVariable Long id, @RequestBody CategoryDto dto) {
-        Optional<CategoryDto> updated = categoryService.update(id, dto);
-        return updated.map(ResponseEntity::ok)
+        return categoryService.update(id, dto)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    // Delete category
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         boolean deleted = categoryService.delete(id);
         return deleted ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
+    }
+
+    // Increment job count for a category
+    @PatchMapping("/{id}/increment")
+    public ResponseEntity<CategoryDto> incrementJobsCount(@PathVariable Long id) {
+        return categoryService.incrementJobsCount(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

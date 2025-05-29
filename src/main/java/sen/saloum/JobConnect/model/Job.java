@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.internal.build.AllowNonPortable;
 
+import java.time.OffsetDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,10 +21,12 @@ public class Job {
     private String location;
     private String jobType;
     private int yearExperience;
-    private String datePosted;
+    private OffsetDateTime datePosted;
     private String pay;
     private String requirements;
     private String fullDescription;
+    private String recruiterCompanyName;
+    private String categoryName;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
