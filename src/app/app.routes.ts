@@ -9,6 +9,5 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'job-applications', component: JobApplicationComponent },
     { path: 'job-list', component: JobComponent },
-    {path: 'apply-success', component: ApplySuccessComponent},
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    { path: 'apply-success', component: ApplySuccessComponent },
 ];

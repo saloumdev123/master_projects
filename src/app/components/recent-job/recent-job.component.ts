@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 // Interface pour définir la structure d'un objet Job
 interface Job {
@@ -8,22 +9,24 @@ interface Job {
   bookmarked: boolean;
   companyLogoUrl: string;
   logoBgColor?: string;
-  logoIcon?: string;
+  logoIcon?: string;  
   logoIconColor?: string;
   title: string;
   company: string;
   category: string;
-  categoryIcon: string;
+  categoryIcon: string;  
   employmentType: string;
-  typeIcon: string;
+  typeIcon: string;          
   salary: string;
+  salaryIcon: string;    
   location: string;
+  locationIcon: string;   
 }
 
 @Component({
   selector: 'app-recent-job',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './recent-job.component.html',
   styleUrls: ['./recent-job.component.css']
 })
@@ -43,14 +46,16 @@ export class RecentJobComponent implements OnInit {
         logoBgColor: '#e0f7fa',
         logoIcon: 'fas fa-globe',
         logoIconColor: '#00796b',
-        title: 'Développeur Full-Stack (Angular/Node.js)',
-        company: 'Innovatech Solutions',
-        category: 'Informatique & IT',
-        categoryIcon: 'fas fa-laptop-code',
-        employmentType: 'Temps plein',
-        salary: '750 000 - 1 200 000 XOF',
+        title: 'Directeur Sécurité Informatique',
+        company: 'Sonatel S.A.',
+        category: 'IT & Télécoms',
+        categoryIcon: 'fas fa-suitcase',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '500.000 - 750.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign', 
         location: 'Dakar, Sénégal',
-        typeIcon: 'far fa-clock'
+        locationIcon: 'fas fa-map-marker-alt' 
       },
       {
         id: 2,
@@ -60,14 +65,16 @@ export class RecentJobComponent implements OnInit {
         logoBgColor: 'linear-gradient(135deg, #FFB8B8 0%, #A4E2A4 100%)',
         logoIcon: 'fas fa-palette',
         logoIconColor: '#333',
-        title: 'Responsable Marketing Digital',
-        company: 'Banque Atlantique Sénégal',
-        category: 'Marketing & Communication',
-        categoryIcon: 'fas fa-bullhorn',
-        employmentType: 'Temps plein',
-        salary: '600 000 - 950 000 XOF',
-        location: 'Dakar, Sénégal',
-        typeIcon: 'far fa-clock'
+        title: 'Coordinateur Marketing Digital',
+        company: 'Orange Sénégal',
+        category: 'Marketing & Com.',
+        categoryIcon: 'fas fa-briefcase',
+        employmentType: 'Temps Partiel',
+        typeIcon: 'far fa-clock',
+        salary: '250.000 - 350.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Thiès, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 3,
@@ -77,48 +84,54 @@ export class RecentJobComponent implements OnInit {
         logoBgColor: '#e8f5e9',
         logoIcon: 'fas fa-hard-hat',
         logoIconColor: '#388e3c',
-        title: 'Agronome / Chef de Projet Agricole',
-        company: 'AgriSénégal SA',
-        category: 'Agriculture & Environnement',
-        categoryIcon: 'fas fa-leaf',
-        employmentType: 'Temps plein',
-        salary: '500 000 - 800 000 XOF',
-        location: 'Thiès, Sénégal',
-        typeIcon: 'far fa-clock'
+        title: 'Ingénieur Civil Junior',
+        company: 'Compagnie Sénégalaise d\'Electricité (CSE)',
+        category: 'Construction',
+        categoryIcon: 'fas fa-toolbox',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '400.000 - 600.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Saint-Louis, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 4,
         timeAgo: '24 min ago',
         bookmarked: false,
-        companyLogoUrl: 'assets/images/company_1.png',
+        companyLogoUrl: 'assets/images/company_4.png',
         logoBgColor: '#e3f2fd',
         logoIcon: 'fas fa-shopping-cart',
         logoIconColor: '#1976d2',
-        title: 'Assistant Administratif et Financier',
-        company: 'Cabinet Conseil Alpha',
-        category: 'Administration & Finance',
-        categoryIcon: 'fas fa-money-check-alt',
-        employmentType: 'Temps partiel',
-        salary: '300 000 - 450 000 XOF',
-        location: 'Toubab Dialaw, Sénégal',
-        typeIcon: 'far fa-clock'
+        title: 'Responsable Logistique',
+        company: 'Dangote Cement Sénégal',
+        category: 'Transport & Logistique',
+        categoryIcon: 'fas fa-truck',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '450.000 - 650.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Rufisque, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 5,
         timeAgo: '26 min ago',
         bookmarked: false,
-        companyLogoUrl: 'assets/images/logo.png',
+        companyLogoUrl: 'assets/images/company_1.png', 
         logoBgColor: '#fff3e0',
         logoIcon: 'fas fa-briefcase',
         logoIconColor: '#f57c00',
-        title: 'Coordinateur de Projet Humanitaire',
-        company: 'ONG Lumière Afrique',
-        category: 'Social & Humanitaire',
-        categoryIcon: 'fas fa-hands-helping',
-        employmentType: 'Contrat (12 mois)',
-        salary: '550 000 - 700 000 XOF',
-        location: 'Saint-Louis, Sénégal',
-        typeIcon: 'far fa-clock'
+        title: 'Assistant(e) Administratif(ve)',
+        company: 'GIE Zone Franche de Dakar',
+        category: 'Administration',
+        categoryIcon: 'fas fa-user-tie',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '200.000 - 300.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Diamniadio, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 6,
@@ -128,31 +141,92 @@ export class RecentJobComponent implements OnInit {
         logoBgColor: '#f3e5f5',
         logoIcon: 'fas fa-chalkboard-teacher',
         logoIconColor: '#ab47bc',
-        title: 'Enseignant(e) de Français (Lycée)',
-        company: 'Lycée Privé Excellence',
-        category: 'Éducation & Formation',
-        categoryIcon: 'fas fa-graduation-cap',
-        employmentType: 'Temps plein',
-        salary: '400 000 - 550 000 XOF',
-        location: 'Kaolack, Sénégal',
-        typeIcon: 'far fa-clock'
+        title: 'Comptable Junior',
+        company: 'Ecobank Sénégal',
+        category: 'Finance & Comptabilité',
+        categoryIcon: 'fas fa-chart-pie',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '300.000 - 450.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Dakar, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 7,
         timeAgo: '45 min ago',
         bookmarked: false,
-        companyLogoUrl: 'assets/images/company_3.jpeg',
+        companyLogoUrl: 'assets/images/company_1.png',
         logoBgColor: '#e0f2f7',
         logoIcon: 'fas fa-building',
         logoIconColor: '#00bcd4',
-        title: 'Ingénieur en Génie Civil',
-        company: 'BTP Plus Construction',
-        category: 'Construction & BTP',
-        categoryIcon: 'fas fa-hard-hat',
-        employmentType: 'Temps plein',
-        salary: '800 000 - 1 500 000 XOF',
+        title: 'Responsable des Ressources Humaines',
+        company: 'Tigo Sénégal',
+        category: 'Ressources Humaines',
+        categoryIcon: 'fas fa-users',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '600.000 - 900.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
         location: 'Dakar, Sénégal',
-        typeIcon: 'far fa-clock'
+        locationIcon: 'fas fa-map-marker-alt'
+      },
+      {
+        id: 8,
+        timeAgo: '50 min ago',
+        bookmarked: false,
+        companyLogoUrl: 'assets/images/company_2.jpeg', 
+        logoBgColor: '#ffebee',
+        logoIcon: 'fas fa-heartbeat',
+        logoIconColor: '#e53935',
+        title: 'Infirmier(ère) Diplômé(e) d\'État',
+        company: 'Hôpital Général de Grand Yoff',
+        category: 'Santé',
+        categoryIcon: 'fas fa-hand-holding-medical',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '350.000 - 500.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Dakar, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
+      },
+      {
+        id: 9,
+        timeAgo: '1 hour ago',
+        bookmarked: false,
+        companyLogoUrl: 'assets/images/company_3.jpeg',
+        logoBgColor: '#fce4ec',
+        logoIcon: 'fas fa-utensils',
+        logoIconColor: '#d81b60',
+        title: 'Chef Cuisinier',
+        company: 'Restaurant Le Terroir',
+        category: 'Hôtellerie & Restauration',
+        categoryIcon: 'fas fa-utensils',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '250.000 - 400.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Saly Portudal, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
+      },
+      {
+        id: 10,
+        timeAgo: '1 hour 15 min ago',
+        bookmarked: false,
+        companyLogoUrl: 'assets/images/company_4.png',
+        logoBgColor: '#e8f5e9',
+        logoIcon: 'fas fa-tractor',
+        logoIconColor: '#43a047',
+        title: 'Technicien(ne) Agricole',
+        company: 'Société Agricole du Sénégal',
+        category: 'Agriculture',
+        categoryIcon: 'fas fa-leaf',
+        employmentType: 'Temps Plein',
+        typeIcon: 'far fa-clock',
+        salary: '200.000 - 300.000 XOF',
+        salaryIcon: 'fas fa-dollar-sign',
+        location: 'Diourbel, Sénégal',
+        locationIcon: 'fas fa-map-marker-alt'
       }
     ];
   }
@@ -164,5 +238,6 @@ export class RecentJobComponent implements OnInit {
 
   viewJobDetails(job: Job): void {
     console.log('Voir les détails du job:', job.title);
+    // implémenter la navigation vers la page de détails de l'emploi
   }
 }

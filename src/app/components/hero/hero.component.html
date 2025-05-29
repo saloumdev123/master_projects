@@ -10,15 +10,15 @@
 
     <div class="navbar-right" [class.open]="isMenuOpen">
       <ul class="navbar-right-links">
-        <li><a href="#">Accueil</a></li>
-        <li><a href="#">Emploi</a></li>
-        <li><a href="#">Recruteur</a></li>
-        <li><a href="#">A Propos</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a routerLink="/" class="nav-link">Accueil</a></li>
+        <li><a routerLink="/job-list" class="nav-link">Emplois</a></li> 
+        <li><a routerLink="/recruiters" class="nav-link">Recruteurs</a></li>
+        <li><a routerLink="/about" class="nav-link">A Propos</a></li>
+        <li><a routerLink="/contact" class="nav-link">Contact</a></li>
       </ul>
       <div class="navbar-auth">
-        <a href="#" class="btn btn-transparent">Se connecter</a>
-        <a href="#" class="btn btn-primary">S'inscrire</a>
+        <a routerLink="/login" class="btn btn-transparent">Se connecter</a>
+        <a routerLink="/register" class="btn btn-primary">S'inscrire</a>
       </div>
     </div>
   </nav>

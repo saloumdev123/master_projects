@@ -1,73 +1,108 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { Job } from '../../interfaces/job';
-import { JobService } from '../../services/job.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-job',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    FormsModule,
+  ],
   templateUrl: './job.component.html',
-  styleUrl: './job.component.css'
+  styleUrls: ['./job.component.css']
 })
-export class JobComponent implements OnInit {
-  jobService = inject(JobService);
-  router = inject(Router)
-  jobs: Job[] = [];
-  selectedJob?: Job;
+export class JobComponent implements OnInit, AfterViewInit {
 
-  filterTerm: string = '';
-  filterType: string = 'title';
+  searchTerm: string = '';
+  selectedLocation: string = '';
+  showLocationDropdown: boolean = false;
+  minSalary: number = 0;
+  maxSalary: number = 1000000;
+  selectedSort: string = 'latest';
 
-  currentPage: number = 0;
-  totalPages: number = 1;
-  pageSize: number = 5; 
+  isMenuOpen: boolean = false;
+  isBrowser: boolean;
 
-  constructor() {}
+  categories: { name: string, count: number }[] = [
+    { name: 'Télécommunications', count: 10 },
+    { name: 'Hôtellerie & Tourisme', count: 10 },
+    { name: 'Services Financiers', count: 10 },
+    { name: 'Agriculture & Agro-alimentaire', count: 10 },
+    { name: 'Construction & BTP', count: 10 },
+    { name: 'Commerce & Ventes', count: 10 },
+    { name: 'Santé & Social', count: 10 },
+    { name: 'Transport & Logistique', count: 10 },
+    { name: 'Administration & RH', count: 10 },
+  ];
 
-  ngOnInit(): void {
-    this.loadJobs();
+  jobTypes: { name: string, id: string, count: number }[] = [
+    { name: 'CDD', id: 'fixedTerm', count: 10 },
+    { name: 'CDI', id: 'permanent', count: 10 },
+    { name: 'Stage', id: 'internship', count: 10 },
+    { name: 'Temps Partiel', id: 'partTime', count: 10 },
+    { name: 'Temps Plein', id: 'fullTime', count: 10 },
+    { name: 'Télétravail', id: 'remote', count: 10 },
+    { name: 'Freelance', id: 'freelance', count: 10 },
+  ];
+
+  experienceLevels: { name: string, id: string, count: number }[] = [
+    { name: 'Pas d\'expérience', id: 'noExperience', count: 10 },
+    { name: 'Débutant', id: 'fresher', count: 10 },
+    { name: 'Intermédiaire', id: 'intermediate', count: 10 },
+    { name: 'Expert', id: 'expert', count: 10 }
+  ];
+
+  datePostedOptions: { name: string, id: string, count: number }[] = [
+    { name: 'Dernière heure', id: 'lastHour', count: 10 },
+    { name: 'Dernières 24 heures', id: 'last24Hours', count: 10 },
+    { name: 'Derniers 7 jours', id: 'last7Days', count: 10 },
+    { name: 'Derniers 30 jours', id: 'last30Days', count: 10 },
+    { name: 'Toutes les dates', id: 'allTime', count: 10 }
+  ];
+
+  senegaleseCities: string[] = [
+    'Dakar', 'Thiès', 'Saint-Louis', 'Mbour', 'Kaolack', 'Ziguinchor', 'Diourbel', 'Touba',
+    'Tambacounda', 'Kolda', 'Louga', 'Fatick', 'Kaffrine', 'Kédougou', 'Matam'
+  ];
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
-  loadJobs(): void {
-    this.jobService.getJobs(this.currentPage, this.pageSize).subscribe((data) => {
-      console.log('Loaded jobs:', data);
-      this.jobs = data.content;
-      this.totalPages = data.totalPages;
-    });
-  }
+  ngOnInit(): void { }
 
-  loadJobById(id: number): void {
-    this.jobService.getJobById(id).subscribe((job) => {
-      this.selectedJob = job;
-    });
-  }
-
-  get filteredJobs(): Job[] {
-    if (!this.filterTerm) {
-      return this.jobs;
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+        console.log('JobComponent: ngAfterViewInit - Running in browser.');
     }
-    return this.jobs.filter((job) =>
-      job[this.filterType as keyof Job]?.toString().toLowerCase().includes(this.filterTerm.toLowerCase())
-    );
   }
 
-  nextPage(): void {
-    if (this.currentPage < this.totalPages - 1) {
-      this.currentPage++;
-      this.loadJobs();
+  selectLocation(city: string) {
+    this.selectedLocation = city;
+    this.showLocationDropdown = false;
+  }
+
+  onLocationInputBlur() {
+    if (this.isBrowser) {
+        setTimeout(() => {
+            const activeElem = document.activeElement;
+            const dropdown = document.querySelector('.location-dropdown');
+            if (!dropdown || !dropdown.contains(activeElem)) {
+                this.showLocationDropdown = false;
+            }
+        }, 100);
     }
   }
 
-  previousPage(): void {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-      this.loadJobs();
-    }
+  applySalaryFilter() {
+    console.log('Filtre salaire appliqué (inputs): Min', this.minSalary, ' - Max', this.maxSalary);
+    // Ajoutez la logique pour filtrer les emplois en fonction de minSalary et maxSalary
   }
-  apply(jobId: number): void {
-    this.router.navigate(['/job-applications'], { queryParams: { jobId: jobId } });
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

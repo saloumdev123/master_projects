@@ -1,5 +1,3 @@
-/* hero.component.css */
-
 .hero-section {
   background-image: url('../../../assets/images/bg_hero.png');
   background-size: cover;
@@ -11,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
+  justify-content: space-between;
 }
 
 /* Navbar Styling */
@@ -20,8 +19,8 @@
   align-items: center;
   width: 90%;
   max-width: 1200px;
-  margin-bottom: 80px;
-  position: relative; 
+  margin-bottom: auto; 
+  position: relative;
   z-index: 1000;
 }
 
@@ -39,26 +38,26 @@
 
 /* Styles pour le bouton hamburger (sur mobile) */
 .hamburger-menu {
-  display: none;
+  display: none; 
   background: none;
   border: none;
   color: white;
   font-size: 1.8em;
   cursor: pointer;
   padding: 10px;
-  z-index: 1001;
+  z-index: 1001; 
 }
 
-/* Styles pour le conteneur des liens de navigation */
 .navbar-right {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 30px; 
+  transition: all 0.3s ease-in-out; 
 }
 
 .navbar-right-links {
   list-style: none;
-  display: flex; 
+  display: flex;
   gap: 30px;
   margin: 0;
   padding: 0;
@@ -80,7 +79,7 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-left: 10px;
+  margin-left: 10px; 
 }
 
 .btn-transparent {
@@ -98,11 +97,11 @@
 /* Hero Content Styling */
 .hero-content {
   text-align: center;
-  margin-top: 50px;
-  flex-grow: 1;
+  margin-top: 0; 
+  flex-grow: 1; 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center; 
   align-items: center;
   width: 90%;
   max-width: 800px;
@@ -130,6 +129,7 @@
   width: 100%;
   max-width: 700px;
   box-sizing: border-box;
+  margin-bottom: 40px;
 }
 
 .search-bar input[type="text"] {
@@ -206,9 +206,10 @@
   display: flex;
   justify-content: center;
   gap: 60px;
-  margin-top: 50px;
+  margin-top: auto; 
   width: 100%;
   max-width: 900px;
+  padding-bottom: 20px; 
 }
 
 .stat-item {
@@ -262,88 +263,105 @@
   opacity: 0.6;
 }
 
-/* Media Queries pour la responsivité de la Navbar */
-@media (max-width: 900px) { 
+/* --- Media Queries pour la responsivité du Hero et de la Navbar --- */
+
+/* Pour les écrans jusqu'à 900px (anciens laptops, grandes tablettes) */
+@media (max-width: 900px) {
+  .hero-section {
+    min-height: 80vh; 
+    padding-bottom: 30px;
+  }
+
+  /* Cache le menu de navigation par défaut sur mobile et prépare l'animation */
   .navbar-right {
-    display: none; /* Cache le menu par défaut sur mobile */
-    flex-direction: column; 
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.9); 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    padding: 20px 0;
-    align-items: center;
-    gap: 0; 
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    max-width: 80%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 80px 20px 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start;
+    gap: 0;
+    z-index: 1000;
+    visibility: hidden;
     opacity: 0;
-    visibility: hidden; 
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   }
-
+  
   .navbar-right.open {
-    display: flex;
-    opacity: 1;
+    right: 0;
     visibility: visible;
+    opacity: 1;
   }
 
+  /* Styles des liens du menu mobile */
   .navbar-right-links {
     flex-direction: column;
+    gap: 25px;
     width: 100%;
-    text-align: center;
-    margin-bottom: 0;
+    align-items: center; 
+    margin-bottom: 30px;
   }
 
   .navbar-right-links li {
     width: 100%;
-    padding: 10px 0;
+    text-align: center;
   }
 
   .navbar-right-links a {
-    font-size: 1.2em;
-    padding: 10px 20px;
-    display: block; 
+    font-size: 1.3em;
+    padding: 10px 0;
+    display: block;
+    color: white;
   }
 
+  /* Styles des boutons d'authentification dans le menu mobile */
   .navbar-auth {
-    display: flex; 
     flex-direction: column;
-    width: 100%;
-    margin-top: 0; 
-    padding-top: 15px; 
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
-    align-items: center; 
-    justify-content: center;
+    width: 100%; 
+    gap: 15px;
+    margin-left: 0;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex; 
+    justify-content: center; 
   }
 
   .navbar-auth .btn {
-    width: 80%; 
-    margin: 10px 0; 
-    text-align: center; 
+    width: 80%;
+    max-width: 200px;
+    margin: 0 auto; 
+    text-align: center;
   }
-
+  
   .hamburger-menu {
-    display: block; 
+    display: block;
   }
   
   .hero-content h1 {
-    font-size: 1.8em;
+    font-size: 2em;
   }
 
   .hero-content p {
-    font-size: 1em;
+    font-size: 1.1em;
   }
 
   .search-bar {
     flex-direction: column;
     gap: 15px;
     padding: 15px;
+    max-width: 90%;
   }
 
   .search-bar input[type="text"],
   .search-bar .dropdown {
     border-right: none;
     width: 100%;
+    min-width: unset;
   }
 
   .dropdown-select {
@@ -353,12 +371,14 @@
   .btn-search {
     width: 100%;
     justify-content: center;
-    padding: 12px 25px; 
+    padding: 12px 25px;
   }
 
   .stats-grid {
     flex-direction: column;
     gap: 30px;
+    margin-top: 40px;
+    padding-bottom: 20px;
   }
 
   .stat-item {
@@ -367,22 +387,57 @@
   }
 
   .company-logos {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
   }
 
   .company-logos img {
-    height: 25px; 
+    height: 25px;
   }
 }
 
+/* Pour les très petits smartphones (moins de 480px de large) */
 @media (max-width: 480px) {
+  .navbar-left .logo {
+    height: 35px;
+  }
+  .hamburger-menu {
+    font-size: 1.6em;
+  }
+  .navbar-right {
+    width: 240px;
+    max-width: 90%;
+  }
+  .navbar-right-links a {
+    font-size: 1.1em;
+  }
   .hero-content h1 {
     font-size: 1.5em;
   }
-
   .hero-content p {
     font-size: 0.9em;
+  }
+  .search-bar {
+    padding: 10px;
+  }
+  .search-bar input[type="text"],
+  .dropdown-select,
+  .btn-search {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+  .stat-value {
+    font-size: 2em;
+  }
+  .stat-label {
+    font-size: 1em;
+  }
+  .icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+  .icon-circle i {
+    font-size: 1.8em;
   }
 }

@@ -2,6 +2,18 @@
 
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
+
+/* Vos autres styles globaux ici */
+:root {
+  --primary-color: #005448;
+  --secondary-color: #00806a;
+  --text-dark: #333;
+  --text-light: #555;
+  --border-color: #e0e0e0;
+  --card-bg: #FFFFFF;
+  --light-gray-background: #F0F0F0;
+}
+
 body {
   background-color: white; /* ou une couleur clean */
 }

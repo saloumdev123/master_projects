@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css']
 })
@@ -52,7 +53,7 @@ export class HeroComponent {
     'Autres'
   ];
 
-  constructor() { }
+ constructor(private router: Router) { }
 
   // Méthode pour basculer l'état du menu mobile
   toggleMenu() {
