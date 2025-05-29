@@ -3,6 +3,7 @@ import { JobApplicationComponent } from './components/job-application/job-applic
 import { JobComponent } from './components/job/job.component';
 import { HomeComponent } from './components/home/home.component';
 import { ApplySuccessComponent } from './components/apply-success/apply-success.component';
+import { JobDetailsComponent } from './components/job-details/job-details.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -10,4 +11,5 @@ export const routes: Routes = [
     { path: 'job-applications', component: JobApplicationComponent },
     { path: 'job-list', component: JobComponent },
     { path: 'apply-success', component: ApplySuccessComponent },
+    { path: 'job-details/:id', component: JobDetailsComponent }
 ];

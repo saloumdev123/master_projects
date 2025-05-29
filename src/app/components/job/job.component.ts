@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './job.component.html',
   styleUrls: ['./job.component.css']
 })
-export class JobComponent implements OnInit, AfterViewInit {
+export class JobComponent implements OnInit {
 
   searchTerm: string = '';
   selectedLocation: string = '';
@@ -24,7 +24,6 @@ export class JobComponent implements OnInit, AfterViewInit {
   selectedSort: string = 'latest';
 
   isMenuOpen: boolean = false;
-  isBrowser: boolean;
 
   categories: { name: string, count: number }[] = [
     { name: 'Télécommunications', count: 10 },
@@ -68,17 +67,10 @@ export class JobComponent implements OnInit, AfterViewInit {
     'Tambacounda', 'Kolda', 'Louga', 'Fatick', 'Kaffrine', 'Kédougou', 'Matam'
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
+  // Injectez le service Router dans le constructeur
+  constructor(private router: Router) { } 
 
   ngOnInit(): void { }
-
-  ngAfterViewInit(): void {
-    if (this.isBrowser) {
-        console.log('JobComponent: ngAfterViewInit - Running in browser.');
-    }
-  }
 
   selectLocation(city: string) {
     this.selectedLocation = city;
@@ -86,15 +78,13 @@ export class JobComponent implements OnInit, AfterViewInit {
   }
 
   onLocationInputBlur() {
-    if (this.isBrowser) {
-        setTimeout(() => {
-            const activeElem = document.activeElement;
-            const dropdown = document.querySelector('.location-dropdown');
-            if (!dropdown || !dropdown.contains(activeElem)) {
-                this.showLocationDropdown = false;
-            }
-        }, 100);
-    }
+    setTimeout(() => {
+        const activeElem = document.activeElement;
+        const dropdown = document.querySelector('.location-dropdown');
+        if (!dropdown || !dropdown.contains(activeElem)) {
+            this.showLocationDropdown = false;
+        }
+    }, 100);
   }
 
   applySalaryFilter() {
@@ -104,5 +94,16 @@ export class JobComponent implements OnInit, AfterViewInit {
 
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  // Nouvelle méthode pour la redirection vers les détails d'emploi
+  goToJobDetails(jobId: string): void {
+    this.router.navigate(['/job-details', jobId]);
+  }
+
+  // Méthode pour gérer le clic sur l'icône de favori (si elle n'est pas un lien)
+  toggleFavorite(jobId: string): void {
+    console.log(`Job ${jobId} favori basculé.`);
+    // Ajoutez ici la logique pour gérer les favoris (ex: appeler un service)
   }
 }

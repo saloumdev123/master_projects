@@ -1,0 +1,224 @@
+:host {
+  display: block;
+}
+
+.job-hero-section {
+  background-color: #000;
+  color: white;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 50px;
+}
+
+.main-logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* Styles pour le menu de navigation sur les grands écrans */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+}
+
+.main-nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+  color: #005448;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.auth-buttons .btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap;
+}
+
+.auth-buttons .btn-transparent {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
+
+.auth-buttons .btn-transparent:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.auth-buttons .btn-primary {
+  background-color: #005448;
+  border: 1px solid #005448;
+  color: white;
+}
+
+.auth-buttons .btn-primary:hover {
+  background-color: #003e35;
+  border-color: #003e35;
+}
+
+.job-hero-title {
+  font-size: clamp(2.2em, 8vw, 4em); 
+  font-weight: bold;
+  margin: 0;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 100%; 
+  max-width: 900px; 
+}
+
+/* icône de menu hamburger (cachée par défaut sur les grands écrans) */
+.menu-toggle {
+  display: none;
+  font-size: 1.8em;
+  color: white;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* --- Media Queries pour la section Hero et le Menu --- */
+@media (max-width: 1024px) {
+  .job-hero-section {
+    height: 350px;
+  }
+  .header-content {
+    padding-bottom: 40px;
+  }
+  .main-nav ul {
+    gap: 20px;
+  }
+}
+
+/* Pour les tablettes verticales et grands smartphones (moins de 768px de large) */
+@media (max-width: 768px) {
+  .job-hero-section {
+    height: 300px;
+    padding: 15px;
+  }
+  .header-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+
+  /* Cache le menu de navigation par défaut sur mobile et prépare l'animation */
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    max-width: 80%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 60px 20px 20px;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .main-nav.open {
+    right: 0;
+  }
+
+  /* Styles des liens du menu mobile */
+  .main-nav ul {
+    flex-direction: column;
+    gap: 25px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .main-nav ul li a {
+    font-size: 1.3em;
+    padding: 10px 0;
+    display: block;
+    color: white;
+  }
+
+  /* Styles des boutons d'authentification dans le menu mobile */
+  .auth-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .auth-buttons .btn {
+    width: 80%;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+
+}
+
+/* Pour les smartphones (moins de 480px de large) */
+@media (max-width: 480px) {
+  .job-hero-section {
+    height: 250px;
+    padding: 10px;
+  }
+
+  .main-logo img {
+    height: 35px;
+  }
+  .menu-toggle {
+    font-size: 1.6em;
+  }
+  .main-nav {
+    width: 220px;
+    max-width: 90%;
+  }
+  .main-nav ul li a {
+    font-size: 1.1em;
+  }
+  .auth-buttons .btn {
+    width: 90%;
+  }
+}

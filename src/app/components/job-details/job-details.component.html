@@ -1,0 +1,24 @@
+<section class="job-hero-section">
+  <div class="header-content">
+    <div class="main-logo">
+      <img src="assets/images/logo_jobconnect.png" alt="Logo JobConnect">
+    </div>
+
+    <i class="fas fa-bars menu-toggle" (click)="toggleMenu()"></i>
+
+    <nav class="main-nav" [class.open]="isMenuOpen">
+      <ul>
+        <li><a routerLink="/" class="nav-link">Accueil</a></li>
+        <li><a routerLink="/job-list" class="nav-link">Emplois</a></li>
+        <li><a routerLink="/recruiters" class="nav-link">Recruteurs</a></li>
+        <li><a routerLink="/about" class="nav-link">À Propos</a></li>
+        <li><a routerLink="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <button class="btn btn-transparent">Se Connecter</button>
+        <button class="btn btn-primary">S'inscrire</button>
+      </div>
+    </nav>
+  </div>
+  <h1 class="job-hero-title">Détails Emplois</h1>
+</section>
