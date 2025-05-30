@@ -1,0 +1,328 @@
+<section class="job-hero-section">
+  <div class="header-content">
+    <div class="main-logo">
+      <img src="assets/images/logo_jobconnect.png" alt="Logo JobConnect">
+    </div>
+
+    <i class="fas fa-bars menu-toggle" (click)="toggleMenu()"></i>
+
+    <nav class="main-nav" [class.open]="isMenuOpen">
+      <ul>
+        <li><a routerLink="/" class="nav-link">Accueil</a></li>
+        <li><a routerLink="/job-list" class="nav-link">Emplois</a></li>
+        <li><a routerLink="/recruiters" class="nav-link">Recruteurs</a></li>
+        <li><a routerLink="/about" class="nav-link">À Propos</a></li>
+        <li><a routerLink="/contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <button class="btn btn-transparent">Se Connecter</button>
+        <button class="btn btn-primary">S'inscrire</button>
+      </div>
+    </nav>
+  </div>
+  <h1 class="job-hero-title">Emplois</h1>
+</section>
+
+<section class="job-listing-section">
+  <div class="job-listing-container">
+
+    <aside class="job-sidebar">
+      <div class="filter-block">
+        <h3>Rechercher par Titre de Poste</h3>
+        <div class="search-input-group">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="Titre de poste ou entreprise">
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <h3>Localisation</h3>
+        <div class="location-input-group">
+          <i class="fas fa-map-marker-alt location-icon"></i>
+          <input type="text" placeholder="Choisir une ville" [(ngModel)]="selectedLocation" (focus)="showLocationDropdown = true" (blur)="onLocationInputBlur()">
+          <div *ngIf="showLocationDropdown" class="location-dropdown">
+            <ul>
+              <li *ngFor="let city of senegaleseCities" (mousedown)="selectLocation(city)">{{ city }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-block category-filter">
+        <h3>Catégorie</h3>
+        <ul>
+          <li *ngFor="let category of categories"><span>{{ category.name }}</span><span>{{ category.count }}</span></li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h3>Type d'Emploi</h3>
+        <ul>
+          <li *ngFor="let type of jobTypes">
+            <input type="checkbox" [id]="type.id"><label [for]="type.id">{{ type.name }}</label><span>{{ type.count }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h3>Niveau d'Expérience</h3>
+        <ul>
+          <li *ngFor="let exp of experienceLevels">
+            <input type="checkbox" [id]="exp.id"><label [for]="exp.id">{{ exp.name }}</label><span>{{ exp.count }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h3>Date de Publication</h3>
+        <ul>
+          <li *ngFor="let dateOption of datePostedOptions">
+            <input type="checkbox" [id]="dateOption.id"><label [for]="dateOption.id">{{ dateOption.name }}</label><span>{{ dateOption.count }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="filter-block">
+        <h3>Salaire (FCFA)</h3>
+        <div class="salary-input-group">
+          <div class="input-with-label">
+            <label for="minSalaryInput">Min</label>
+            <input type="number" id="minSalaryInput" [(ngModel)]="minSalary" placeholder="0" min="0">
+          </div>
+          <div class="input-with-label">
+            <label for="maxSalaryInput">Max</label>
+            <input type="number" id="maxSalaryInput" [(ngModel)]="maxSalary" placeholder="1000000" min="0">
+          </div>
+          <button class="btn btn-apply-salary" (click)="applySalaryFilter()">Appliquer</button>
+        </div>
+      </div>
+
+      <div class="filter-block">
+        <h3>Mots-clés</h3>
+        <div class="tags-container">
+          <span class="tag-item">développement</span>
+          <span class="tag-item">design</span>
+          <span class="tag-item">gestion</span>
+          <span class="tag-item">marketing</span>
+          <span class="tag-item">finance</span>
+          <span class="tag-item">RH</span>
+          <span class="tag-item">logistique</span>
+        </div>
+      </div>
+
+      <div class="we-are-hiring-banner">
+        <h3>NOUS RECRUTONS</h3>
+        <p>Postulez dès aujourd'hui !</p>
+      </div>
+    </aside>
+
+    <main class="job-main-content">
+      <div class="job-list-controls">
+        <span class="results-info">Affichage de 6-6 sur 10 résultats</span>
+        <div class="sort-by">
+          <label for="sort">Trier par</label>
+          <select id="sort">
+            <option value="latest">Plus récent</option>
+            <option value="relevance">Pertinence</option>
+            <option value="salary-asc">Salaire (Croissant)</option>
+            <option value="salary-desc">Salaire (Décroissant)</option>
+          </select>
+          <i class="fas fa-chevron-down sort-arrow"></i>
+        </div>
+      </div>
+
+      <div class="job-cards-container">
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 10 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-1')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/sonatel-logo.png" alt="Logo Sonatel">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Directeur Sécurité Informatique</h3>
+              <p class="company-name">Sonatel S.A.</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-suitcase"></i> IT & Télécoms</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 500.000 - 750.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-1')">Détails de l'emploi</button>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 12 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-2')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/sonatel-logo.png" alt="Logo Orange Sénégal">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Coordinateur Marketing Digital</h3>
+              <p class="company-name">Orange Sénégal</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-briefcase"></i> Marketing & Com.</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Partiel</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 250.000 - 350.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Thiès, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-2')">Détails de l'emploi</button>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 15 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-3')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/pad-logo.png" alt="Logo CSE">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Ingénieur Civil Junior</h3>
+              <p class="company-name">Compagnie Sénégalaise d'Electricité (CSE)</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-toolbox"></i> Construction</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 400.000 - 600.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Saint-Louis, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-3')">Détails de l'emploi</button>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 24 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-4')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/company_1.png" alt="Logo Dangote Cement">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Responsable Logistique</h3>
+              <p class="company-name">Dangote Cement Sénégal</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-truck"></i> Transport & Logistique</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 450.000 - 650.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Rufisque, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-4')">Détails de l'emploi</button>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 26 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-5')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/company_2.jpeg" alt="Logo GIE Zone Franche">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Assistant(e) Administratif(ve)</h3>
+              <p class="company-name">GIE Zone Franche de Dakar</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-user-tie"></i> Administration</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 200.000 - 300.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Diamniadio, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-5')">Détails de l'emploi</button>
+          </div>
+        </div>
+
+        <div class="job-card">
+          <div class="job-card-top">
+            <span class="time-ago">Il y a 30 min</span>
+            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-6')"></i>
+          </div>
+          <div class="job-details-main">
+            <div class="company-logo-small">
+              <img src="assets/images/company_3.jpeg" alt="Logo Ecobank Sénégal">
+            </div>
+            <div class="job-info-text">
+              <h3 class="job-title">Comptable Junior</h3>
+              <p class="company-name">Ecobank Sénégal</p>
+            </div>
+          </div>
+          <div class="job-details-meta">
+            <span class="meta-item"><i class="fas fa-chart-pie"></i> Finance & Comptabilité</span>
+            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 300.000 - 450.000 XOF</span>
+            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
+            <button class="btn-job-details" (click)="goToJobDetails('job-id-6')">Détails de l'emploi</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn">2</button>
+        <button class="pagination-btn next-btn">Suivant <i class="fas fa-chevron-right"></i></button>
+      </div>
+
+    </main>
+  </div>
+</section>
+
+<section class="top-companies-section">
+  <div class="top-companies-container">
+    <div class="section-header">
+      <h2>Entreprises de Premier Plan</h2>
+      <p>Découvrez les opportunités au sein des meilleures entreprises du Sénégal.</p>
+    </div>
+    <div class="companies-grid">
+      <div class="company-card">
+        <div class="company-logo">
+          <img src="assets/images/sonatel-logo.png" alt="Logo Sonatel">
+        </div>
+        <h3>Sonatel</h3>
+        <p>Leader des télécommunications au Sénégal, offrant des carrières innovantes dans un secteur en pleine croissance.</p>
+        <button class="btn btn-open-jobs">15 postes ouverts</button>
+      </div>
+
+      <div class="company-card">
+        <div class="company-logo">
+          <img src="assets/images/sgbs-logo.png" alt="Logo SGBS">
+        </div>
+        <h3>SGBS</h3>
+        <p>Filiale de la Société Générale, un acteur majeur de la finance, offrant des opportunités dans la banque et l'assurance.</p>
+        <button class="btn btn-open-jobs">10 postes ouverts</button>
+      </div>
+
+      <div class="company-card">
+          <div class="company-logo">
+            <img src="assets/images/pad-logo.png" alt="Logo Port Autonome de Dakar">
+          </div>
+          <h3>Port Autonome de Dakar (PAD)</h3>
+          <p>Pôle stratégique du commerce et de la logistique en Afrique de l'Ouest, offrant des opportunités dans le transport maritime et terrestre.</p>
+          <button class="btn btn-open-jobs">7 postes ouverts</button>
+      </div>
+
+      <div class="company-card">
+        <div class="company-logo">
+          <img src="assets/images/cbao-logo.png" alt="Logo CBAO">
+        </div>
+        <h3>CBAO</h3>
+        <p>Une des plus grandes banques du pays, proposant des carrières diverses dans le secteur bancaire et financier.</p>
+        <button class="btn btn-open-jobs">12 postes ouverts</button>
+      </div>
+    </div>
+  </div>
+</section>

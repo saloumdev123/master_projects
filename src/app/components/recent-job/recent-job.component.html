@@ -4,7 +4,7 @@
       <h2>Offres d'emploi récentes</h2>
       <p class="section-description">Des centaines d’offres d’emploi et de stages n’attendent que vous.</p>
     </div>
-    <a href="#" class="view-all-link">Voir Tout</a>
+    <a routerLink="/job-list" class="view-all-link">Voir Tout</a>
   </div>
 
   <div class="job-listings-container">
@@ -32,30 +32,10 @@
         <div class="detail-item"><i class="fas fa-money-bill-wave"></i> {{ job.pay }}</div>
         <div class="detail-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</div>
       </div>
-
-      <!-- Bouton pour afficher/masquer les détails -->
-      <div class="job-card-footer">
-        <button class="view-details-btn" (click)="toggleDetails(job)">
-          {{ job.showDetails ? 'Masquer' : 'Détails' }}
-        </button>
-      </div>
-
-      <!-- Dropdown de détails supplémentaires -->
-      <div class="job-dropdown-details" *ngIf="job.showDetails" >
-        <p><strong>Description :</strong> {{ job.description }}</p>
-        <p><strong>Employment Type :</strong> {{ job.employmentType }}</p>
-        <p><strong>Category Name:</strong> {{ job.categoryName }}</p>
-        <p><strong>Date de publication :</strong> {{ job.datePosted | date }}</p>
-        <!-- Ajoutez ici d'autres champs si nécessaires -->
-
-        <div class="apply-button-container">
-           <button class="apply-btn" (click)="navigateToJobApplication(job)">Postuler</button>
-       </div>
       </div>
     </div>
 
     <div *ngIf="recentJobs.length === 0" class="no-jobs-message">
       Aucune offre d'emploi récente disponible pour le moment.
     </div>
-  </div>
 </section>

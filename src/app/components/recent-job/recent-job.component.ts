@@ -1,14 +1,14 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Job } from '../../interfaces/job';
-import { JobService } from '../../services/job.service';
 import { Router } from '@angular/router';
-
+import { RouterLink } from '@angular/router';
+import { JobService } from '../../services/job.service';
+import { Job } from '../../interfaces/job';
 
 @Component({
   selector: 'app-recent-job',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './recent-job.component.html',
   styleUrls: ['./recent-job.component.css']
 })
@@ -23,6 +23,7 @@ recentJobs: Job[] = [];
   constructor(private jobService: JobService,private router: Router,private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+
     this.loadJobs(this.currentPage, this.pageSize);
   }
 
@@ -58,6 +59,7 @@ recentJobs: Job[] = [];
 
     const diffDays = Math.floor(diffHours / 24);
     return `${diffDays} j ago`;
+
   }
 
   toggleBookmark(job: Job): void {
@@ -77,17 +79,5 @@ recentJobs: Job[] = [];
       this.loadJobs(this.currentPage, this.pageSize);
     }
   }
-
-  toggleDetails(job: Job): void {
-    console.log('toggleDetails called for job id:', job.id);
-    this.recentJobs = this.recentJobs.map(j => 
-    j.id === job.id ? {...j, showDetails: !j.showDetails} : j
-  );
-  this.cdr.detectChanges();
-}
-navigateToJobApplication(job: any) {
-  this.router.navigate(['/job-applications'], { queryParams: { jobId: job.id } });
-
-}
 
 }
