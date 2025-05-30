@@ -27,6 +27,7 @@ public class Job {
     private String fullDescription;
     private String recruiterCompanyName;
     private String categoryName;
+    private String companyLogoUrl;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

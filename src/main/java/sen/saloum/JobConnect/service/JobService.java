@@ -87,6 +87,17 @@ public class JobService {
         Job updated = jobRepository.save(job);
         return toDto(updated);
     }
+    public List<JobDto> saveAll(List<JobDto> jobDtos) {
+        List<Job> jobs = jobDtos.stream()
+                .map(this::toEntity)
+                .collect(Collectors.toList());
+
+        List<Job> savedJobs = jobRepository.saveAll(jobs);
+
+        return savedJobs.stream()
+                .map(this::toDto)
+                .collect(Collectors.toList());
+    }
 
     public JobDto toDto(Job job) {
         JobDto dto = new JobDto();
@@ -94,10 +105,11 @@ public class JobService {
         if (job.getRecruiter() != null) {
             dto.setRecruiterId(job.getRecruiter().getId());
             dto.setRecruiterCompanyName(job.getRecruiter().getCompanyName());
+            dto.setCompanyLogoUrl(job.getRecruiter().getCompanyLogoUrl());
         }
         if (job.getCategory() != null) {
             dto.setCategoryId(job.getCategory().getId());
-            dto.setCategoryName(job.getCategory().getName()); // <-- ajouter ceci
+            dto.setCategoryName(job.getCategory().getName());
         }
         return dto;
     }

@@ -38,4 +38,10 @@ public class JobController {
         JobDto savedJob = jobService.saveJob(jobDto);
         return ResponseEntity.ok(savedJob);
     }
+    @PostMapping("/jobs/bulk")
+    public ResponseEntity<?> createJobs(@RequestBody List<JobDto> jobDtos) {
+        List<JobDto> savedJobs = jobService.saveAll(jobDtos);
+        return ResponseEntity.ok(savedJobs);
+    }
+
 }
