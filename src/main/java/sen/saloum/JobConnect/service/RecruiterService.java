@@ -22,13 +22,20 @@ public class RecruiterService {
     private final RecruiterRepository recruiterRepository;
 
     public RecruiterDto createRecruiter(RecruiterDto dto) {
+        System.out.println("Avant copyProperties: " + dto.getCompanyLogoUrl());
+
         Recruiter recruiter = new Recruiter();
         BeanUtils.copyProperties(dto, recruiter);
+
         recruiter.setRole(Role.RECRUITER);
         Recruiter saved = recruiterRepository.save(recruiter);
+
         BeanUtils.copyProperties(saved, dto);
+
+        System.out.println("Après copyProperties: " + dto.getCompanyLogoUrl());
         return dto;
     }
+
     public List<RecruiterDto> findAll() {
         return recruiterRepository.findAll().stream()
                 .map(this::toDto)
@@ -43,6 +50,7 @@ public class RecruiterService {
     public RecruiterDto toDto(Recruiter entity) {
         RecruiterDto dto = new RecruiterDto();
         BeanUtils.copyProperties(entity, dto);
+        dto.setCompanyLogoUrl(entity.getCompanyLogoUrl());
         return dto;
     }
 

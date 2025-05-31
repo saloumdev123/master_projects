@@ -31,7 +31,7 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.findAll());
     }
 
-    // Get category by ID
+
     @GetMapping("/{id}")
     public ResponseEntity<CategoryDto> getById(@PathVariable Long id) {
         return categoryService.findById(id)
