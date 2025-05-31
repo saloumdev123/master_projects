@@ -1,335 +1,395 @@
 <section class="job-hero-section">
-  <div class="header-content">
-    <div class="main-logo">
-      <img src="assets/images/logo_jobconnect.png" alt="Logo JobConnect">
-    </div>
+<div class="header-content">
+<div class="main-logo">
+<img src="assets/images/logo_jobconnect.png" alt="Logo JobConnect">
+</div>
 
-    <i class="fas fa-bars menu-toggle" (click)="toggleMenu()"></i>
+<i class="fas fa-bars menu-toggle" (click)="toggleMenu()"></i>
 
-    <nav class="main-nav" [class.open]="isMenuOpen">
-      <ul>
-        <li><a routerLink="/" class="nav-link">Accueil</a></li>
-        <li><a routerLink="/job-list" class="nav-link">Emplois</a></li>
-        <li><a routerLink="/recruiters" class="nav-link">Recruteurs</a></li>
-        <li><a routerLink="/about" class="nav-link">À Propos</a></li>
-        <li><a routerLink="/contact" class="nav-link">Contact</a></li>
-      </ul>
-      <div class="auth-buttons">
-        <button class="btn btn-transparent">Se Connecter</button>
-        <button class="btn btn-primary">S'inscrire</button>
-      </div>
-    </nav>
-  </div>
-  <h1 class="job-hero-title">Détails Emplois</h1>
+<nav class="main-nav" [class.open]="isMenuOpen">
+<ul>
+  <li><a routerLink="/" class="nav-link">Accueil</a></li>
+  <li><a routerLink="/job-list" class="nav-link">Emplois</a></li>
+  <li><a routerLink="/recruiters" class="nav-link">Recruteurs</a></li>
+  <li><a routerLink="/about" class="nav-link">À Propos</a></li>
+  <li><a routerLink="/contact" class="nav-link">Contact</a></li>
+</ul>
+<div class="auth-buttons">
+  <button class="btn btn-transparent">Se Connecter</button>
+  <button class="btn btn-primary">S'inscrire</button>
+</div>
+</nav>
+</div>
+<h1 class="job-hero-title">Détails Emplois</h1>
 </section>
 
 <section class="job-details-header-section">
-  <div class="job-details-content-wrapper">
-    <div class="job-details-meta-top-row">
-      <span class="time-ago">Il y a 10 min</span>
-      <i class="far fa-bookmark favorite-icon"></i>
-    </div>
+<div class="job-details-content-wrapper">
+<div class="job-details-meta-top-row">
+<span class="time-ago">Il y a 10 min</span>
+<i class="far fa-bookmark favorite-icon"></i>
+</div>
 
-    <div class="job-details-main-info">
-      <div class="company-logo-wrapper">
-        <img src="assets/images/sonatel-logo.png" alt="Logo Entreprise">
-      </div>
-      <div class="job-text-block">
-        <h2 class="job-title-display">Directeur Sécurité Informatique</h2>
-        <p class="company-name-display">Sonatel S.A.</p>
-      </div>
-    </div>
+<div class="job-details-main-info">
+<div class="company-logo-wrapper">
+  <img src="assets/images/sonatel-logo.png" alt="Logo Entreprise">
+</div>
+<div class="job-text-block">
+  <h2 class="job-title-display">Directeur Sécurité Informatique</h2>
+  <p class="company-name-display">Sonatel S.A.</p>
+</div>
+</div>
 
-    <div class="job-details-meta-bottom-row">
-      <span class="meta-item"><i class="fas fa-suitcase"></i> IT & Télécoms</span>
-      <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-      <span class="meta-item"><i class="fas fa-dollar-sign"></i> 500.000 - 750.000 FCFA</span>
-      <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-      <button class="btn btn-apply-job">Postuler à l'emploi</button>
-    </div>
-  </div>
+<div class="job-details-meta-bottom-row">
+<span class="meta-item"><i class="fas fa-suitcase"></i> IT & Télécoms</span>
+<span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
+<span class="meta-item"><i class="fas fa-dollar-sign"></i> 500.000 - 750.000 FCFA</span>
+<span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
+<button class="btn btn-apply-job" (click)="openApplyPopup()">Postuler à l'emploi</button>
+</div>
+</div>
 </section>
 
 <section class="job-content-section">
-  <div class="job-content-container">
-    <div class="job-main-column">
-      <div class="job-description-block">
-        <h3>Description de l'emploi</h3>
-        <p>
-          Nunc sed a nisi purus. Nibh dis faucibus proin lacus tristique. Sit congue non vitae odio sit erat in.
-          Felis eu ultrices a sed massa. At eu lobortis pretium tincidunt amet amet lacus ut aenean aliquet.
-          Blandit a massa elementum eu scelerisque cursus fames mauris. Tortor amet porta proin in.
-          Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta
-          vitae cras ornare. Facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet
-          porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt
-          mattis lectus porta vitae cras ornare. Facilisis dignissim augue lorem amet adipiscing cursus fames mauris.
-          Diam habitant donec.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
-      </div>
 
-      <div class="job-responsibilities-block">
-        <h3>Responsabilités Clés</h3>
-        <ul>
-          <li><i class="fas fa-check"></i> Et nunc ut tempus duis nisl sed massa. Ornare varius faucibus nisi vitae vitae cras ornare. Cras facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet porta proin in.</li>
-          <li><i class="fas fa-check"></i> Ornare varius faucibus nisi vitae vitae cras ornare. Cras facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quique tincidunt mattis lectus porta vitae cras ornare.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
-        </ul>
-      </div>
+<div class="job-content-container">
+<div class="job-main-column">
+<div class="job-description-block">
+  <h3>Description de l'emploi</h3>
+  <p>
+    Nunc sed a nisi purus. Nibh dis faucibus proin lacus tristique. Sit congue non vitae odio sit erat in.
+    Felis eu ultrices a sed massa. At eu lobortis pretium tincidunt amet amet lacus ut aenean aliquet.
+    Blandit a massa elementum eu scelerisque cursus fames mauris. Tortor amet porta proin in.
+    Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta
+    vitae cras ornare. Facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet
+    porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt
+    mattis lectus porta vitae cras ornare. Facilisis dignissim augue lorem amet adipiscing cursus fames mauris.
+    Diam habitant donec.
+  </p>
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat.
+  </p>
+</div>
 
-      <div class="job-skills-block">
-        <h3>Compétences Professionnelles</h3>
-        <ul>
-          <li><i class="fas fa-check"></i> Et nunc ut tempus duis nisl sed massa. Ornare varius faucibus nisi vitae vitae cras ornare.</li>
-          <li><i class="fas fa-check"></i> Ornare varius faucibus nisi vitae vitae cras ornare.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
-          <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
-        </ul>
-      </div>
+<div class="job-responsibilities-block">
+  <h3>Responsabilités Clés</h3>
+  <ul>
+    <li><i class="fas fa-check"></i> Et nunc ut tempus duis nisl sed massa. Ornare varius faucibus nisi vitae vitae cras ornare. Cras facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet porta proin in.</li>
+    <li><i class="fas fa-check"></i> Ornare varius faucibus nisi vitae vitae cras ornare. Cras facilisis dignissim augue lorem amet adipiscing cursus fames mauris. Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quique tincidunt mattis lectus porta vitae cras ornare.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae. Quisque tincidunt mattis lectus porta vitae cras ornare.</li>
+  </ul>
+</div>
 
-      <div class="job-tags-block">
-        <h3>Tags</h3>
-        <div class="tags-container">
-          <span class="tag-item">Temps Plein</span>
-          <span class="tag-item">Commerce</span>
-          <span class="tag-item">New-York</span>
-          <span class="tag-item">Entreprise</span>
-          <span class="tag-item">Localisation</span>
-        </div>
-      </div>
+<div class="job-skills-block">
+  <h3>Compétences Professionnelles</h3>
+  <ul>
+    <li><i class="fas fa-check"></i> Et nunc ut tempus duis nisl sed massa. Ornare varius faucibus nisi vitae vitae cras ornare.</li>
+    <li><i class="fas fa-check"></i> Ornare varius faucibus nisi vitae vitae cras ornare.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
+    <li><i class="fas fa-check"></i> Tortor amet porta proin in. Orci imperdiet nisi dignissim pellentesque morbi vitae.</li>
+  </ul>
+</div>
 
-      <div class="job-share-block">
-        <h4>Partager l'emploi:</h4>
-        <div class="share-icons">
-          <a href="#" class="share-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="share-icon"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="share-icon"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
+<div class="job-tags-block">
+  <h3>Tags</h3>
+  <div class="tags-container">
+    <span class="tag-item">Temps Plein</span>
+    <span class="tag-item">Commerce</span>
+    <span class="tag-item">New-York</span>
+    <span class="tag-item">Entreprise</span>
+    <span class="tag-item">Localisation</span>
+  </div>
+</div>
+
+<div class="job-share-block">
+  <h4>Partager l'emploi:</h4>
+  <div class="share-icons">
+    <a href="#" class="share-icon"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="share-icon"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="share-icon"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</div>
 
 <div class="related-jobs-block">
-        <h3>Emplois Similaires</h3>
-        <p class="section-description">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet.</p>
-        <div class="related-jobs-list">
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 24 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_1.png" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Coordinateur Interne Créatif</h4>
-                <p class="company-name-related">Green Group</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 340.000 - 360.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" (click)="goToJobDetails('job123')">Détails de l'emploi</button>
-            </div>
-          </div>
-
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 24 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_4.png" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Directeur Intranet de District</h4>
-                <p class="company-name-related">Northumbrian Water Co</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 420.000 - 480.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Mbour, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" (click)="goToJobDetails('job124')">Détails de l'emploi</button>
-            </div>
-          </div>
-
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 26 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_3.jpeg" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Facilitateur de Tâches d'Entreprise</h4>
-                <p class="company-name-related">Cormier, Turner and Flatley Inc</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 360.000 - 400.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Louga, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" (click)="goToJobDetails('job125')">Détails de l'emploi</button>
-            </div>
-          </div>
+  <h3>Emplois Similaires</h3>
+  <p class="section-description">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet.</p>
+  <div class="related-jobs-list">
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 24 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_1.png" alt="Logo Entreprise">
         </div>
-      
-        <h3>Emplois Similaires</h3>
-        <p class="section-description">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet.</p>
-        <div class="related-jobs-list">
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 24 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_3.jpeg" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Coordinateur Interne Créatif</h4>
-                <p class="company-name-related">Green Group</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 340.000 - 360.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Thies, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
-            </div>
-          </div>
-
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 24 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_2.jpeg" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Directeur Intranet de District</h4>
-                <p class="company-name-related">Northumbrian Water Co</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 420.000 - 480.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Kaolack, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
-            </div>
-          </div>
-
-          <div class="job-card-related">
-            <div class="job-card-related-header">
-              <span class="time-ago-related">Il y a 26 min</span>
-              <i class="far fa-bookmark favorite-icon-related"></i>
-            </div>
-            <div class="job-card-related-main-info">
-              <div class="company-logo-related">
-                <img src="assets/images/company_1.png" alt="Logo Entreprise">
-              </div>
-              <div class="job-text-related">
-                <h4 class="job-title-related">Facilitateur de Tâches d'Entreprise</h4>
-                <p class="company-name-related">Cormier, Turner and Flatley Inc</p>
-              </div>
-            </div>
-            <div class="job-card-related-meta-row">
-              <div class="meta-items-related">
-                <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
-                <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
-                <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 360.000 - 400.000 FCFA</span>
-                <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-              </div>
-              <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
-            </div>
-          </div>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Coordinateur Interne Créatif</h4>
+          <p class="company-name-related">Green Group</p>
         </div>
+      </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 340.000 - 360.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" (click)="goToJobDetails('job123')">Détails de l'emploi</button>
       </div>
     </div>
 
-    <div class="job-sidebar-column">
-      <div class="job-overview-block">
-        <h3>Aperçu de l'emploi</h3>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-suitcase"></i> Titre de l'emploi</span>
-          <span class="item-value">Solutions d'Entreprise</span>
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 24 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_4.png" alt="Logo Entreprise">
         </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-building"></i> Type d'emploi</span>
-          <span class="item-value">Temps Plein</span>
-        </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-tag"></i> Catégorie</span>
-          <span class="item-value">Commerce</span>
-        </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-graduation-cap"></i> Expérience</span>
-          <span class="item-value">2 Ans</span>
-        </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-book"></i> Diplôme</span>
-          <span class="item-value">Bachelier</span>
-        </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-money-bill-wave"></i> Salaire Offert</span>
-          <span class="item-value">400.000 - 420.000 FCFA</span>
-        </div>
-        <div class="overview-item">
-          <span class="item-label"><i class="fas fa-map-marker-alt"></i> Emplacement</span>
-          <span class="item-value">Dakar, Sénégal</span>
-        </div>
-        <div class="map-placeholder">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61530.78408144411!2d-17.506853578576493!3d14.711166717877738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0xb17c17d92d5db21f!2sDakar!5e0!3m2!1sfr!2ssn!4v1748568464347!5m2!1sfr!2ssn" width="400" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Directeur Intranet de District</h4>
+          <p class="company-name-related">Northumbrian Water Co</p>
         </div>
       </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 420.000 - 480.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Mbour, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" (click)="goToJobDetails('job124')">Détails de l'emploi</button>
+      </div>
+    </div>
 
-      <div class="send-message-block">
-        <h3>Envoyer un Message</h3>
-        <form class="message-form">
-          <div class="form-group">
-            <input type="text" placeholder="Nom Complet" class="form-control">
-          </div>
-          <div class="form-group">
-            <input type="email" placeholder="Adresse Email" class="form-control">
-          </div>
-          <div class="form-group">
-            <input type="tel" placeholder="Numéro de Téléphone" class="form-control">
-          </div>
-          <div class="form-group">
-            <textarea placeholder="Votre Message" class="form-control"></textarea>
-          </div>
-          <button type="submit" class="btn btn-submit-message">Envoyer Message</button>
-        </form>
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 26 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_3.jpeg" alt="Logo Entreprise">
+        </div>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Facilitateur de Tâches d'Entreprise</h4>
+          <p class="company-name-related">Cormier, Turner and Flatley Inc</p>
+        </div>
+      </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 360.000 - 400.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Louga, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" (click)="goToJobDetails('job125')">Détails de l'emploi</button>
       </div>
     </div>
   </div>
+
+  <h3>Emplois Similaires</h3>
+  <p class="section-description">At eu lobortis pretium tincidunt amet lacus ut aenean aliquet.</p>
+  <div class="related-jobs-list">
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 24 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_3.jpeg" alt="Logo Entreprise">
+        </div>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Coordinateur Interne Créatif</h4>
+          <p class="company-name-related">Green Group</p>
+        </div>
+      </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 340.000 - 360.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Thies, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
+      </div>
+    </div>
+
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 24 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_2.jpeg" alt="Logo Entreprise">
+        </div>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Directeur Intranet de District</h4>
+          <p class="company-name-related">Northumbrian Water Co</p>
+        </div>
+      </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 420.000 - 480.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Kaolack, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
+      </div>
+    </div>
+
+    <div class="job-card-related">
+      <div class="job-card-related-header">
+        <span class="time-ago-related">Il y a 26 min</span>
+        <i class="far fa-bookmark favorite-icon-related"></i>
+      </div>
+      <div class="job-card-related-main-info">
+        <div class="company-logo-related">
+          <img src="assets/images/company_1.png" alt="Logo Entreprise">
+        </div>
+        <div class="job-text-related">
+          <h4 class="job-title-related">Facilitateur de Tâches d'Entreprise</h4>
+          <p class="company-name-related">Cormier, Turner and Flatley Inc</p>
+        </div>
+      </div>
+      <div class="job-card-related-meta-row">
+        <div class="meta-items-related">
+          <span class="meta-item-related"><i class="fas fa-suitcase"></i> Commerce</span>
+          <span class="meta-item-related"><i class="far fa-clock"></i> Temps Plein</span>
+          <span class="meta-item-related"><i class="fas fa-dollar-sign"></i> 360.000 - 400.000 FCFA</span>
+          <span class="meta-item-related"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
+        </div>
+        <button class="btn btn-details-related" routerLink="/job-details">Détails de l'emploi</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="job-sidebar-column">
+<div class="job-overview-block">
+  <h3>Aperçu de l'emploi</h3>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-suitcase"></i> Titre de l'emploi</span>
+    <span class="item-value">Solutions d'Entreprise</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-building"></i> Type d'emploi</span>
+    <span class="item-value">Temps Plein</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-tag"></i> Catégorie</span>
+    <span class="item-value">Commerce</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-graduation-cap"></i> Expérience</span>
+    <span class="item-value">2 Ans</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-book"></i> Diplôme</span>
+    <span class="item-value">Bachelier</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-money-bill-wave"></i> Salaire Offert</span>
+    <span class="item-value">400.000 - 420.000 FCFA</span>
+  </div>
+  <div class="overview-item">
+    <span class="item-label"><i class="fas fa-map-marker-alt"></i> Emplacement</span>
+    <span class="item-value">Dakar, Sénégal</span>
+  </div>
+  <div class="map-placeholder">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61530.78408144411!2d-17.506853578576493!3d14.711166717877738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f5b3c5bb71%3A0xb17c17d92d5db21f!2sDakar!5e0!3m2!1sfr!2ssn!4v1748568464347!5m2!1sfr!2ssn" width="400" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+</div>
+
+<div class="send-message-block">
+  <h3>Envoyer un Message</h3>
+  <form class="message-form">
+    <div class="form-group">
+      <input type="text" placeholder="Nom Complet" class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="email" placeholder="Adresse Email" class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="tel" placeholder="Numéro de Téléphone" class="form-control">
+    </div>
+    <div class="form-group">
+      <textarea placeholder="Votre Message" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-submit-message">Envoyer Message</button>
+  </form>
+</div>
+</div>
+</div>
+
+<!-- Ajoutez ce code juste avant la fermeture de la section job-content-section -->
+  <div class="apply-popup-overlay" *ngIf="showApplyPopup">
+    <div class="apply-popup">
+      <div class="popup-header">
+        <h3>Postuler à l'emploi</h3>
+        <i class="fas fa-times" (click)="closeApplyPopup()"></i>
+      </div>
+      <form class="apply-form" (ngSubmit)="submitApplication()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName"><i class="fas fa-user icon"></i> Nom Complet *</label>
+            <input type="text" id="fullName" [(ngModel)]="application.fullName" name="fullName" placeholder="Votre nom complet" required>
+          </div>
+          <div class="form-group">
+            <label for="email"><i class="fas fa-envelope icon"></i> Email *</label>
+            <input type="email" id="email" [(ngModel)]="application.email" name="email" placeholder="Votre adresse email" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phoneNumber"><i class="fas fa-phone icon"></i> Téléphone *</label>
+            <input type="tel" id="phoneNumber" [(ngModel)]="application.phoneNumber" name="phoneNumber" placeholder="Votre numéro de téléphone" required>
+          </div>
+          <div class="form-group">
+            <label for="country"><i class="fas fa-globe icon"></i> Pays *</label>
+            <input type="text" id="country" [(ngModel)]="application.country" name="country" placeholder="Votre pays de résidence" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group full-width">
+            <label for="city"><i class="fas fa-city icon"></i> Ville *</label>
+            <input type="text" id="city" [(ngModel)]="application.city" name="city" placeholder="Votre ville de résidence" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lettreMotivation"><i class="fas fa-file-alt icon"></i> Lettre de motivation (optionnel)</label>
+          <textarea id="lettreMotivation" [(ngModel)]="application.lettreMotivation" name="lettreMotivation" placeholder="Décrivez votre intérêt pour ce poste..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="cvFile"><i class="fas fa-upload icon"></i> CV (PDF uniquement) *</label>
+          <input type="file" id="cvFile" (change)="onFileSelected($event)" accept=".pdf" required>
+          <span class="file-name" *ngIf="selectedFile">{{ selectedFile.name }}</span>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-cancel" (click)="closeApplyPopup()">Annuler</button>
+          <button type="submit" class="btn btn-submit">
+            <i class="fas fa-paper-plane"></i> Envoyer ma candidature
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 </section>

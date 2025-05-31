@@ -11,11 +11,8 @@ export interface JobApplication {
   jobApplicationStatus: string;
   dateCreated: string; 
   lettreMotivation: string;
-
-
   jobId: number;
   jobTitleFromJob: string;
-
   candidatId: number;
   candidatFullName: string;
 }

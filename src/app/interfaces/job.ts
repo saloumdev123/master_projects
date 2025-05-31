@@ -23,5 +23,5 @@ export interface Job {
   logoIconColor?: string;
   categoryIcon?: string;
   typeIcon?: string;
-showDetails?: boolean; 
+  showDetails?: boolean; 
 }

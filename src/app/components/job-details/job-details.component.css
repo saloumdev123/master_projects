@@ -554,7 +554,7 @@
   color: white;
 }
 
-/* Styles pour les emplois similaires (Related Jobs) */
+/* Styles pour les emplois similaires */
 .related-jobs-block .section-description {
   font-size: 0.95em;
   color: #6c757d;
@@ -567,7 +567,7 @@
   gap: 20px;
 }
 
-/* --- Styles pour les nouvelles cartes d'emplois similaires (.job-card-related) --- */
+/* --- Styles pour les nouvelles cartes d'emplois similaires --- */
 .job-card-related {
   background-color: #ffffff;
   padding: 20px;
@@ -612,7 +612,7 @@
 }
 
 .company-logo-related {
-  width: 60px; /* Taille du logo dans les cartes similaires */
+  width: 60px; 
   height: 60px;
   border-radius: 12px;
   overflow: hidden;
@@ -631,11 +631,11 @@
 .job-text-related {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* Permet au texte de prendre l'espace restant */
+  flex-grow: 1; 
 }
 
 .job-title-related {
-  font-size: 1.5em; /* Taille de police plus grande pour le titre */
+  font-size: 1.5em; 
   font-weight: 700;
   color: #343a40;
   margin: 0;
@@ -729,7 +729,7 @@
 
 .map-placeholder {
   width: 100%;
-  height: 250px; /* ou la hauteur que vous souhaitez */
+  height: 250px; 
   background-color: #e9ecef;
   border-radius: 8px;
   overflow: hidden;
@@ -867,18 +867,18 @@
     font-size: 1.3em;
   }
   .job-card-related-meta-row {
-    flex-direction: column; /* Empile les détails et le bouton sur mobile */
+    flex-direction: column; 
     align-items: flex-start;
     gap: 10px;
   }
   .meta-items-related {
-    width: 100%; /* Prend toute la largeur si empilé */
+    width: 100%; 
   }
   .meta-item-related {
     font-size: 0.9em;
   }
   .btn-details-related {
-    width: 100%; /* Le bouton prend toute la largeur s'il est empilé */
+    width: 100%; 
     font-size: 0.9em;
     padding: 8px 15px;
   }
@@ -927,12 +927,12 @@
   }
   /* Ajustements pour les cartes d'emplois similaires */
   .job-card-related-main-info {
-    flex-direction: column; /* Empile le logo et le texte sur les très petits écrans */
+    flex-direction: column; 
     align-items: flex-start;
     gap: 10px;
   }
   .job-text-related {
-    width: 100%; /* S'assure que le texte prend toute la largeur disponible */
+    width: 100%; 
   }
   .company-logo-related {
     width: 45px;
@@ -946,5 +946,373 @@
   }
   .map-placeholder {
     height: 150px;
+  }
+}
+
+/* Styles pour le Popup de Candidature */
+.apply-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000; 
+  backdrop-filter: blur(8px); 
+  animation: fadeIn 0.3s ease-out forwards; 
+}
+
+.apply-popup {
+  background-color: #ffffff;
+  padding: 35px 40px; 
+  border-radius: 18px; 
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25); 
+  max-width: 650px; 
+  width: 90%;
+  position: relative;
+  transform: translateY(-20px); 
+  animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; 
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px; 
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+.popup-header h3 {
+  font-size: 2.2em; 
+  font-weight: 700;
+  color: #343a40; 
+  margin: 0;
+}
+
+.popup-header .fas.fa-times {
+  font-size: 1.8em; 
+  color: #6c757d;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.popup-header .fas.fa-times:hover {
+  color: #dc3545; 
+  transform: rotate(90deg); 
+}
+
+.apply-form .form-group {
+  margin-bottom: 25px; 
+}
+
+.apply-form label {
+  display: block;
+  margin-bottom: 10px; 
+  font-weight: 600; 
+  color: #495057; 
+  font-size: 1.05em; 
+}
+
+.apply-form input[type="text"],
+.apply-form input[type="email"],
+.apply-form input[type="tel"],
+.apply-form textarea,
+.apply-form select {
+  width: 100%;
+  padding: 14px 18px; 
+  border: 1px solid #ced4da;
+  border-radius: 10px; 
+  font-size: 1.05em; 
+  color: #343a40;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box; 
+}
+
+.apply-form input[type="file"] {
+  padding: 10px 0; 
+}
+
+.apply-form input:focus,
+.apply-form textarea:focus,
+.apply-form select:focus {
+  border-color: #005448; 
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(0, 84, 72, 0.2);
+}
+
+.apply-form textarea {
+  min-height: 120px;
+  resize: vertical; 
+}
+
+.apply-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px; 
+  margin-top: 40px; 
+}
+
+.apply-form .btn {
+  padding: 15px 30px; 
+  border-radius: 10px; 
+  font-size: 1.1em; 
+  font-weight: 600; 
+  cursor: pointer;
+  transition: all 0.3s ease; 
+  white-space: nowrap;
+}
+
+.apply-form .btn-cancel {
+  background-color: #f0f2f5; 
+  color: #6c757d;
+  border: 1px solid #e9ecef; 
+}
+
+.apply-form .btn-cancel:hover {
+  background-color: #e2e6ea; 
+  color: #343a40;
+  border-color: #d1d7db;
+}
+
+.apply-form .btn-submit {
+  background-color: #005448; 
+  color: white;
+  border: none;
+  display: flex; 
+  align-items: center;
+  gap: 8px;
+}
+
+.apply-form .btn-submit:hover {
+  background-color: #003e35; 
+  box-shadow: 0 5px 15px rgba(0, 84, 72, 0.3); 
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Media Queries pour le popup */
+@media (max-width: 768px) {
+  .apply-popup {
+    padding: 25px 30px;
+    border-radius: 15px;
+  }
+  .popup-header h3 {
+    font-size: 1.8em;
+  }
+  .popup-header .fas.fa-times {
+    font-size: 1.5em;
+  }
+  .apply-form label {
+    font-size: 1em;
+    margin-bottom: 8px;
+  }
+  .apply-form input,
+  .apply-form textarea,
+  .apply-form select {
+    padding: 12px 15px;
+    font-size: 1em;
+  }
+  .apply-form .form-actions {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  .apply-form .btn {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .apply-popup {
+    padding: 20px 25px;
+    border-radius: 12px;
+  }
+  .popup-header h3 {
+    font-size: 1.5em;
+  }
+  .popup-header .fas.fa-times {
+    font-size: 1.3em;
+  }
+  .apply-form .form-group {
+    margin-bottom: 20px;
+  }
+  .apply-form textarea {
+    min-height: 100px;
+  }
+}
+
+/* --- NOUVEAUX STYLES POUR LE DESIGN COMPACT AVEC ICONES --- */
+
+.apply-popup {
+  max-width: 800px; 
+  padding: 40px 45px; 
+}
+
+.popup-header {
+  margin-bottom: 35px; 
+}
+
+.apply-form .form-row {
+  display: flex;
+  gap: 25px; 
+  margin-bottom: 25px; 
+}
+
+.apply-form .form-group {
+  flex: 1; 
+  min-width: 0; 
+  margin-bottom: 0; 
+}
+
+.apply-form .form-group.full-width {
+  flex: 1 1 100%; 
+}
+
+
+.apply-form label {
+  display: flex; 
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #495057;
+  font-size: 1.05em;
+}
+
+.apply-form label .icon {
+  margin-right: 10px; 
+  color: #005448; 
+  font-size: 1.1em; 
+}
+
+.apply-form input[type="text"],
+.apply-form input[type="email"],
+.apply-form input[type="tel"],
+.apply-form textarea,
+.apply-form select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  font-size: 1.05em;
+  color: #343a40;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.apply-form input:focus,
+.apply-form textarea:focus,
+.apply-form select:focus {
+  border-color: #005448;
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(0, 84, 72, 0.2);
+}
+
+.apply-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Style pour l'input file */
+.apply-form input[type="file"] {
+  width: 100%;
+  padding: 12px 15px; 
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  font-size: 1em;
+  color: #495057;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+/* Style pour le nom du fichier affiché */
+.apply-form .file-name {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.9em;
+  color: #6c757d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+
+.apply-form .btn-submit .fas.fa-paper-plane {
+  margin-right: 8px; 
+  font-size: 1em;
+}
+
+/* Media Queries pour le responsive design du popup */
+@media (max-width: 992px) {
+  .apply-popup {
+    max-width: 600px; 
+    padding: 35px 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .apply-popup {
+    max-width: 90%; 
+    padding: 25px 30px;
+  }
+  .apply-form .form-row {
+    flex-direction: column; 
+    gap: 0; 
+    margin-bottom: 0;
+  }
+  .apply-form .form-group {
+    margin-bottom: 20px; 
+  }
+  .apply-form .form-group:last-child {
+    margin-bottom: 0; 
+  }
+  .apply-form .form-group.full-width {
+    flex: 1 1 auto; 
+  }
+  .apply-form .btn {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .apply-popup {
+    padding: 20px 25px;
+  }
+  .popup-header h3 {
+    font-size: 1.6em;
+  }
+  .popup-header .fas.fa-times {
+    font-size: 1.4em;
+  }
+  .apply-form label {
+    font-size: 0.95em;
+  }
+  .apply-form input,
+  .apply-form textarea,
+  .apply-form select {
+    padding: 10px 12px;
+    font-size: 0.95em;
   }
 }
