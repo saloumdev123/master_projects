@@ -370,3 +370,32 @@
     padding: 10px 15px;
   }
 }
+.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-button {
+  background-color: #005448;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-weight: 500;
+} .btn-job-details {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }

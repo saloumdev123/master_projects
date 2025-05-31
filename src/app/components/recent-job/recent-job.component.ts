@@ -17,7 +17,7 @@ export class RecentJobComponent implements OnInit {
 recentJobs: Job[] = [];
 
   currentPage: number = 0;
-  pageSize: number = 10;
+  pageSize: number = 5;
   totalPages: number = 0;
 
   constructor(private jobService: JobService,private router: Router,private cdr: ChangeDetectorRef) {}
@@ -66,12 +66,7 @@ recentJobs: Job[] = [];
     job.bookmarked = !job.bookmarked;
   }
 
-  nextPage(): void {
-    if (this.currentPage + 1 < this.totalPages) {
-      this.currentPage++;
-      this.loadJobs(this.currentPage, this.pageSize);
-    }
-  }
+ 
 
   prevPage(): void {
     if (this.currentPage > 0) {
@@ -79,5 +74,18 @@ recentJobs: Job[] = [];
       this.loadJobs(this.currentPage, this.pageSize);
     }
   }
+nextPage(): void {
+    if (this.currentPage + 1 < this.totalPages) {
+      this.loadJobs(this.currentPage + 1, this.pageSize);
+    }
+  }
 
+  previousPage(): void {
+    if (this.currentPage > 0) {
+      this.loadJobs(this.currentPage - 1, this.pageSize);
+    }
+  }
+   goToJobDetails(jobId: number): void {
+    this.router.navigate(['/jobs', jobId]);
+  }
 }
