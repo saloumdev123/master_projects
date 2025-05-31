@@ -20,7 +20,11 @@ public class CategoryController {
     public ResponseEntity<CategoryDto> create(@RequestBody CategoryDto dto) {
         return ResponseEntity.ok(categoryService.create(dto));
     }
-
+    @PostMapping("/save-all")
+    public ResponseEntity<List<CategoryDto>> saveAll(@RequestBody List<CategoryDto> categoryDtos) {
+        List<CategoryDto> saved = categoryService.saveAll(categoryDtos);
+        return ResponseEntity.ok(saved);
+    }
     // Get all categories
     @GetMapping
     public ResponseEntity<List<CategoryDto>> getAll() {

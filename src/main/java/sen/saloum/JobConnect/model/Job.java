@@ -22,7 +22,7 @@ public class Job {
     private String jobType;
     private int yearExperience;
     private OffsetDateTime datePosted;
-    private String pay;
+    private double pay;
     private String requirements;
     private String fullDescription;
     private String recruiterCompanyName;

@@ -3,29 +3,46 @@
 //import io.jsonwebtoken.Claims;
 //import io.jsonwebtoken.Jwts;
 //import io.jsonwebtoken.SignatureAlgorithm;
-//import org.springframework.beans.factory.annotation.Value;
+//import io.jsonwebtoken.security.Keys;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.stereotype.Service;
+//import sen.saloum.JobConnect.model.User;
 //
-//
-//import java.time.Instant;
-//import java.time.temporal.ChronoUnit;
+//import javax.crypto.SecretKey;
+//import java.util.Base64;
 //import java.util.Date;
-//import java.util.Map;
 //import java.util.function.Function;
+//
 //
 //@Service
 //public class JwtService {
+//    private final SecretKey secretKey = Keys.hmacShaKeyFor(
+//            Base64.getDecoder().decode("Ej0A0n0KDLW+bD5I2bxEM1jahHg3fd8+0J6KVA7bbb8=")
+//    );
 //
-//    @Value("${jwt.secret}")
-//    private String SECRET_KEY;
 //
+//    public String generateToken(UserDetails userDetails) {
+//        return Jwts.builder()
+//                .setSubject(userDetails.getUsername())
+//                .claim("roles", userDetails.getAuthorities())
+//                .setIssuedAt(new Date())
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 15))
+//                .signWith(secretKey, SignatureAlgorithm.HS256)
+//                .compact();
+//    }
+//
+//    public String generateRefreshToken(UserDetails userDetails) {
+//        return Jwts.builder()
+//                .setSubject(userDetails.getUsername())
+//                .setIssuedAt(new Date())
+//                .setExpiration(new Date(System.currentTimeMillis() + 1000L * 60 * 60 * 24 * 7))
+//                .signWith(secretKey, SignatureAlgorithm.HS256)
+//                .compact();
+//    }
 //    public String extractUsername(String token) {
-//        return Jwts.parser()
-//                .setSigningKey(SECRET_KEY)
-//                .parseClaimsJws(token)
-//                .getBody()
-//                .getSubject();
+//        return extractClaim(token, Claims::getSubject);
 //    }
 //
 //    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -33,40 +50,21 @@
 //        return claimsResolver.apply(claims);
 //    }
 //
-//    public String generateToken(UserDetails userDetails) {
-//        return Jwts.builder()
-//                .setSubject(userDetails.getUsername())
-//                .claim("authorities", userDetails.getAuthorities())
-//                .setIssuedAt(new Date())
-//                .setExpiration(Date.from(Instant.now().plus(7, ChronoUnit.DAYS)))
-//                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
-//                .compact();
-//    }
 //
-//    private String createToken(Map<String, Object> claims, UserDetails userDetails) {
-//        return Jwts.builder()
-//                .setClaims(claims)
-//                .setSubject(userDetails.getUsername())
-//                .setIssuedAt(new Date(System.currentTimeMillis()))
-//                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 24h
-//                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
-//                .compact();
-//    }
-//
-//    public boolean isTokenValid(String token, UserDetails userDetails) {
+//    public boolean isTokenValid(String token, User user) {
 //        final String username = extractUsername(token);
-//        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+//        return username.equals(user.getEmail()) && !isTokenExpired(token);
 //    }
 //
 //    private boolean isTokenExpired(String token) {
-//        return extractExpiration(token).before(new Date());
-//    }
-//
-//    private Date extractExpiration(String token) {
-//        return extractClaim(token, Claims::getExpiration);
+//        return extractClaim(token, Claims::getExpiration).before(new Date());
 //    }
 //
 //    private Claims extractAllClaims(String token) {
-//        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+//        return Jwts.parser()
+//                .setSigningKey(secretKey)
+//                .parseClaimsJws(token)
+//                .getBody();
 //    }
+//
 //}

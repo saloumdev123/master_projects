@@ -24,4 +24,5 @@ public class Category {
         private int jobsCount;
         private String iconClass;
 
+
 }

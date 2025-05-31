@@ -15,7 +15,7 @@ public class JobDto {
     private String jobType;
     private int yearExperience;
     private OffsetDateTime datePosted;
-    private String pay;
+    private double pay;
     private String requirements;
     private String companyLogoUrl;
 

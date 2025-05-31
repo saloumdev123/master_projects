@@ -33,4 +33,7 @@ public class User{
 
     @OneToMany(mappedBy = "recipient")
     private List<Message> receivedMessages;
+
+    private String verificationToken;
+
 }

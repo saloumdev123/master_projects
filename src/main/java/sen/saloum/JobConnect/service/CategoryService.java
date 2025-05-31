@@ -58,7 +58,17 @@ public class CategoryService {
             return entityToDto(categoryRepository.save(category));
         });
     }
+    public List<CategoryDto> saveAll(List<CategoryDto> categoryDtos) {
+        List<Category> categories = categoryDtos.stream()
+                .map(this::dtoToEntity)
+                .collect(Collectors.toList());
 
+        List<Category> savedCategories = categoryRepository.saveAll(categories);
+
+        return savedCategories.stream()
+                .map(this::entityToDto)
+                .collect(Collectors.toList());
+    }
     // Mapping methods
     private Category dtoToEntity(CategoryDto dto) {
         Category category = new Category();
