@@ -56,8 +56,7 @@
        [id]="category.name" 
        [value]="category.name"
        (change)="onCategoryChange($event, category.name)">
-<label [for]="category.name">{{ category.name }}</label>
-
+        <label [for]="category.name">{{ category.name }}</label>
         </li>
       </ul>
     </div>
@@ -77,11 +76,13 @@
     </div>
 
 
+
       <div class="filter-block">
         <h3>Niveau d'Expérience</h3>
         <ul>
           <li *ngFor="let exp of experienceLevels">
-            <input type="checkbox" [id]="exp.id"><label [for]="exp.id">{{ exp.name }}</label><span>{{ exp.count }}</span>
+            <input type="checkbox" [id]="'exp-' + exp.level" [value]="exp.level" (change)="applyFilters()">
+            <label [for]="'exp-' + exp.level">{{ exp.name }}</label><span>{{ exp.count }}</span>
           </li>
         </ul>
       </div>
@@ -89,8 +90,9 @@
       <div class="filter-block">
         <h3>Date de Publication</h3>
         <ul>
-          <li *ngFor="let dateOption of datePostedOptions">
-            <input type="checkbox" [id]="dateOption.id"><label [for]="dateOption.id">{{ dateOption.name }}</label><span>{{ dateOption.count }}</span>
+          <li *ngFor="let dateOpt of datePostedOptions">
+            <input type="checkbox" [id]="'date-' + dateOpt.value" [value]="dateOpt.value" (change)="applyFilters()">
+            <label [for]="'date-' + dateOpt.value">{{ dateOpt.name }}</label><span>{{ dateOpt.count }}</span>
           </li>
         </ul>
       </div>
@@ -129,44 +131,54 @@
       </div>
     </aside>
 
- <div class="job-cards-container">
-  <div class="job-card" *ngFor="let job of filteredJobs">
-    <div class="job-card-top">
-      <span class="time-ago">Posté il y a ...</span>
-      <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite(job.id)"></i>
-    </div>
-    <div class="job-details-main">
-      <div class="company-logo-small">
-        <img [src]="job.companyLogoUrl || 'assets/images/default-logo.png'" alt="Logo entreprise">
+    <div class="job-cards-container">
+      <div class="job-listing-header">
+        <p>Affichage des résultats</p>
+        <div class="sort-by-dropdown">
+          <label for="sortOrder">Trier par :</label>
+          <select id="sortOrder">
+            <option value="latest">Plus récent</option>
+            <option value="oldest">Plus ancien</option>
+          </select>
+        </div>
       </div>
-      <div class="job-info-text">
-        <h3 class="job-title">{{ job.title }}</h3>
-        <p class="company-name">{{ job.recruiterCompanyName }}</p>
+
+      <div class="job-card" *ngFor="let job of filteredJobs">
+        <div class="job-card-top">
+          <span class="time-ago">Posté il y a X jours</span>
+          <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite(job.id)" [class.fas]="isFavorite(job.id)"></i>
+        </div>
+        <div class="job-details-main">
+          <div class="company-logo-small">
+            <img [src]="job.companyLogoUrl || 'assets/images/default-logo.png'" alt="Logo entreprise">
+          </div>
+          <div class="job-info-text">
+            <h3 class="job-title">{{ job.title }}</h3>
+            <p class="company-name">{{ job.recruiterCompanyName }}</p>
+          </div>
+        </div>
+        <div class="job-details-meta">
+          <span class="meta-item"><i class="fas fa-suitcase"></i> {{ job.categoryName }}</span>
+          <span class="meta-item"><i class="far fa-clock"></i> {{ job.jobType }}</span> <span class="meta-item"><i class="fas fa-dollar-sign"></i> {{ job.pay }}</span>
+          <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
+          <button class="btn-job-details" (click)="goToJobDetails(job.id)">Détails de l'emploi</button>
+        </div>
       </div>
-    </div>
-    <div class="job-details-meta">
-      <span class="meta-item"><i class="fas fa-suitcase"></i> {{ job.categoryName }}</span>
-      <span class="meta-item"><i class="far fa-clock"></i> {{ job.jobType }}</span>
-      <span class="meta-item"><i class="fas fa-dollar-sign"></i> {{ job.pay }}</span>
-      <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
-      <button class="btn-job-details" (click)="goToJobDetails(job.id)">Détails de l'emploi</button>
     </div>
   </div>
-</div>
-</div>
-<div class="pagination">
-  <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
-    &#8592; <!-- flèche gauche -->
-  </button>
+  <div class="pagination">
+    <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
+      &#8592;
+    </button>
 
-  <span class="pagination-info">
-    Page {{ currentPage + 1 }} / {{ totalPages }}
-  </span>
+    <span class="pagination-info">
+      Page {{ currentPage + 1 }} / {{ totalPages }}
+    </span>
 
-  <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
-    &#8594; <!-- flèche droite -->
-  </button>
-</div>
+    <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
+      &#8594;
+    </button>
+  </div>
 </section>
 
 <section class="top-companies-section">
@@ -195,12 +207,12 @@
       </div>
 
       <div class="company-card">
-          <div class="company-logo">
-            <img src="assets/images/pad-logo.png" alt="Logo Port Autonome de Dakar">
-          </div>
-          <h3>Port Autonome de Dakar (PAD)</h3>
-          <p>Pôle stratégique du commerce et de la logistique en Afrique de l'Ouest, offrant des opportunités dans le transport maritime et terrestre.</p>
-          <button class="btn btn-open-jobs">7 postes ouverts</button>
+        <div class="company-logo">
+          <img src="assets/images/pad-logo.png" alt="Logo Port Autonome de Dakar">
+        </div>
+        <h3>Port Autonome de Dakar (PAD)</h3>
+        <p>Pôle stratégique du commerce et de la logistique en Afrique de l'Ouest, offrant des opportunités dans le transport maritime et terrestre.</p>
+        <button class="btn btn-open-jobs">7 postes ouverts</button>
       </div>
 
       <div class="company-card">

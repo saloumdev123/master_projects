@@ -92,16 +92,16 @@
 }
 
 .job-hero-title {
-  font-size: clamp(2.2em, 8vw, 4em); 
+  font-size: clamp(2.2em, 8vw, 4em);
   font-weight: bold;
   margin: 0;
   text-align: center;
   flex-grow: 1;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  width: 100%; 
-  max-width: 900px; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
 }
 
 /* icône de menu hamburger (cachée par défaut sur les grands écrans) */
@@ -191,7 +191,7 @@
     max-width: 200px;
     text-align: center;
   }
-  
+
   .menu-toggle {
     display: block;
   }
@@ -527,54 +527,66 @@
 }
 
 /* --- Styles pour le contenu principal (Job List) --- */
-.job-main-content {
+.job-main-content { /* Ce sélecteur n'est plus utilisé directement dans le HTML fourni, mais je le garde au cas où */
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.job-list-controls {
+/* NOUVEAU: Styles pour l'en-tête des résultats et le tri */
+.job-listing-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  color: #555;
-  font-size: 0.95em;
+  padding: 15px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.sort-by {
+.job-listing-header p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.sort-by-dropdown {
   display: flex;
   align-items: center;
   gap: 10px;
-  position: relative;
 }
 
-.sort-by select {
-  background-color: #FFF;
-  border: 1px solid #DDD;
-  border-radius: 8px;
-  padding: 8px 30px 8px 15px;
-  color: #333;
-  font-size: 0.95em;
+.sort-by-dropdown label {
+  margin-right: 0; /* Ajusté pour le gap */
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.sort-by-dropdown select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+  /* Optionnel: masquer la flèche par défaut pour customiser */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  cursor: pointer;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7L146.2%2C98.4L27.6%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7c-6.4-6.4-6.4-16.7%2C0-23.1L135.1%2C68.9c6.4-6.4%2C16.7-6.4%2C23.1%2C0l11.1%2C11.1L287%2C174.8C293.4%2C181.2%2C293.4%2C191.5%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E'); /* Icône de flèche personnalisée */
+  background-repeat: no-repeat;
+  background-position: right 8px top 50%;
+  background-size: 12px auto;
+  padding-right: 30px; /* Espace pour la flèche personnalisée */
 }
 
-.sort-by select:focus {
-  outline: none;
-  border-color: #005448;
-}
-
-.sort-by .sort-arrow {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  pointer-events: none;
+.sort-by-dropdown select:focus {
+  border-color: #005448; /* Correspond à --primary-color */
+  box-shadow: 0 0 0 2px rgba(0, 84, 72, 0.2);
 }
 
 /* --- Styles pour les cartes d'offres d'emploi --- */
@@ -596,7 +608,7 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .job-card:hover {
@@ -617,6 +629,10 @@
   color: #CCC;
   cursor: pointer;
   transition: color 0.3s ease;
+}
+
+.favorite-icon.fas { /* Style pour l'icône de favori remplie */
+  color: #005448; /* Couleur verte pour le favori actif */
 }
 
 .favorite-icon:hover {
@@ -706,38 +722,23 @@
   margin-top: 40px;
 }
 
-.pagination-btn {
-  background-color: #FFF;
-  color: #555;
-  border: 1px solid #CCC;
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 0.9em;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-}
-
-.pagination-btn.active {
+.pagination-button {
   background-color: #005448;
-  border-color: #005448;
   color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
-.pagination-btn:hover:not(.active) {
-  background-color: #F0F0F0;
-  border-color: #B0B0B0;
-  color: #333;
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-.pagination-btn.next-btn {
-  background-color: transparent;
-  border-color: transparent;
-  color: #005448;
-}
-
-.pagination-btn.next-btn:hover {
-  background-color: #003e35;
+.pagination-info {
+  font-weight: 500;
 }
 
 /* Media Queries pour la sidebar et les job cards */
@@ -793,12 +794,12 @@
   .we-are-hiring-banner p {
     font-size: 0.9em;
   }
-  .job-list-controls {
+  .job-listing-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 15px;
   }
-  .sort-by select {
+  .sort-by-dropdown select {
     width: 100%;
     padding-right: 40px;
   }
@@ -831,7 +832,7 @@
     padding: 10px 20px;
     font-size: 0.9em;
   }
-  .pagination-btn {
+  .pagination-button {
     padding: 8px 12px;
     font-size: 0.8em;
   }
@@ -839,155 +840,158 @@
 
 /* Styles pour la section Top Company */
 .top-companies-section {
- background-color: #f4faff; 
- padding: 60px 20px;
+  background-color: #f4faff;
+  padding: 60px 20px;
 }
 
 .top-companies-container {
- max-width: 1200px;
- margin: 0 auto;
- padding: 0 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 .top-companies-section .section-header {
- text-align: center;
- margin-bottom: 40px;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .top-companies-section .section-header h2 {
- font-size: 2.2em;
- font-weight: bold;
- color: #333;
- margin-bottom: 10px;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .top-companies-section .section-header p {
- color: #777;
- font-size: 1em;
- margin: 0;
+  color: #777;
+  font-size: 1em;
+  margin: 0;
 }
 
 .companies-grid {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
- gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
 }
 
 .company-card {
- background-color: #fff;
- border-radius: 12px;
- padding: 30px;
- box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
- text-align: center;
- transition: transform 0.3s ease-in-out;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
 }
 
 .company-card:hover {
- transform: scale(1.03);
+  transform: scale(1.03);
 }
 
 .company-logo {
- width: 80px;
- height: 80px;
- margin: 0 auto 20px;
- border-radius: 15px;
- display: flex;
- align-items: center;
- justify-content: center;
- background-color: #f0f0f0; 
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
 }
 
 .company-logo img {
- max-width: 60%;
- max-height: 60%;
- object-fit: contain;
+  max-width: 60%;
+  max-height: 60%;
+  object-fit: contain;
 }
 
 .company-card h3 {
- font-size: 1.3em;
- font-weight: 600;
- color: #333;
- margin-bottom: 10px;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
 }
 
 .company-card p {
- color: #555;
- font-size: 0.95em;
- margin-bottom: 20px;
- min-height: 60px; 
- display: flex;
- align-items: center;
- justify-content: center;
- text-align: center;
+  color: #555;
+  font-size: 0.95em;
+  margin-bottom: 20px;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .btn-open-jobs {
- background-color: var(--primary-color);
- color: white;
- border: none;
- border-radius: 8px;
- padding: 12px 25px;
- font-size: 0.9em;
- font-weight: 600;
- cursor: pointer;
- transition: background-color 0.3s ease;
- display: inline-block; 
- margin-top: auto; 
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 25px;
+  font-size: 0.9em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: auto;
 }
 
 .btn-open-jobs:hover {
- background-color: #003e35;
+  background-color: #003e35;
 }
 
 /* --- Media Queries pour la section Top Company --- */
 @media (max-width: 768px) {
- .top-companies-section {
-   padding: 40px 15px;
- }
+  .top-companies-section {
+    padding: 40px 15px;
+  }
 
- .top-companies-container {
-   padding: 0 15px;
- }
+  .top-companies-container {
+    padding: 0 15px;
+  }
 
- .top-companies-section .section-header {
-   margin-bottom: 30px;
- }
+  .top-companies-section .section-header {
+    margin-bottom: 30px;
+  }
 
- .top-companies-section .section-header h2 {
-   font-size: 2em;
- }
+  .top-companies-section .section-header h2 {
+    font-size: 2em;
+  }
 
- .companies-grid {
-   grid-template-columns: 1fr; 
- }
+  .companies-grid {
+    grid-template-columns: 1fr;
+  }
 
- .company-card {
-   padding: 25px;
- }
+  .company-card {
+    padding: 25px;
+  }
 
- .company-logo {
-   width: 70px;
-   height: 70px;
-   margin-bottom: 15px;
- }
+  .company-logo {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 15px;
+  }
 
- .company-card h3 {
-   font-size: 1.2em;
- }
+  .company-card h3 {
+    font-size: 1.2em;
+  }
 
- .company-card p {
-   font-size: 0.9em;
-   min-height: 50px;
- }
+  .company-card p {
+    font-size: 0.9em;
+    min-height: 50px;
+  }
 
- .btn-open-jobs {
-   padding: 10px 20px;
-   font-size: 0.85em;
- }
-}.pagination {
+  .btn-open-jobs {
+    padding: 10px 20px;
+    font-size: 0.85em;
+  }
+}
+
+.pagination {
   margin-top: 30px;
   display: flex;
-  justify-content: center; /* centre horizontalement */
+  justify-content: center;
+  /* centre horizontalement */
   align-items: center;
   gap: 10px;
 }
