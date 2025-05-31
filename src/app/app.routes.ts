@@ -20,5 +20,6 @@ export const routes: Routes = [
     {path:'postulerCadidat', component: CandidatPostulationComponent},
     { path: 'job-list', component: JobComponent },
     { path: 'apply-success', component: ApplySuccessComponent },
-    { path: 'job-details/:id', component: JobDetailsComponent }
+    { path: 'job-details/:id', component: JobDetailsComponent },
+    { path: 'jobs/:id', component: JobDetailsComponent },
 ];

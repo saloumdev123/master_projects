@@ -116,169 +116,44 @@
       </div>
     </aside>
 
-    <main class="job-main-content">
-      <div class="job-list-controls">
-        <span class="results-info">Affichage de 6-6 sur 10 résultats</span>
-        <div class="sort-by">
-          <label for="sort">Trier par</label>
-          <select id="sort">
-            <option value="latest">Plus récent</option>
-            <option value="relevance">Pertinence</option>
-            <option value="salary-asc">Salaire (Croissant)</option>
-            <option value="salary-desc">Salaire (Décroissant)</option>
-          </select>
-          <i class="fas fa-chevron-down sort-arrow"></i>
-        </div>
+ <div class="job-cards-container">
+  <div class="job-card" *ngFor="let job of filteredJobs">
+    <div class="job-card-top">
+      <span class="time-ago">Posté il y a ...</span>
+      <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite(job.id)"></i>
+    </div>
+    <div class="job-details-main">
+      <div class="company-logo-small">
+        <img [src]="job.companyLogoUrl || 'assets/images/default-logo.png'" alt="Logo entreprise">
       </div>
-
-      <div class="job-cards-container">
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 10 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-1')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/sonatel-logo.png" alt="Logo Sonatel">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Directeur Sécurité Informatique</h3>
-              <p class="company-name">Sonatel S.A.</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-suitcase"></i> IT & Télécoms</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 500.000 - 750.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-1')">Détails de l'emploi</button>
-          </div>
-        </div>
-
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 12 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-2')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/sonatel-logo.png" alt="Logo Orange Sénégal">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Coordinateur Marketing Digital</h3>
-              <p class="company-name">Orange Sénégal</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-briefcase"></i> Marketing & Com.</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Partiel</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 250.000 - 350.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Thiès, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-2')">Détails de l'emploi</button>
-          </div>
-        </div>
-
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 15 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-3')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/pad-logo.png" alt="Logo CSE">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Ingénieur Civil Junior</h3>
-              <p class="company-name">Compagnie Sénégalaise d'Electricité (CSE)</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-toolbox"></i> Construction</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 400.000 - 600.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Saint-Louis, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-3')">Détails de l'emploi</button>
-          </div>
-        </div>
-
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 24 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-4')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/company_1.png" alt="Logo Dangote Cement">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Responsable Logistique</h3>
-              <p class="company-name">Dangote Cement Sénégal</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-truck"></i> Transport & Logistique</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 450.000 - 650.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Rufisque, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-4')">Détails de l'emploi</button>
-          </div>
-        </div>
-
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 26 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-5')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/company_2.jpeg" alt="Logo GIE Zone Franche">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Assistant(e) Administratif(ve)</h3>
-              <p class="company-name">GIE Zone Franche de Dakar</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-user-tie"></i> Administration</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 200.000 - 300.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Diamniadio, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-5')">Détails de l'emploi</button>
-          </div>
-        </div>
-
-        <div class="job-card">
-          <div class="job-card-top">
-            <span class="time-ago">Il y a 30 min</span>
-            <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite('job-id-6')"></i>
-          </div>
-          <div class="job-details-main">
-            <div class="company-logo-small">
-              <img src="assets/images/company_3.jpeg" alt="Logo Ecobank Sénégal">
-            </div>
-            <div class="job-info-text">
-              <h3 class="job-title">Comptable Junior</h3>
-              <p class="company-name">Ecobank Sénégal</p>
-            </div>
-          </div>
-          <div class="job-details-meta">
-            <span class="meta-item"><i class="fas fa-chart-pie"></i> Finance & Comptabilité</span>
-            <span class="meta-item"><i class="far fa-clock"></i> Temps Plein</span>
-            <span class="meta-item"><i class="fas fa-dollar-sign"></i> 300.000 - 450.000 XOF</span>
-            <span class="meta-item"><i class="fas fa-map-marker-alt"></i> Dakar, Sénégal</span>
-            <button class="btn-job-details" (click)="goToJobDetails('job-id-6')">Détails de l'emploi</button>
-          </div>
-        </div>
+      <div class="job-info-text">
+        <h3 class="job-title">{{ job.title }}</h3>
+        <p class="company-name">{{ job.recruiterCompanyName }}</p>
       </div>
-
-      <div class="pagination">
-        <button class="pagination-btn active">1</button>
-        <button class="pagination-btn">2</button>
-        <button class="pagination-btn next-btn">Suivant <i class="fas fa-chevron-right"></i></button>
-      </div>
-
-    </main>
+    </div>
+    <div class="job-details-meta">
+      <span class="meta-item"><i class="fas fa-suitcase"></i> {{ job.categoryName }}</span>
+      <span class="meta-item"><i class="far fa-clock"></i> {{ job.jobType }}</span>
+      <span class="meta-item"><i class="fas fa-dollar-sign"></i> {{ job.pay }}</span>
+      <span class="meta-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</span>
+      <button class="btn-job-details" (click)="goToJobDetails(job.id)">Détails de l'emploi</button>
+    </div>
   </div>
+</div>
+</div>
+<div class="pagination">
+  <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
+    &#8592; <!-- flèche gauche -->
+  </button>
+
+  <span class="pagination-info">
+    Page {{ currentPage + 1 }} / {{ totalPages }}
+  </span>
+
+  <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
+    &#8594; <!-- flèche droite -->
+  </button>
+</div>
 </section>
 
 <section class="top-companies-section">

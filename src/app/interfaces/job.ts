@@ -7,7 +7,7 @@ export interface Job {
   jobType: string;
   yearExperience: number;
   datePosted: string; 
-  pay: string;
+  pay: number;
   requirements: string;
 
   categoryId: number;
@@ -23,5 +23,5 @@ export interface Job {
   logoIconColor?: string;
   categoryIcon?: string;
   typeIcon?: string;
- showDetails?: boolean; 
+showDetails?: boolean; 
 }
