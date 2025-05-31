@@ -47,22 +47,35 @@
           </div>
         </div>
       </div>
+    <div class="filter-block">
+          <div class="filter-block category-filter">
+      <h3>Catégorie</h3>
+      <ul>
+        <li *ngFor="let category of categories">
+          <input type="checkbox" 
+       [id]="category.name" 
+       [value]="category.name"
+       (change)="onCategoryChange($event, category.name)">
+<label [for]="category.name">{{ category.name }}</label>
 
-      <div class="filter-block category-filter">
-        <h3>Catégorie</h3>
-        <ul>
-          <li *ngFor="let category of categories"><span>{{ category.name }}</span><span>{{ category.count }}</span></li>
-        </ul>
-      </div>
+        </li>
+      </ul>
+    </div>
+   </div>
 
-      <div class="filter-block">
-        <h3>Type d'Emploi</h3>
-        <ul>
-          <li *ngFor="let type of jobTypes">
-            <input type="checkbox" [id]="type.id"><label [for]="type.id">{{ type.name }}</label><span>{{ type.count }}</span>
-          </li>
-        </ul>
-      </div>
+
+     <div class="filter-block">
+      <h3>Type d'Emploi</h3>
+      <ul>
+        <li *ngFor="let type of jobTypes">
+          <input type="checkbox" [id]="type.id" [value]="type.name"
+                (change)="onJobTypeChange($event, type.name)">
+          <label [for]="type.id">{{ type.name }}</label>
+          <span>{{ type.count }}</span>
+        </li>
+      </ul>
+    </div>
+
 
       <div class="filter-block">
         <h3>Niveau d'Expérience</h3>

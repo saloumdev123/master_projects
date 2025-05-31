@@ -31,12 +31,28 @@
         <div class="detail-item"><i [class]="job.typeIcon"></i> {{ job.employmentType }}</div>
         <div class="detail-item"><i class="fas fa-money-bill-wave"></i> {{ job.pay }}</div>
         <div class="detail-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</div>
+    
       </div>
+      <div class="job-card-footer">
+        <button class="view-details-btn" (click)="viewJobDetails(job)">Détails de l'emploi</button>
       </div>
-    </div>
+       </div>
+      </div>
 
     <div *ngIf="recentJobs.length === 0" class="no-jobs-message">
       Aucune offre d'emploi récente disponible pour le moment.
     </div>
-  
+  <div class="pagination">
+  <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
+    &#8592; <!-- flèche gauche -->
+  </button>
+
+  <span class="pagination-info">
+    Page {{ currentPage + 1 }} / {{ totalPages }}
+  </span>
+
+  <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
+    &#8594; <!-- flèche droite -->
+  </button>
+</div>
 </section>

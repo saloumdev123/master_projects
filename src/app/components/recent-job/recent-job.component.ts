@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { JobService } from '../../services/job.service';
@@ -13,6 +14,7 @@ import { Job } from '../../interfaces/job';
   styleUrls: ['./recent-job.component.css']
 })
 export class RecentJobComponent implements OnInit {
+
 
 recentJobs: Job[] = [];
 
@@ -66,14 +68,12 @@ recentJobs: Job[] = [];
     job.bookmarked = !job.bookmarked;
   }
 
- 
-
-  prevPage(): void {
-    if (this.currentPage > 0) {
-      this.currentPage--;
-      this.loadJobs(this.currentPage, this.pageSize);
-    }
+  
+  viewJobDetails(job: Job): void {
+    console.log('Voir les détails du job:', job.title);
+    this.router.navigate(['/job-details', job.id]);
   }
+
 nextPage(): void {
     if (this.currentPage + 1 < this.totalPages) {
       this.loadJobs(this.currentPage + 1, this.pageSize);
@@ -89,3 +89,5 @@ nextPage(): void {
     this.router.navigate(['/jobs', jobId]);
   }
 }
+
+

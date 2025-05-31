@@ -12,14 +12,15 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+
     { path: 'job-applications', component: JobApplicationComponent },
+    { path: 'job-list', component: JobComponent },
+    { path: 'job-details/:id', component: JobDetailsComponent },
+    { path: 'jobs/:id', component: JobDetailsComponent },
 
     {path: 'apply-success', component: ApplySuccessComponent},
     {path: 'detailCandidat', component: CandidatDetailComponent},
     {path:'maCandidature', component: CandidatCandidatureComponent},
-    {path:'postulerCadidat', component: CandidatPostulationComponent},
-    { path: 'job-list', component: JobComponent },
-    { path: 'apply-success', component: ApplySuccessComponent },
-    { path: 'job-details/:id', component: JobDetailsComponent },
-    { path: 'jobs/:id', component: JobDetailsComponent },
+    {path:'postulerCadidat', component: CandidatPostulationComponent}
 ];
+

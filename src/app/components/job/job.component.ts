@@ -4,6 +4,7 @@ import { RouterLink, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../interfaces/job';
+import { Category } from '../../interfaces/category';
 
 @Component({
   selector: 'app-job',
@@ -31,7 +32,7 @@ selectedLocation: string = '';
 showLocationDropdown: boolean = false;
  isMenuOpen: boolean = false;
 senegaleseCities: string[] = ['Dakar', 'Thiès', 'Saint-Louis', 'Ziguinchor'];
-categories: any[] = []; // à peupler depuis le backend si besoin
+categories: Category[] = []; 
 jobTypes: any[] = [];
 experienceLevels: any[] = [];
 datePostedOptions: any[] = [];
@@ -52,6 +53,23 @@ datePostedOptions: any[] = [];
   ngOnInit(): void {
     this.loadJobs(this.currentPage, this.pageSize);
   }
+  
+onCategoryChange(event: any, categoryName: string): void {
+  if (event.target.checked) {
+    this.selectedCategories.push(categoryName);
+  } else {
+    this.selectedCategories = this.selectedCategories.filter(c => c !== categoryName);
+  }
+  this.applyFilters();
+}
+onJobTypeChange(event: any, jobTypeName: string): void {
+  if (event.target.checked) {
+    this.selectedJobTypes.push(jobTypeName);
+  } else {
+    this.selectedJobTypes = this.selectedJobTypes.filter(t => t !== jobTypeName);
+  }
+  this.applyFilters();
+}
 
  loadJobs(page: number, size: number): void {
   this.jobService.getJobs(page, size).subscribe({
@@ -60,6 +78,7 @@ datePostedOptions: any[] = [];
       this.filteredJobs = [...this.allJobs]; // Copie pour filtrage
       this.totalPages = data.totalPages;
       this.currentPage = data.number;
+       this.filterJobs();
     },
     error: (err) => {
       console.error('Erreur lors du chargement des jobs', err);
@@ -153,4 +172,14 @@ applySalaryFilter(): void {
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  filterJobs(): void {
+  this.filteredJobs = this.allJobs.filter(job => {
+    const matchesKeyword = this.keyword === '' || job.title.toLowerCase().includes(this.keyword.toLowerCase()) || job.recruiterCompanyName.toLowerCase().includes(this.keyword.toLowerCase());
+    const matchesLocation = this.selectedLocation === '' || job.location.toLowerCase().includes(this.selectedLocation.toLowerCase());
+    const matchesSalary = job.pay >= this.minSalary && job.pay <= this.maxSalary;
+
+    return matchesKeyword && matchesLocation && matchesSalary;
+  });
+}
+
 }

@@ -4,20 +4,25 @@ import { RouterLink, Router, Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-job-details',
-  standalone: true,
-  imports: [CommonModule, RouterLink],
   templateUrl: './job-details.component.html',
   styleUrls: ['./job-details.component.css']
 })
-export class JobDetailsComponent implements OnInit{
-  isMenuOpen: boolean = false;
-  jobId!: number;
-constructor(private route: ActivatedRoute ){}
+
+export class JobDetailsComponent implements OnInit {
+
+  isMenuOpen: boolean = false; 
+
+  constructor(private router: Router) { } 
+
+  ngOnInit(): void {
+    
+  }
+
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
-ngOnInit(): void {
-    this.jobId = +this.route.snapshot.paramMap.get('id')!;
-    // ensuite appelle ton service pour charger les détails
+  // méthode pour la redirection vers les détails d'emploi
+  goToJobDetails(jobId: string): void {
+    this.router.navigate(['/job-details', jobId]);
   }
 }
