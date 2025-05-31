@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router'; 
 
 // Interface pour définir la structure d'un objet Job
 interface Job {
@@ -9,18 +9,18 @@ interface Job {
   bookmarked: boolean;
   companyLogoUrl: string;
   logoBgColor?: string;
-  logoIcon?: string;  
+  logoIcon?: string;
   logoIconColor?: string;
   title: string;
   company: string;
   category: string;
-  categoryIcon: string;  
+  categoryIcon: string;
   employmentType: string;
-  typeIcon: string;          
+  typeIcon: string;
   salary: string;
-  salaryIcon: string;    
+  salaryIcon: string;
   location: string;
-  locationIcon: string;   
+  locationIcon: string;
 }
 
 @Component({
@@ -33,13 +33,13 @@ interface Job {
 export class RecentJobComponent implements OnInit {
 
   recentJobs: Job[] = [];
-
-  constructor() { }
+  
+  constructor(private router: Router) { } 
 
   ngOnInit(): void {
     this.recentJobs = [
       {
-        id: 1,
+        id: 1, 
         timeAgo: '10 min ago',
         bookmarked: false,
         companyLogoUrl: 'assets/images/company_1.png',
@@ -53,9 +53,9 @@ export class RecentJobComponent implements OnInit {
         employmentType: 'Temps Plein',
         typeIcon: 'far fa-clock',
         salary: '500.000 - 750.000 XOF',
-        salaryIcon: 'fas fa-dollar-sign', 
+        salaryIcon: 'fas fa-dollar-sign',
         location: 'Dakar, Sénégal',
-        locationIcon: 'fas fa-map-marker-alt' 
+        locationIcon: 'fas fa-map-marker-alt'
       },
       {
         id: 2,
@@ -118,7 +118,7 @@ export class RecentJobComponent implements OnInit {
         id: 5,
         timeAgo: '26 min ago',
         bookmarked: false,
-        companyLogoUrl: 'assets/images/company_1.png', 
+        companyLogoUrl: 'assets/images/company_1.png',
         logoBgColor: '#fff3e0',
         logoIcon: 'fas fa-briefcase',
         logoIconColor: '#f57c00',
@@ -175,7 +175,7 @@ export class RecentJobComponent implements OnInit {
         id: 8,
         timeAgo: '50 min ago',
         bookmarked: false,
-        companyLogoUrl: 'assets/images/company_2.jpeg', 
+        companyLogoUrl: 'assets/images/company_2.jpeg',
         logoBgColor: '#ffebee',
         logoIcon: 'fas fa-heartbeat',
         logoIconColor: '#e53935',
@@ -236,8 +236,10 @@ export class RecentJobComponent implements OnInit {
     console.log(`Job ${job.id} bookmarked: ${job.bookmarked}`);
   }
 
+  // méthode pour la redirection vers les détails de l'emploi
   viewJobDetails(job: Job): void {
     console.log('Voir les détails du job:', job.title);
-    // implémenter la navigation vers la page de détails de l'emploi
+    // Navigue vers la route 'job-details' avec l'ID de l'emploi
+    this.router.navigate(['/job-details', job.id]);
   }
 }

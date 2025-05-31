@@ -8,8 +8,9 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
-    { path: 'job-applications', component: JobApplicationComponent },
     { path: 'job-list', component: JobComponent },
+    { path: 'job-details/:id', component: JobDetailsComponent },
+
+    { path: 'job-applications', component: JobApplicationComponent },
     { path: 'apply-success', component: ApplySuccessComponent },
-    { path: 'job-details/:id', component: JobDetailsComponent }
 ];
