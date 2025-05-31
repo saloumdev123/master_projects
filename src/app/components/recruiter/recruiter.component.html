@@ -1,0 +1,42 @@
+<div class="container mt-4">
+  <h2>Create Recruiter</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>Username</label>
+      <input [(ngModel)]="recruiter.username" name="username" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input [(ngModel)]="recruiter.email" name="email" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+      <label>Full Name</label>
+      <input [(ngModel)]="recruiter.fullName" name="fullName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input [(ngModel)]="recruiter.phoneNumber" name="phoneNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Company Name</label>
+      <input [(ngModel)]="recruiter.companyName" name="companyName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Company Website</label>
+      <input [(ngModel)]="recruiter.companyWebsite" name="companyWebsite" class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Company Address</label>
+      <input [(ngModel)]="recruiter.companyAddress" name="companyAddress" class="form-control" />
+    </div>
+
+    <button class="btn btn-primary mt-3" type="submit">Create Recruiter</button>
+  </form>
+</div>
+

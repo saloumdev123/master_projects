@@ -1,0 +1,31 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label>
+    Username:
+    <input formControlName="username" />
+  </label>
+  <label>
+    Email:
+    <input formControlName="email" type="email" />
+  </label>
+  <label>
+    Full Name:
+    <input formControlName="fullName" />
+  </label>
+  <label>
+    Phone Number:
+    <input formControlName="phoneNumber" />
+  </label>
+  <label>
+    Role:
+    <select formControlName="role">
+      <option value="CANDIDAT">Candidat</option>
+      <option value="RECRUITER">Recruiter</option>
+    </select>
+  </label>
+  <label>
+    Enabled:
+    <input type="checkbox" formControlName="enabled" />
+  </label>
+  <button type="submit" [disabled]="userForm.invalid">Create User</button>
+</form>
+

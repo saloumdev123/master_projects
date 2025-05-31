@@ -17,17 +17,17 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(), // required
     provideHttpClient(withFetch()), // required
-    provideRouter(routes, withEnabledBlockingInitialNavigation()), // if routers are used
-    importProvidersFrom(), // optional, firebase
+    provideRouter(routes, withEnabledBlockingInitialNavigation()), // une seule fois ici
     importProvidersFrom(
       TranslateModule.forRoot({
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
           deps: [HttpClient],
-        }, // required for translation
+        },
       })
     ),
-    provideRouter(routes), provideClientHydration()
+    provideClientHydration(),
+    // retirer les doublons provideRouter()
   ]
 };

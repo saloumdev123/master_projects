@@ -6,6 +6,7 @@
     </div>
     <a routerLink="/job-list" class="view-all-link">Voir Tout</a>
   </div>
+
   <div class="job-listings-container">
     <div class="job-card" *ngFor="let job of recentJobs">
       <div class="job-card-header">
@@ -14,24 +15,27 @@
           <i class="fa-bookmark" [ngClass]="{'fas': job.bookmarked, 'far': !job.bookmarked}"></i>
         </button>
       </div>
+
       <div class="job-content-main">
         <div class="company-logo">
-          <img [src]="job.companyLogoUrl" alt="{{ job.company }} Logo" class="logo-image">
+          <img src="assets/domaindriven.jpeg" alt="{{ job.recruiterCompanyName }} Logo" class="logo-image">
         </div>
         <div class="job-info">
           <h3 class="job-title">{{ job.title }}</h3>
-          <p class="company-name">{{ job.company }}</p>
+          <p class="company-name">{{ job.recruiterCompanyName }}</p>
         </div>
       </div>
 
       <div class="job-details">
-        <div class="detail-item"><i [class]="job.categoryIcon"></i> {{ job.category }}</div>
+        <div class="detail-item"><i [class]="job.categoryIcon"></i> {{ job.categoryName }}</div>
         <div class="detail-item"><i [class]="job.typeIcon"></i> {{ job.employmentType }}</div>
-        <div class="detail-item"><i class="fas fa-money-bill-wave"></i> {{ job.salary }}</div>
+        <div class="detail-item"><i class="fas fa-money-bill-wave"></i> {{ job.pay }}</div>
         <div class="detail-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</div>
       </div>
+
       <div class="job-card-footer">
         <button class="view-details-btn" (click)="viewJobDetails(job)">Détails de l'emploi</button>
+
       </div>
     </div>
 

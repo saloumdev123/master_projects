@@ -43,7 +43,7 @@ export class FooterComponent {
     });
 
     console.log('Soumission du formulaire de newsletter :', this.form.value.email);
-    alert('Email ' + this.form.value.email + ' abonné ! (Simulation)');
+    alert('Abonnement créé et email envoyé ' + this.form.value.email + ' see you soon !!!');
     this.form.reset();
   }
 }

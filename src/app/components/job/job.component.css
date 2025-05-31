@@ -595,6 +595,8 @@
   border: 1px solid #E0E0E0;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+
+    margin-right: 10px;
 }
 
 .job-card:hover {
@@ -982,4 +984,29 @@
    padding: 10px 20px;
    font-size: 0.85em;
  }
+}.pagination {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;
+  gap: 10px;
+}
+
+.pagination-button {
+  background-color: #005448;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+.pagination-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-weight: 500;
 }

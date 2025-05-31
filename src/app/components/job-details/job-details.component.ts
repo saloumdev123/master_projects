@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterLink, Router, Route, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
   styleUrls: ['./job-details.component.css']
 })
+
 export class JobDetailsComponent implements OnInit {
 
   isMenuOpen: boolean = false; 

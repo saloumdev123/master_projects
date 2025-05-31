@@ -7,12 +7,21 @@ export interface Job {
   jobType: string;
   yearExperience: number;
   datePosted: string; 
-  pay: string;
+  pay: number;
   requirements: string;
 
   categoryId: number;
   categoryName: string;
 
   recruiterId: number;
-  recruteurCompanyName: string;
+  recruiterCompanyName: string;
+  timeAgo?: string; // généré côté client à partir de datePosted
+  bookmarked?: boolean; // statut local
+  companyLogoUrl?: string; // URL du logo à afficher
+  logoBgColor?: string;
+  logoIcon?: string;
+  logoIconColor?: string;
+  categoryIcon?: string;
+  typeIcon?: string;
+showDetails?: boolean; 
 }
