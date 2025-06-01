@@ -9,19 +9,17 @@ export interface Job {
   datePosted: string; 
   pay: number;
   requirements: string;
-
   categoryId: number;
   categoryName: string;
-
   recruiterId: number;
   recruiterCompanyName: string;
-  timeAgo?: string; // généré côté client à partir de datePosted
-  bookmarked?: boolean; // statut local
-  companyLogoUrl?: string; // URL du logo à afficher
+  timeAgo?: string;
+  bookmarked?: boolean;
+  companyLogoUrl?: string;
   logoBgColor?: string;
   logoIcon?: string;
   logoIconColor?: string;
   categoryIcon?: string;
   typeIcon?: string;
-  showDetails?: boolean; 
+  showDetails?: boolean;
 }

@@ -2,6 +2,7 @@
   display: block;
 }
 
+/* --- Section Hero (Haut de page avec titre et navigation) --- */
 .job-hero-section {
   background-color: #000;
   color: white;
@@ -29,7 +30,6 @@
   width: auto;
 }
 
-/* Styles pour le menu de navigation sur les grands écrans */
 .main-nav {
   display: flex;
   align-items: center;
@@ -53,7 +53,7 @@
 }
 
 .main-nav ul li a:hover {
-  color: #005448;
+  color: #005448; 
 }
 
 .auth-buttons {
@@ -81,8 +81,8 @@
 }
 
 .auth-buttons .btn-primary {
-  background-color: #005448;
-  border: 1px solid #005448;
+  background-color: #005448; 
+  border: 1px solid #005448; 
   color: white;
 }
 
@@ -104,9 +104,8 @@
   max-width: 900px;
 }
 
-/* icône de menu hamburger (cachée par défaut sur les grands écrans) */
 .menu-toggle {
-  display: none;
+  display: none; 
   font-size: 1.8em;
   color: white;
   cursor: pointer;
@@ -126,7 +125,6 @@
   }
 }
 
-/* Pour les tablettes verticales et grands smartphones (moins de 768px de large) */
 @media (max-width: 768px) {
   .job-hero-section {
     height: 300px;
@@ -139,11 +137,10 @@
     padding-bottom: 20px;
   }
 
-  /* Cache le menu de navigation par défaut sur mobile et prépare l'animation */
   .main-nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -100%; /* Caché par défaut */
     width: 250px;
     max-width: 80%;
     height: 100%;
@@ -159,10 +156,9 @@
   }
 
   .main-nav.open {
-    right: 0;
+    right: 0; 
   }
 
-  /* Styles des liens du menu mobile */
   .main-nav ul {
     flex-direction: column;
     gap: 25px;
@@ -178,7 +174,6 @@
     color: white;
   }
 
-  /* Styles des boutons d'authentification dans le menu mobile */
   .auth-buttons {
     flex-direction: column;
     width: 100%;
@@ -193,12 +188,10 @@
   }
 
   .menu-toggle {
-    display: block;
+    display: block; 
   }
-
 }
 
-/* Pour les smartphones (moins de 480px de large) */
 @media (max-width: 480px) {
   .job-hero-section {
     height: 250px;
@@ -228,25 +221,32 @@
   background-color: #F8F8F8;
   padding: 60px 20px;
   color: #333;
+  width: 100%; 
+  display: flex;
+  justify-content: center; 
+  box-sizing: border-box; 
 }
 
 .job-listing-container {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1280px; 
+  width: 100%;
+  margin: 0 auto; 
   display: flex;
   gap: 30px;
   align-items: flex-start;
+  box-sizing: border-box;
 }
 
 /* --- Styles pour la Sidebar --- */
 .job-sidebar {
   flex-basis: 300px;
   flex-shrink: 0;
-  background-color: rgba(0, 84, 72, 0.1);
+  background-color: rgba(0, 84, 72, 0.1); 
   border-radius: 12px;
-  padding: 30px 25px;
+  padding: 30px 25px; 
   color: #333;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .filter-block {
@@ -262,39 +262,14 @@
   font-weight: 600;
   margin-bottom: 20px;
   color: #333;
+  margin-left: 0; 
+  padding-left: 0;
 }
 
 .search-input-group,
 .location-input-group {
   position: relative;
   margin-bottom: 15px;
-}
-
-.search-input-group input,
-.location-input-group input {
-  width: 100%;
-  padding: 12px 12px 12px 40px;
-  background-color: #F0F0F0;
-  border: 1px solid #E0E0E0;
-  border-radius: 8px;
-  color: #333;
-  font-size: 0.95em;
-  box-sizing: border-box;
-}
-
-.search-input-group input::placeholder,
-.location-input-group input::placeholder {
-  color: #888;
-}
-
-.search-input-group .search-icon,
-.location-input-group .location-icon {
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 0.9em;
 }
 
 /* Styles généraux pour les inputs de recherche et de localisation */
@@ -318,12 +293,22 @@
   color: #888;
 }
 
+.search-input-group .search-icon,
+.location-input-group .location-icon {
+  position: absolute;
+  left: 15px; 
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 0.9em;
+}
+
 /* Styles pour l'état de focus des inputs */
 .search-input-group input:focus,
 .location-input-group input:focus,
 .salary-input-group input[type="number"]:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #005448; 
   box-shadow: 0 0 0 3px rgba(0, 84, 72, 0.2);
 }
 
@@ -359,41 +344,110 @@
   background-color: #F0F0F0;
 }
 
+/* --- Styles pour les options de filtre (checkboxes, labels, counts) --- */
 .filter-block ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  list-style: none; 
+  padding: 0;      
+  margin: 0;       
 }
 
-.filter-block ul li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.filter-block li {
   margin-bottom: 12px;
+  margin-left: 0;   
+  padding-left: 0;  
+  display: flex;    
+  align-items: center; 
+}
+/* Styles pour le label (le conteneur Flex qui aligne checkbox, nom, compteur) */
+.filter-block label {
+  display: flex;
+  flex-direction: row; 
+  align-items: center; 
+  justify-content: space-between; 
+  flex-wrap: nowrap; 
   font-size: 0.95em;
   color: #555;
-}
-
-.filter-block ul li:last-child {
-  margin-bottom: 0;
-}
-
-.filter-block label {
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-  gap: 8px;
-  flex-grow: 1;
+  padding: 5px 0; 
+  transition: color 0.2s ease;
+  width: 100%; 
+  min-height: 25px;
 }
 
+.filter-block label:hover {
+  color: #005448;
+}
+
+/* Styles pour la checkbox */
 .filter-block input[type="checkbox"] {
-  accent-color: #005448;
-  width: 16px;
-  height: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
   cursor: pointer;
+  margin-right: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  margin-top: 0; 
+  margin-bottom: 0; 
 }
 
+.filter-block input[type="checkbox"]:checked {
+  background-color: #005448;
+  border-color: #005448;
+}
+
+.filter-block input[type="checkbox"]:checked::after {
+  content: '\2713'; 
+  display: block;
+  color: white;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+/* Styles pour le nom du filtre */
+.filter-block label > .filter-name {
+  flex-grow: 1; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2; 
+}
+
+/* Style pour le compteur */
+.filter-block label > span:not(.filter-name) {
+  background-color: #e0e0e0;
+  color: #555;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: 600;
+  min-width: 25px; 
+  text-align: center;
+  margin-left: 10px; 
+  flex-shrink: 0; 
+  line-height: 1; 
+}
+
+/* Animation au survol sur le LI */
+.filter-block li:hover {
+  background-color: rgba(0, 84, 72, 0.05); 
+  border-radius: 4px;
+}
+
+/* --- Styles pour le filtre de Salaire --- */
 .salary-slider-container {
   display: flex;
   flex-direction: column;
@@ -409,7 +463,6 @@
   color: #333;
 }
 
-/* Styles pour le filtre de Salaire (Inputs) */
 .salary-input-group {
   display: flex;
   align-items: center;
@@ -430,6 +483,8 @@
   color: #777;
   margin-bottom: 5px;
   font-weight: 500;
+  margin-left: 0; 
+  padding-left: 0; 
 }
 
 .salary-input-group input[type="number"] {
@@ -441,6 +496,7 @@
   color: #333;
   font-size: 0.95em;
   box-sizing: border-box;
+  margin-left: 0; 
 }
 
 .salary-input-group input[type="number"]::placeholder {
@@ -448,7 +504,7 @@
 }
 
 .btn-apply-salary {
-  background-color: #005448;
+  background-color: #005448; 
   color: white;
   border: none;
   border-radius: 8px;
@@ -465,7 +521,7 @@
   background-color: #003e35;
 }
 
-/* --- Media Queries pour la sidebar et les job cards --- */
+/* --- Media Queries pour la sidebar et les inputs --- */
 @media (max-width: 768px) {
   .salary-input-group {
     flex-direction: column;
@@ -483,10 +539,6 @@
   }
 }
 
-.btn-apply-salary:hover {
-  background-color: #003e35;
-}
-
 .tags-container {
   display: flex;
   flex-wrap: wrap;
@@ -501,8 +553,9 @@
   font-size: 0.85em;
 }
 
+/* --- Bannière "We Are Hiring" --- */
 .we-are-hiring-banner {
-  background-color: #005448;
+  background-color: #005448; 
   border-radius: 12px;
   padding: 30px;
   text-align: center;
@@ -526,15 +579,14 @@
   margin: 0;
 }
 
-/* --- Styles pour le contenu principal (Job List) --- */
-.job-main-content { /* Ce sélecteur n'est plus utilisé directement dans le HTML fourni, mais je le garde au cas où */
+/* --- Styles pour le contenu principal --- */
+.job-main-content {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* NOUVEAU: Styles pour l'en-tête des résultats et le tri */
 .job-listing-header {
   display: flex;
   justify-content: space-between;
@@ -559,7 +611,7 @@
 }
 
 .sort-by-dropdown label {
-  margin-right: 0; /* Ajusté pour le gap */
+  margin-right: 0;
   color: #555;
   font-size: 0.95rem;
 }
@@ -573,19 +625,19 @@
   font-size: 0.9rem;
   outline: none;
   transition: border-color 0.2s ease;
-  /* Optionnel: masquer la flèche par défaut pour customiser */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7L146.2%2C98.4L27.6%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7c-6.4-6.4-6.4-16.7%2C0-23.1L135.1%2C68.9c6.4-6.4%2C16.7-6.4%2C23.1%2C0l11.1%2C11.1L287%2C174.8C293.4%2C181.2%2C293.4%2C191.5%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E'); /* Icône de flèche personnalisée */
+  /* Icône de flèche personnalisée */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7L146.2%2C98.4L27.6%2C197.9c-3.2%2C3.2-7.1%2C4.7-11.1%2C4.7s-7.9-1.6-11.1-4.7c-6.4-6.4-6.4-16.7%2C0-23.1L135.1%2C68.9c6.4-6.4%2C16.7-6.4%2C23.1%2C0l11.1%2C11.1L287%2C174.8C293.4%2C181.2%2C293.4%2C191.5%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
   background-position: right 8px top 50%;
   background-size: 12px auto;
-  padding-right: 30px; /* Espace pour la flèche personnalisée */
+  padding-right: 30px;
 }
 
 .sort-by-dropdown select:focus {
-  border-color: #005448; /* Correspond à --primary-color */
+  border-color: #005448; 
   box-shadow: 0 0 0 2px rgba(0, 84, 72, 0.2);
 }
 
@@ -607,12 +659,10 @@
   border: 1px solid #E0E0E0;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
-
-  margin-right: 10px;
 }
 
 .job-card:hover {
-  border-color: #005448;
+  border-color: #005448; 
   box-shadow: 0 6px 20px rgba(0, 84, 72, 0.1);
 }
 
@@ -631,12 +681,12 @@
   transition: color 0.3s ease;
 }
 
-.favorite-icon.fas { /* Style pour l'icône de favori remplie */
-  color: #005448; /* Couleur verte pour le favori actif */
+.favorite-icon.fas { 
+  color: #005448; 
 }
 
 .favorite-icon:hover {
-  color: #005448;
+  color: #005448; 
 }
 
 .job-details-main {
@@ -694,7 +744,7 @@
 }
 
 .btn-job-details {
-  background-color: #005448;
+  background-color: #005448; 
   color: white;
   border: none;
   border-radius: 8px;
@@ -714,34 +764,90 @@
 }
 
 /* --- Styles pour la pagination --- */
+/* job.component.css */
+
+/* ... (votre CSS existant jusqu'à la section pagination) ... */
+
+/* --- Styles pour la pagination --- */
 .pagination {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centre les éléments de pagination horizontalement */
   align-items: center;
-  gap: 10px;
-  margin-top: 40px;
+  gap: 10px; /* Espace entre les éléments de pagination */
+  margin-top: 40px; /* Conserve une bonne marge au-dessus */
+  /* Les styles de fond/ombre du conteneur ne sont plus nécessaires car chaque élément a son propre style dans cette conception */
+  /* padding: 15px; */
+  /* background-color: #fff; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); */
+  width: fit-content; /* Le conteneur ne prend que la largeur de son contenu */
+  margin-left: auto; /* Centre le bloc de pagination si le parent est flex */
+  margin-right: auto; /* Centre le bloc de pagination si le parent est flex */
 }
 
-.pagination-button {
-  background-color: #005448;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 1.2em;
-  cursor: pointer;
-}
-
-.pagination-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.pagination-info {
+/* Styles pour les numéros de page individuels */
+.pagination-page-number {
+  background-color: transparent; /* Fond transparent par défaut */
+  color: #555; /* Couleur du texte par défaut */
+  border: 1px solid #ccc; /* Bordure grise claire */
+  padding: 10px 15px; /* Padding pour une taille cliquable */
+  border-radius: 8px; /* Bords arrondis */
+  font-size: 1.1em; /* Taille de la police */
   font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 45px; /* Assure une largeur minimale */
+  text-align: center;
 }
 
-/* Media Queries pour la sidebar et les job cards */
+.pagination-page-number:hover {
+  background-color: #f0f0f0; /* Léger fond gris au survol */
+  border-color: #999;
+}
+
+.pagination-page-number.active {
+  background-color: #005448; /* Couleur primaire pour la page active */
+  color: white;
+  border-color: #005448; /* Bordure de la même couleur que le fond */
+  font-weight: 600;
+}
+
+.pagination-page-number.active:hover {
+  background-color: #003e35; /* Légèrement plus foncé au survol si active */
+  border-color: #003e35;
+}
+
+/* Styles pour le bouton "Next" */
+.pagination-button.pagination-next {
+  background-color: transparent; /* Fond transparent pour le bouton Next */
+  color: #555; /* Couleur du texte par défaut */
+  border: 1px solid #ccc; /* Bordure grise claire */
+  padding: 10px 20px; /* Padding ajusté pour "Next" */
+  border-radius: 8px; /* Bords arrondis */
+  font-size: 1.1em; /* Taille de la police */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex; /* Pour aligner texte et icône */
+  align-items: center;
+  gap: 8px; /* Espace entre le texte et l'icône */
+  margin-left: 10px; /* Ajoute un peu d'espace avec les numéros de page */
+}
+
+.pagination-button.pagination-next:hover {
+  background-color: #f0f0f0; 
+  border-color: #999;
+}
+
+.pagination-button.pagination-next:disabled {
+  background-color: #f8f8f8; 
+  color: #a0a0a0; 
+  border-color: #e0e0e0;
+  cursor: not-allowed;
+  transform: none; 
+}
+
+/* --- Media Queries pour les sections Job Listing et Cards --- */
 @media (max-width: 1024px) {
   .job-listing-container {
     flex-direction: column;
@@ -750,7 +856,7 @@
   .job-sidebar {
     flex-basis: auto;
     width: 100%;
-    max-width: 600px;
+    max-width: 600px; 
     margin: 0 auto;
   }
   .job-main-content {
@@ -838,7 +944,7 @@
   }
 }
 
-/* Styles pour la section Top Company */
+/* --- Styles pour la section Top Company --- */
 .top-companies-section {
   background-color: #f4faff;
   padding: 60px 20px;
@@ -923,7 +1029,7 @@
 }
 
 .btn-open-jobs {
-  background-color: var(--primary-color);
+  background-color: #005448; 
   color: white;
   border: none;
   border-radius: 8px;
@@ -987,17 +1093,17 @@
   }
 }
 
+/* pagination */
 .pagination {
   margin-top: 30px;
   display: flex;
-  justify-content: center;
-  /* centre horizontalement */
+  justify-content: center; 
   align-items: center;
   gap: 10px;
 }
 
 .pagination-button {
-  background-color: #005448;
+  background-color: #005448; 
   color: white;
   border: none;
   padding: 8px 12px;
