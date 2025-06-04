@@ -8,7 +8,7 @@ import { catchError, Observable, of } from 'rxjs';
 })
 export class JobApplicationService {
 
-  private apiUrl = 'http://localhost:8080/api/job-applications/apply';
+  private apiUrl = 'http://localhost:8080/api/job-applications';
 
   constructor(private http: HttpClient) {}
 
@@ -25,6 +25,14 @@ export class JobApplicationService {
       return of(result as T);
     };
   }
+  applyWithFormData(formData: FormData): Observable<any> {
+    return this.http.post(this.apiUrl, formData).pipe(
+      catchError(this.handleError<any>('applyWithFormData'))
+    );
+  }
 
+  submitApplication(formData: FormData): Observable<JobApplication> {
+    return this.http.post<JobApplication>(this.apiUrl, formData);
+  }
 
 }

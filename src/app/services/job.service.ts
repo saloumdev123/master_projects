@@ -1,29 +1,4 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { Job } from '../interfaces/job';
-// import { Observable } from 'rxjs';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class JobService {
-
-//   private apiUrl = 'http://localhost:8080/api/jobs';
-
-//   jobs: Job[] = [];
-
-//   constructor(private http: HttpClient) {}
-
-//   getJobs(): Observable<Job[]> {
-//     return this.http.get<Job[]>(this.apiUrl);
-//   }
-
-//   getJobById(id: number): Observable<Job> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.get<Job>(url);
-//   }
-// }
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Job } from '../interfaces/job';
 import { Observable } from 'rxjs';
@@ -52,5 +27,14 @@ export class JobService {
     return this.http.get<Job>(`${this.apiUrl}/${id}`);
   }
 
-  
+getJobsByTitle(title: string, page: number = 0, size: number = 5): Observable<JobPage> {
+  let params = new HttpParams()
+    .set('title', title)
+    .set('page', page.toString())
+    .set('size', size.toString());
+
+  return this.http.get<JobPage>(`${this.apiUrl}/title`, { params });
+}
+
+
 }

@@ -1,4 +1,4 @@
-<section class="job-listings-section">
+<section class="job-listings-section"> 
   <div class="job-listings-header">
     <div class="job-listings-header-left">
       <h2>Offres d'emploi récentes</h2>
@@ -11,14 +11,14 @@
     <div class="job-card" *ngFor="let job of recentJobs">
       <div class="job-card-header">
         <span class="time-ago">{{ job.timeAgo }}</span>
-        <button class="bookmark-btn" (click)="toggleBookmark(job)">
+        <button class="bookmark-btn" (click)="toggleBookmark(job)" aria-label="Bookmark job">
           <i class="fa-bookmark" [ngClass]="{'fas': job.bookmarked, 'far': !job.bookmarked}"></i>
         </button>
       </div>
 
       <div class="job-content-main">
         <div class="company-logo">
-          <img src="assets/domaindriven.jpeg" alt="{{ job.recruiterCompanyName }} Logo" class="logo-image">
+          <img [src]="job.companyLogoUrl" alt="{{ job.recruiterCompanyName }} Logo" class="logo-image">
         </div>
         <div class="job-info">
           <h3 class="job-title">{{ job.title }}</h3>
@@ -31,28 +31,29 @@
         <div class="detail-item"><i [class]="job.typeIcon"></i> {{ job.employmentType }}</div>
         <div class="detail-item"><i class="fas fa-money-bill-wave"></i> {{ job.pay }}</div>
         <div class="detail-item"><i class="fas fa-map-marker-alt"></i> {{ job.location }}</div>
-    
       </div>
+
       <div class="job-card-footer">
         <button class="view-details-btn" (click)="viewJobDetails(job)">Détails de l'emploi</button>
       </div>
-       </div>
-      </div>
-
-    <div *ngIf="recentJobs.length === 0" class="no-jobs-message">
-      Aucune offre d'emploi récente disponible pour le moment.
     </div>
+  </div>
+
+  <div *ngIf="recentJobs.length === 0" class="no-jobs-message">
+    Aucune offre d'emploi récente disponible pour le moment.
+  </div>
+
   <div class="pagination">
-  <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
-    &#8592; <!-- flèche gauche -->
-  </button>
+    <button class="pagination-button" (click)="previousPage()" [disabled]="currentPage === 0">
+      &#8592; <!-- flèche gauche -->
+    </button>
 
-  <span class="pagination-info">
-    Page {{ currentPage + 1 }} / {{ totalPages }}
-  </span>
+    <span class="pagination-info">
+      Page {{ currentPage + 1 }} / {{ totalPages }}
+    </span>
 
-  <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
-    &#8594; <!-- flèche droite -->
-  </button>
-</div>
+    <button class="pagination-button" (click)="nextPage()" [disabled]="currentPage + 1 >= totalPages">
+      &#8594; <!-- flèche droite -->
+    </button>
+  </div>
 </section>

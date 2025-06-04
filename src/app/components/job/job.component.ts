@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { JobService } from '../../services/job.service';
 import { Job } from '../../interfaces/job';
 import { Category } from '../../interfaces/category';
+import { formatDistanceToNow, parseISO } from 'date-fns';
+import { fr } from 'date-fns/locale'; 
 
 @Component({
   selector: 'app-job',
@@ -55,44 +57,8 @@ export class JobComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initializeFilterOptions(); // Initialise les options de filtre
+
     this.loadJobs(this.currentPage, this.pageSize); // Charge la première page de jobs
-  }
-
-  // Fonction pour initialiser les options de filtre avec des données statiques
-  initializeFilterOptions(): void {
-    this.categories = [
-  { id: 1, name: 'IT & Télécoms', count: 0, description: 'Description IT', jobsCount: 0, iconClass: 'fa-solid fa-laptop-code' },
-  { id: 2, name: 'Commerce & Ventes', count: 0, description: 'Description Commerce', jobsCount: 0, iconClass: 'fa-solid fa-handshake' },
-  { id: 3, name: 'Éducation & Formation', count: 0, description: 'Description Éducation', jobsCount: 0, iconClass: 'fa-solid fa-graduation-cap' },
-  { id: 4, name: 'Santé & Social', count: 0, description: 'Description Santé', jobsCount: 0, iconClass: 'fa-solid fa-heart-pulse' },
-  { id: 5, name: 'Banque & Finance', count: 0, description: 'Description Finance', jobsCount: 0, iconClass: 'fa-solid fa-wallet' },
-  { id: 6, name: 'Ingénierie & BTP', count: 0, description: 'Description Ingénierie & BTP', jobsCount: 0, iconClass: 'fa-solid fa-hard-hat' },
-  { id: 7, name: 'Marketing & Communication', count: 0, description: 'Description Marketing & Communication', jobsCount: 0, iconClass: 'fa-solid fa-bullhorn' },
-  { id: 8, name: 'Logistique & Transport', count: 0, description: 'Description Logistique & Transport', jobsCount: 0, iconClass: 'fa-solid fa-truck-fast' }
-];
-
-    this.jobTypes = [
-      { name: 'CDD', count: 0 },
-      { name: 'CDI', count: 0 },
-      { name: 'Freelance', count: 0 },
-      { name: 'Saisonnier', count: 0 } 
-    ];
-
-    this.experienceLevels = [
-      { level: 'no-experience', name: 'Pas d\'expérience', count: 0 },
-      { level: 'entry-level', name: 'Débutant (0-2 ans)', count: 0 },
-      { level: 'mid-level', name: 'Intermédiaire (2-5 ans)', count: 0 },
-      { level: 'senior-level', name: 'Confirmé (5-10 ans)', count: 0 },
-      { level: 'director', name: 'Directeur (+10 ans)', count: 0 }
-    ];
-
-    this.datePostedOptions = [
-      { value: 'all', name: 'Tout', count: 0 },
-      { value: 'last24hours', name: 'Dernières 24 Heures', count: 0 },
-      { value: 'last7days', name: 'Derniers 7 Jours', count: 0 },
-      { value: 'last30days', name: 'Derniers 30 Jours', count: 0 }
-    ];
   }
 
   // Cette fonction sera appelée après le chargement des jobs pour mettre à jour les "counts" des filtres
@@ -148,7 +114,7 @@ export class JobComponent implements OnInit {
     } else {
       this.selectedCategories = this.selectedCategories.filter(c => c !== categoryName);
     }
-    this.applyFilters(); // Appliquer les filtres après chaque changement
+    this.applyFilters(); 
   }
 
   onJobTypeChange(event: any, jobTypeName: string): void {
@@ -194,7 +160,6 @@ export class JobComponent implements OnInit {
       error: (err) => {
         console.error('Erreur lors du chargement des jobs', err);
         // Si le service échoue, initialiser des données statiques pour les filtres
-        this.initializeFilterOptions();
         this.applyFilters();
       }
     });
@@ -320,4 +285,13 @@ export class JobComponent implements OnInit {
   toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
   }
+  getTimeAgo(dateString: string): string {
+  if (!dateString) return '';
+  try {
+    const date = parseISO(dateString);
+    return formatDistanceToNow(date, { addSuffix: true, locale: fr });  // <-- Utiliser la locale ici
+  } catch {
+    return '';
+  }
+}
 }
