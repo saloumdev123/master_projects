@@ -17,18 +17,19 @@ export class JobApplicationService {
     return this.http
       .post<JobApplication>(this.apiUrl, jobApplication)
       .pipe(catchError(this.handleError<JobApplication>('/applyForAJob')));
+      
   }
+  applyWithFormData(formData: FormData): Observable<any> {
+  return this.http.post(`${this.apiUrl}/apply`, formData).pipe(
+    catchError(this.handleError<any>('applyWithFormData'))
+  );
+}
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
-  }
-  applyWithFormData(formData: FormData): Observable<any> {
-    return this.http.post(this.apiUrl, formData).pipe(
-      catchError(this.handleError<any>('applyWithFormData'))
-    );
   }
 
   submitApplication(formData: FormData): Observable<JobApplication> {

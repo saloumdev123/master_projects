@@ -74,6 +74,10 @@ ngOnInit(): void {
 
 
   openApplyPopup(): void {
+     if (!this.job?.id) {
+    alert("L'offre d'emploi n'est pas encore chargée.");
+    return;
+  }
     this.showApplyPopup = true;
   }
 
@@ -111,14 +115,21 @@ submitApplication(): void {
     alert("Veuillez sélectionner un fichier PDF pour le CV.");
     return;
   }
+  if (!this.job?.id) {
+  alert("Le job n'est pas chargé correctement. Veuillez réessayer.");
+  return;
+}
+
 
   const formData = new FormData();
   formData.append('fullName', fullName);
   formData.append('email', email);
-  formData.append('phoneNumber', phoneNumber);
+  formData.append('phone', phoneNumber);
   formData.append('country', country);
   formData.append('city', city);
-  formData.append('cv', this.selectedFile);
+   console.log('jobId envoyé:', this.job?.id); 
+  formData.append('jobId', String(this.job?.id));
+  formData.append('resume', this.selectedFile); 
 
   this.jobApplicationService.applyWithFormData(formData).subscribe({
     next: (response) => {
@@ -133,8 +144,6 @@ submitApplication(): void {
     }
   });
 }
-
-
 
   goToJobDetails(jobId: string): void {
     this.router.navigate(['/jobs', jobId]);
