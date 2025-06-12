@@ -178,16 +178,16 @@
     <span class="item-label"><i class="fas fa-map-marker-alt"></i> Emplacement</span>
     <span class="item-value">{{ job?.location }}</span>
   </div>
-  <div class="map-placeholder">
+  <!-- <div class="map-placeholder">
     <iframe
-      [src]="'https://www.google.com/maps?q=' + job?.location + '&output=embed'"
+      [src]=" + job?.location + '&output=embed'"
       width="100%"
       height="250"
       style="border:0;"
       allowfullscreen=""
       loading="lazy">
     </iframe>
-  </div>
+  </div> -->
 </div>
 
 
@@ -235,17 +235,17 @@
 
       <div class="form-row">
         <div class="form-group">
-          <label for="phoneNumber"><i class="fas fa-phone icon"></i> Téléphone *</label>
+          <label for="phone"><i class="fas fa-phone icon"></i> Téléphone *</label>
           <input
             type="tel"
-            id="phoneNumber"
-            [(ngModel)]="application.phoneNumber"
-            name="phoneNumber"
+            id="phone"
+            [(ngModel)]="application.phone"
+            name="phone"
             placeholder="Votre numéro de téléphone"
             required
-            #phoneNumber="ngModel"
+            #phone="ngModel"
           />
-          <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="error-msg">
+          <div *ngIf="phone.invalid && phone.touched" class="error-msg">
             Le numéro de téléphone est obligatoire.
           </div>
         </div>

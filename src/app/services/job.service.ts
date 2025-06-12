@@ -19,8 +19,14 @@ export class JobService {
 
   constructor(private http: HttpClient) {}
 
-  getJobs(page: number, size: number): Observable<JobPage> {
-    return this.http.get<JobPage>(`${this.apiUrl}?page=${page}&size=${size}`);
+  getJobs(page: number, size: number, keyword?: string) {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    if (keyword) {
+      params = params.set('keyword', keyword);
+    }
+    return this.http.get<JobPage>(`${this.apiUrl}`, { params });
   }
 
   getJobById(id: number): Observable<Job> {

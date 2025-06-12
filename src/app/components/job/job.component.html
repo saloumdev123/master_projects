@@ -47,7 +47,6 @@
     </div>
   </div>
 </div>
-
 <div class="filter-block">
   <h3>Catégorie</h3>
   <ul>
@@ -64,7 +63,6 @@
     </li>
   </ul>
 </div>
-
 <div class="filter-block">
   <h3>Type d'Emploi</h3>
   <ul>
@@ -81,7 +79,6 @@
     </li>
   </ul>
 </div>
-
 <div class="filter-block">
   <h3>Niveau d'Expérience</h3>
   <ul>
@@ -155,22 +152,23 @@
   <p>Affichage des résultats</p>
   <div class="sort-by-dropdown">
     <label for="sortOrder">Trier par :</label>
-    <select id="sortOrder">
+    <select id="sortOrder" [(ngModel)]="sortOrder" (change)="applyFilters()">
       <option value="latest">Plus récent</option>
       <option value="oldest">Plus ancien</option>
     </select>
+
   </div>
 </div>
 
 <div class="job-cards-container">
-    <div class="job-card" *ngFor="let job of filteredJobs">
+    <div class="job-card" *ngFor="let job of allJobs">
       <div class="job-card-top">
       <span class="time-ago">{{ getTimeAgo(job.datePosted) }}</span>
       <i class="far fa-bookmark favorite-icon" (click)="toggleFavorite(job.id)" [class.fas]="isFavorite(job.id)"></i>
     </div>
     <div class="job-details-main">
       <div class="company-logo-small">
-        <img [src]="" alt="Logo entreprise">
+        <img [src]="job.companyLogoUrl" alt="Logo entreprise">
       </div>
       <div class="job-info-text">
         <h3 class="job-title">{{ job.title }}</h3>

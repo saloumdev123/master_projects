@@ -49,7 +49,9 @@ export class JobComponent implements OnInit {
   currentPage: number = 0;
   pageSize: number = 5; 
   totalPages: number = 0;
-  totalElements: number = 0; // Nombre total d'éléments
+  totalElements: number = 0; 
+  sortOrder: string = 'latest';
+  
 
   constructor(
     private jobService: JobService,
@@ -57,56 +59,134 @@ export class JobComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.loadJobs(this.currentPage, this.pageSize); // Charge la première page de jobs
   }
 
-  // Cette fonction sera appelée après le chargement des jobs pour mettre à jour les "counts" des filtres
-  updateFilterCounts(): void {
-    // Réinitialiser les counts
-    this.categories.forEach(c => c.count = 0);
-    this.jobTypes.forEach(jt => jt.count = 0);
-    this.experienceLevels.forEach(el => el.count = 0);
-    this.datePostedOptions.forEach(dpo => dpo.count = 0);
+updateFilterCounts(): void {
+  // Réinitialiser les counts
+  this.categories.forEach(c => c.count = 0);
+  this.jobTypes.forEach(jt => jt.count = 0);
+  this.experienceLevels.forEach(el => el.count = 0);
+  this.datePostedOptions.forEach(dpo => dpo.count = 0);
 
-    this.allJobs.forEach(job => {
-      // Catégories
-      const category = this.categories.find(c => c.name === job.categoryName);
-      if (category) category.count++;
+  const now = new Date();
 
-      // Types d'emploi
-      const jobType = this.jobTypes.find(jt => jt.name === job.jobType);
-      if (jobType) jobType.count++;
+  this.allJobs.forEach(job => {
+    // Catégories
+    const category = this.categories.find(c => c.name === job.categoryName);
+    if (category) category.count++;
 
-      // Niveaux d'expérience (si job.yearExperience existe)
-      if (job.yearExperience !== undefined && job.yearExperience !== null) {
-        if (job.yearExperience === 0) {
-          this.experienceLevels.find(el => el.level === 'no-experience')!.count++;
-        } else if (job.yearExperience > 0 && job.yearExperience <= 2) {
-          this.experienceLevels.find(el => el.level === 'entry-level')!.count++;
-        } else if (job.yearExperience > 2 && job.yearExperience <= 5) {
-          this.experienceLevels.find(el => el.level === 'mid-level')!.count++;
-        } else if (job.yearExperience > 5 && job.yearExperience <= 10) {
-          this.experienceLevels.find(el => el.level === 'senior-level')!.count++;
-        } else if (job.yearExperience > 10) {
-          this.experienceLevels.find(el => el.level === 'director')!.count++;
-        }
-      }
+    // Types d'emploi
+    const jobType = this.jobTypes.find(jt => jt.name === job.jobType);
+    if (jobType) jobType.count++;
 
-      // Dates de publication
-      if (job.datePosted) {
-        const jobDate = new Date(job.datePosted);
-        const now = new Date();
-        const diffTime = Math.abs(now.getTime() - jobDate.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    // Niveaux d'expérience (si job.yearExperience existe)
+    if (job.yearExperience === 0) {
+      const level = this.experienceLevels.find(el => el.level === 'no-experience');
+      if (level) level.count++;
+    } else if (job.yearExperience > 0 && job.yearExperience <= 2) {
+      const level = this.experienceLevels.find(el => el.level === 'entry-level');
+      if (level) level.count++;
+    } else if (job.yearExperience > 2 && job.yearExperience <= 5) {
+      const level = this.experienceLevels.find(el => el.level === 'mid-level');
+      if (level) level.count++;
+    } else if (job.yearExperience > 5 && job.yearExperience <= 10) {
+      const level = this.experienceLevels.find(el => el.level === 'senior-level');
+      if (level) level.count++;
+    } else if (job.yearExperience > 10) {
+      const level = this.experienceLevels.find(el => el.level === 'director');
+      if (level) level.count++;
+    }
 
-        this.datePostedOptions.find(dpo => dpo.value === 'all')!.count++;
-        if (diffDays <= 1) this.datePostedOptions.find(dpo => dpo.value === 'last24hours')!.count++;
-        if (diffDays <= 7) this.datePostedOptions.find(dpo => dpo.value === 'last7days')!.count++;
-        if (diffDays <= 30) this.datePostedOptions.find(dpo => dpo.value === 'last30days')!.count++;
-      }
-    });
-  }
+    // Dates de publication - use job.postedDate instead of fixed date
+    if (!job.datePosted) return; // skip if no postedDate
+
+    const postedDate = new Date(job.datePosted);
+    const diffTime = Math.abs(now.getTime() - postedDate.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // convert ms to days
+
+    if (diffDays <= 1) {
+      const last24 = this.datePostedOptions.find(dpo => dpo.value === 'last24hours');
+      if (last24) last24.count++;
+    }
+    if (diffDays <= 7) {
+      const last7 = this.datePostedOptions.find(dpo => dpo.value === 'last7days');
+      if (last7) last7.count++;
+    }
+    if (diffDays <= 30) {
+      const last30 = this.datePostedOptions.find(dpo => dpo.value === 'last30days');
+      if (last30) last30.count++;
+    }
+
+    // If you have an 'all' option to count all jobs regardless of date:
+    const all = this.datePostedOptions.find(dpo => dpo.value === 'all');
+    if (all) all.count++;
+  });
+}
+
+//   updateFilterCounts(): void {
+//   this.categories.forEach(c => c.count = 0);
+//   this.jobTypes.forEach(jt => jt.count = 0);
+//   this.experienceLevels.forEach(el => el.count = 0);
+//   this.datePostedOptions.forEach(dpo => dpo.count = 0);
+
+//   this.allJobs.forEach(job => {
+//     // ➤ Catégorie
+//     const category = this.categories.find(c => c.name === job.categoryName);
+//     if (category) {
+//       category.count++;
+//     }
+
+//     // ➤ Type d'emploi
+//     const jobType = this.jobTypes.find(jt => jt.name === job.jobType);
+//     if (jobType) {
+//       jobType.count++;
+//     }
+
+//     // ➤ Expérience
+//     const years = job.yearExperience;
+//     if (years !== undefined && years !== null) {
+//       let level = '';
+//       if (years === 0) level = 'no-experience';
+//       else if (years <= 2) level = 'entry-level';
+//       else if (years <= 5) level = 'mid-level';
+//       else if (years <= 10) level = 'senior-level';
+//       else level = 'director';
+
+//       const experience = this.experienceLevels.find(el => el.level === level);
+//       if (experience) {
+//         experience.count++;
+//       }
+//     }
+
+//     // ➤ Date de publication
+//     if (job.datePosted) {
+//       const jobDate = new Date(job.datePosted);
+//       const now = new Date();
+//       const diffTime = Math.abs(now.getTime() - jobDate.getTime());
+//       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+//       const all = this.datePostedOptions.find(dpo => dpo.value === 'all');
+//       if (all) all.count++;
+
+//       if (diffDays <= 1) {
+//         const last24 = this.datePostedOptions.find(dpo => dpo.value === 'last24hours');
+//         if (last24) last24.count++;
+//       }
+
+//       if (diffDays <= 7) {
+//         const last7 = this.datePostedOptions.find(dpo => dpo.value === 'last7days');
+//         if (last7) last7.count++;
+//       }
+
+//       if (diffDays <= 30) {
+//         const last30 = this.datePostedOptions.find(dpo => dpo.value === 'last30days');
+//         if (last30) last30.count++;
+//       }
+//     }
+//   });
+// }
+
 
   onCategoryChange(event: any, categoryName: string): void {
     if (event.target.checked) {
@@ -147,7 +227,7 @@ export class JobComponent implements OnInit {
   }
 
   loadJobs(page: number, size: number): void {
-    this.jobService.getJobs(page, size).subscribe({
+    this.jobService.getJobs(page, size, this.keyword).subscribe({
       next: (data) => {
         this.allJobs = data.content; 
         this.totalElements = data.totalElements; 
@@ -164,14 +244,31 @@ export class JobComponent implements OnInit {
       }
     });
   }
+// loadJobs(page: number, size: number): void {
+//   this.jobService.getJobs(page, size, this.keyword).subscribe({
+//     next: (data) => {
+//       this.allJobs = data.content; 
+//       this.totalElements = data.totalElements; 
+//       this.totalPages = data.totalPages;
+//       this.currentPage = data.number;
 
-  // --- Méthodes de pagination et de filtrage ---
+//       this.updateFilterCounts(); 
+//       this.applyFilters(); 
+//     },
+//     error: (err) => {
+//       console.error('Erreur lors du chargement des jobs', err);
+//       this.applyFilters();
+//     }
+//   });
+// }
 
+ 
   // Méthode pour aller à une page spécifique
   goToPage(pageIndex: number): void {
     if (pageIndex >= 0 && pageIndex < this.totalPages) {
       this.currentPage = pageIndex;
-      this.loadJobs(this.currentPage, this.pageSize); // Recharge les jobs pour la nouvelle page
+     // this.loadJobs(this.currentPage, this.pageSize);// Recharge les jobs pour la nouvelle page
+       this.updateDisplayedJobs();  
     }
   }
 
@@ -188,65 +285,86 @@ export class JobComponent implements OnInit {
   }
 
   // Logique principale de filtrage
-  applyFilters(): void {
-    // 1. Filtrer TOUTES les offres d'emploi (allJobs) basées sur les critères
-    let tempFilteredJobs = this.allJobs.filter(job => {
-      // Filtrage par mot-clé (titre ou entreprise)
-      const matchesKeyword = !this.keyword ||
-                             job.title?.toLowerCase().includes(this.keyword.toLowerCase()) ||
-                             job.recruiterCompanyName?.toLowerCase().includes(this.keyword.toLowerCase());
+applyFilters(): void { 
+  // 1. Filtrer TOUTES les offres d'emploi (allJobs) basées sur les critères
+  let tempFilteredJobs = this.allJobs.filter(job => {
+    // Filtrage par localisation
+    const matchesLocation = !this.selectedLocation ||
+                            job.location?.toLowerCase().includes(this.selectedLocation.toLowerCase());
 
-      // Filtrage par localisation
-      const matchesLocation = !this.selectedLocation ||
-                              job.location?.toLowerCase().includes(this.selectedLocation.toLowerCase());
+    // Filtrage par catégorie
+    const matchesCategory = this.selectedCategories.length === 0 ||
+                            this.selectedCategories.includes(job.categoryName);
 
-      // Filtrage par catégorie
-      const matchesCategory = this.selectedCategories.length === 0 ||
-                              this.selectedCategories.includes(job.categoryName);
+    // Filtrage par type d'emploi
+    const matchesJobType = this.selectedJobTypes.length === 0 ||
+                           this.selectedJobTypes.includes(job.jobType);
 
-      // Filtrage par type d'emploi
-      const matchesJobType = this.selectedJobTypes.length === 0 ||
-                             this.selectedJobTypes.includes(job.jobType);
+    // Filtrage par niveau d'expérience
+    const matchesExperience = this.selectedExperienceLevels.length === 0 ||
+                              (job.yearExperience !== undefined && job.yearExperience !== null &&
+                               this.selectedExperienceLevels.some(selectedExpLevel => {
+                                 if (selectedExpLevel === 'no-experience') return job.yearExperience === 0;
+                                 if (selectedExpLevel === 'entry-level') return job.yearExperience >= 1 && job.yearExperience <= 2;
+                                 if (selectedExpLevel === 'mid-level') return job.yearExperience > 2 && job.yearExperience <= 5;
+                                 if (selectedExpLevel === 'senior-level') return job.yearExperience > 5 && job.yearExperience <= 10;
+                                 if (selectedExpLevel === 'director') return job.yearExperience > 10;
+                                 return false;
+                               }));
 
-      // Filtrage par niveau d'expérience
-      const matchesExperience = this.selectedExperienceLevels.length === 0 ||
-                                (job.yearExperience !== undefined && job.yearExperience !== null &&
-                                 this.selectedExperienceLevels.some(selectedExpLevel => {
-                                   if (selectedExpLevel === 'no-experience') return job.yearExperience === 0;
-                                   if (selectedExpLevel === 'entry-level') return job.yearExperience >= 1 && job.yearExperience <= 2;
-                                   if (selectedExpLevel === 'mid-level') return job.yearExperience > 2 && job.yearExperience <= 5;
-                                   if (selectedExpLevel === 'senior-level') return job.yearExperience > 5 && job.yearExperience <= 10;
-                                   if (selectedExpLevel === 'director') return job.yearExperience > 10;
-                                   return false;
-                                 }));
+    // Filtrage par date de publication
+    const matchesDate = this.selectedDates.length === 0 ||
+                        this.selectedDates.includes('all') ||
+                        (job.datePosted && this.selectedDates.some(selectedDateValue => {
+                          const jobDate = new Date(job.datePosted);
+                          const now = new Date();
+                          const diffTime = Math.abs(now.getTime() - jobDate.getTime());
+                          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Différence en jours
 
-      // Filtrage par date de publication
-      const matchesDate = this.selectedDates.length === 0 ||
-                          this.selectedDates.includes('all') ||
-                          (job.datePosted && this.selectedDates.some(selectedDateValue => {
-                            const jobDate = new Date(job.datePosted);
-                            const now = new Date();
-                            const diffTime = Math.abs(now.getTime() - jobDate.getTime());
-                            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Différence en jours
+                          if (selectedDateValue === 'last24hours') return diffDays <= 1;
+                          if (selectedDateValue === 'last7days') return diffDays <= 7;
+                          if (selectedDateValue === 'last30days') return diffDays <= 30;
+                          return false;
+                        }));
 
-                            if (selectedDateValue === 'last24hours') return diffDays <= 1;
-                            if (selectedDateValue === 'last7days') return diffDays <= 7;
-                            if (selectedDateValue === 'last30days') return diffDays <= 30;
-                            return false;
-                          }));
+    // Filtrage par salaire
+    const matchesSalary = (job.pay !== undefined && job.pay !== null) &&
+                          job.pay >= this.minSalary &&
+                          job.pay <= this.maxSalary;
 
-      // Filtrage par salaire
-      const matchesSalary = (job.pay !== undefined && job.pay !== null) &&
-                            job.pay >= this.minSalary &&
-                            job.pay <= this.maxSalary;
+    return matchesLocation && matchesCategory &&
+           matchesJobType && matchesExperience &&
+           matchesDate && matchesSalary;
+  });
 
-      return matchesKeyword && matchesLocation && matchesCategory &&
-             matchesJobType && matchesExperience && matchesDate && matchesSalary;
-    });
+  this.filteredJobs = tempFilteredJobs; // Stocke les jobs filtrés
+  this.goToPage(0); // Retourne à la première page des résultats filtrés
 
-    this.filteredJobs = tempFilteredJobs; // Stocke les jobs filtrés
-    this.goToPage(0); // Retourne à la première page des résultats filtrés
-  }
+  // Trier les résultats filtrés selon la date
+ tempFilteredJobs.sort((a, b) => {
+    const dateA = new Date(a.datePosted).getTime();
+    const dateB = new Date(b.datePosted).getTime();
+
+    if (this.sortOrder === 'latest') {
+      return dateB - dateA; // Plus récent en premier
+    } else if (this.sortOrder === 'oldest') {
+      return dateA - dateB; // Plus ancien en premier
+    } else {
+      return 0;
+    }
+  });
+
+  // 2. Mettre à jour l'affichage des jobs paginés
+  this.updateDisplayedJobs();
+
+}
+
+updateDisplayedJobs(): void {
+  const startIndex = this.currentPage * this.pageSize;
+  const endIndex = startIndex + this.pageSize;
+  this.displayedJobs = this.filteredJobs.slice(startIndex, endIndex);
+  this.totalPages = Math.ceil(this.filteredJobs.length / this.pageSize);
+}
 
 
   applySalaryFilter(): void {
@@ -294,4 +412,6 @@ export class JobComponent implements OnInit {
     return '';
   }
 }
+
+
 }

@@ -2,7 +2,7 @@ export interface JobApplication {
   id: number;
   fullName: string;
   email: string;
-  phoneNumber: string;
+  phone: string;
   resume: string;
   country: string;
   city: string;

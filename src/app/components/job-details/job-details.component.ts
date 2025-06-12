@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Job } from '../../interfaces/job';
 import { JobService } from '../../services/job.service';
 import { JobApplicationService } from '../../services/job-application.service';
-import { JobApplication } from '../../interfaces/job-application';
 
 @Component({
   selector: 'app-job-details',
@@ -15,6 +14,8 @@ import { JobApplication } from '../../interfaces/job-application';
   styleUrls: ['./job-details.component.css']
 })
 export class JobDetailsComponent implements OnInit {
+ 
+
   isMenuOpen: boolean = false;
   showApplyPopup: boolean = false;
   selectedFile: File | null = null;
@@ -24,7 +25,7 @@ export class JobDetailsComponent implements OnInit {
 application = {
   fullName: '',
   email: '',
-  phoneNumber: '',
+  phone: '',
   country: '',
   city: ''
 };
@@ -36,7 +37,7 @@ resetForm(): void {
   this.application = {
     fullName: '',
     email: '',
-    phoneNumber: '',
+    phone: '',
     country: '',
     city: ''
   };
@@ -104,9 +105,9 @@ ngOnInit(): void {
 
 
 submitApplication(): void {
-  const { fullName, email, phoneNumber, country, city } = this.application;
+  const { fullName, email, phone, country, city } = this.application;
 
-  if (!fullName || !email || !phoneNumber || !country || !city) {
+  if (!fullName || !email || !phone || !country || !city) {
     alert("Veuillez remplir tous les champs du formulaire.");
     return;
   }
@@ -124,7 +125,7 @@ submitApplication(): void {
   const formData = new FormData();
   formData.append('fullName', fullName);
   formData.append('email', email);
-  formData.append('phone', phoneNumber);
+  formData.append('phone', phone);
   formData.append('country', country);
   formData.append('city', city);
    console.log('jobId envoyé:', this.job?.id); 
@@ -144,10 +145,10 @@ submitApplication(): void {
     }
   });
 }
-
   goToJobDetails(jobId: string): void {
     this.router.navigate(['/jobs', jobId]);
   }
+  
 private loadSimilarJobs(title: string, currentJobId: number): void {
   this.jobService.getJobsByTitle(title, 0, 1).subscribe({
     next: (jobPage) => {
@@ -160,7 +161,7 @@ private loadSimilarJobs(title: string, currentJobId: number): void {
     error: (err) => {
       console.error('Erreur lors de la récupération des emplois similaires :', err);
       this.similarJobs = [];
-    }
+    } 
   });
 }
 
